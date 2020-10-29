@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgrlogin"
+    tools:context=".LogIn">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="122dp"
+        app:srcCompat="@drawable/logo1" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="Cont de utilizator"
+        android:drawableLeft="@drawable/ic_action_user"
+        android:inputType="textPersonName"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/editTextTextPersonName"
+        android:layout_marginTop="38dp"
+        android:background="#11000000"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Parola"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tvSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextTextPassword"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="45dp"
+        android:textSize="20dp"
+        android:text="Tine-ma minte!" />
+
+    <TextView
+        android:id="@+id/tvRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextTextPassword"
+        android:layout_marginLeft="215dp"
+        android:layout_marginTop="45dp"
+        android:textSize="20dp"
+        android:text="Reaminteste-ma!" />
+
+    <Button
+        android:id="@+id/buttonAutentificare"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tvSave"
+        android:layout_marginTop="52dp"
+        android:background="@color/DeepSkyBlue"
+        android:text="Autentificare"
+        android:textSize="18dp"
+        android:textColor="@color/Black"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
