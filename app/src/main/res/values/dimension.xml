@@ -2,4 +2,8 @@
 <resources>
     <dimen name="home_button">120dp</dimen>
     <dimen name="margin_home_button">5dp</dimen>
+    <dimen name="margin_top">50dp</dimen>
+    <dimen name="profile_margin_top">120dp</dimen>
+    <dimen name="profile_margin_leftright">20dp</dimen>
+    <dimen name="profil_textsize">23sp</dimen>
 </resources>
