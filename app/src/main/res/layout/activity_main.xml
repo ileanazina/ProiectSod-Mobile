@@ -39,7 +39,7 @@
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/form"
             android:text="Formulare"
-            android:textColor="@color/black" />
+            android:textColor="@color/Black" />
 
         <Button
             android:id="@+id/buttonIndex"
@@ -51,7 +51,7 @@
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/index"
             android:text="Index"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             />
 
         <Button
@@ -64,7 +64,7 @@
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/invoice"
             android:text="Facturi"
-            android:textColor="@color/black" />
+            android:textColor="@color/Black" />
 
         <Button
             android:id="@+id/buttonDetails"
@@ -76,7 +76,7 @@
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/moredetais"
             android:text="Detalii"
-            android:textColor="@color/black" />
+            android:textColor="@color/Black" />
 
 
         <Button
@@ -89,7 +89,7 @@
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/payment"
             android:text="Plati"
-            android:textColor="@color/black" />
+            android:textColor="@color/Black" />
 
         <Button
             android:id="@+id/buttonProfile"
@@ -101,6 +101,6 @@
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/profile"
             android:text="Profil"
-            android:textColor="@color/black" />
+            android:textColor="@color/Black" />
     </GridLayout>
 </LinearLayout>

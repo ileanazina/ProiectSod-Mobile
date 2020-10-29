@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication1">
-        <activity android:name=".Payments"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Payments" />
         <activity android:name=".Details" />
         <activity android:name=".Index" />
         <activity android:name=".Forms" />
         <activity android:name=".Invoices" />
         <activity android:name=".Profile" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
