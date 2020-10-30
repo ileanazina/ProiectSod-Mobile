@@ -1,14 +1,16 @@
-package com.example.myapplication1;
+package com.example.myapplication1.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Index extends AppCompatActivity {
+import com.example.myapplication1.R;
+
+public class Profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.activity_profile);
     }
 }

@@ -8,6 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication1.Activities.Details;
+import com.example.myapplication1.Activities.Forms;
+import com.example.myapplication1.Activities.Index;
+import com.example.myapplication1.Activities.Invoices;
+import com.example.myapplication1.Activities.Payments;
+import com.example.myapplication1.Activities.Profile;
+
 public class MainActivity extends AppCompatActivity {
 
     public static int getScreenWidth() {

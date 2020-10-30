@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication1">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication1">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Payments" />
-        <activity android:name=".Details" />
-        <activity android:name=".Index" />
-        <activity android:name=".Forms" />
-        <activity android:name=".Invoices" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Activities.Payments" />
+        <activity android:name=".Activities.Details" />
+        <activity android:name=".Activities.Index" />
+        <activity android:name=".Activities.Forms" />
+        <activity android:name=".Activities.Invoices" />
+        <activity android:name=".Activities.Profile" />
         <activity
             android:name=".LogIn">
             <intent-filter>
