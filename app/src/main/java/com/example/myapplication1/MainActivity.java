@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication1.Activities.Details;
+import com.example.myapplication1.Activities.InvoiceDetails;
 import com.example.myapplication1.Activities.Forms;
 import com.example.myapplication1.Activities.Index;
 import com.example.myapplication1.Activities.Invoices;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intentDetails = new Intent(MainActivity.this, Details.class);
+                Intent intentDetails = new Intent(MainActivity.this, InvoiceDetails.class);
                 startActivity(intentDetails);
 
 

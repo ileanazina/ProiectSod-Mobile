@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MyApplication1">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Activities.Payments" />
-        <activity android:name=".Activities.Details" />
+        <activity android:name=".Activities.InvoiceDetails" />
         <activity android:name=".Activities.Index" />
         <activity android:name=".Activities.Forms" />
         <activity android:name=".Activities.Invoices" />

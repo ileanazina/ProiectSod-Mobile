@@ -1,19 +1,19 @@
 package com.example.myapplication1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication1.Model.UserLogIn;
 import com.example.myapplication1.Remote.LogInAPI;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -50,18 +50,15 @@ public class LogIn extends AppCompatActivity {
                                 Toast.makeText(LogIn.this, s, Toast.LENGTH_LONG).show();
                                 Intent intentAutentificare = new Intent(LogIn.this,MainActivity.class);
                                 startActivity(intentAutentificare);
-
                             }
                         }, new Consumer<Throwable>() {
                             @Override
                             public void accept(Throwable throwable) throws Exception {
                                 Toast.makeText(LogIn.this,throwable.getMessage(),Toast.LENGTH_LONG).show();
+                                Log.d("Eroare", throwable.getMessage().toString());
 
                             }
                         }));
-
-
-
             }
         });
     }
