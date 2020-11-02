@@ -17,11 +17,11 @@ public class InvoiceModel {
     private float valueWithVat;
     @SerializedName("valueWithoutVAT")
     private float valueWithoutVAT;
-    @SerializedName("dateOfIssue")
+    /*@SerializedName("dateOfIssue")
     private Date dateOfIssue;
     @SerializedName("dueDate")
     private Date dueDate;
-    @SerializedName("cuiIssuer")
+    @SerializedName("cuiIssuer")*/
     private int CUIIssuer;
     @SerializedName("issuerAddress")
     private String issuerAddress;
@@ -37,8 +37,8 @@ public class InvoiceModel {
         this.VAT = vat;
         this.valueWithVat = valueWithVat;
         this.valueWithoutVAT = valueWithoutVAT;
-        this.dateOfIssue = dateOfIssue;
-        this.dueDate = dueDate;
+        //this.dateOfIssue = dateOfIssue;
+        //this.dueDate = dueDate;
         this.CUIIssuer = cuiIssuer;
         this.issuerAddress = issuerAddress;
     }
@@ -55,9 +55,9 @@ public class InvoiceModel {
         return CUIIssuer;
     }
 
-    public Date getDueDate() {
+   /* public Date getDueDate() {
         return dueDate;
-    }
+    }*/
 
     public int getInvoiceId() {
         return invoiceId;
@@ -83,8 +83,7 @@ public class InvoiceModel {
         return valueWithoutVAT;
     }
 
-    public Date getDateOfIssue() {
+    /*public Date getDateOfIssue() {
         return dateOfIssue;
-    }
-
+    }*/
 }

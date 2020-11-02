@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 
 public interface APIInterfaces {
     @GET("Invoices/GetAll")
-    Call<List<InvoiceModel>> getAllInvoices(@Body InvoiceModel body);
+    Call<List<InvoiceModel>> getAllInvoices();
 
     @POST("Users/Login")
     Observable<String> loginUser(@Body UserLogIn user);

@@ -9,7 +9,6 @@ import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
-import java.util.ArrayList;
 import java.util.List;
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Call;
@@ -17,49 +16,60 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvoiceListener{
+    public interface RevealDetailsCallbacks {
+        void getDataFromResult(List<InvoiceModel> list);
+    }
+
     private RecyclerView recyclerView;
     private InvoiceAdaptor invoiceAdaptor;
     private APIInterfaces invoiceAPI;
-    private List<InvoiceModel> list;
     CompositeDisposable compositeDisposable= new CompositeDisposable();
+    RevealDetailsCallbacks callback;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoices);
-
-        recyclerView = findViewById(R.id.invoiceRecycleView);
+        recyclerView = this.findViewById(R.id.invoiceRecycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<>();
-        getInvoiceList(this);
-        invoiceAdaptor = new InvoiceAdaptor(this,list,this);
-        recyclerView.setAdapter(invoiceAdaptor);
+
+        this.callback = new RevealDetailsCallbacks() {
+            @Override
+            public void getDataFromResult(List<InvoiceModel> list) {
+                invoiceAdaptor = new InvoiceAdaptor(Invoices.this,list,Invoices.this);
+                recyclerView.setAdapter(invoiceAdaptor);
+            }
+        };
+        getInvoiceList(this, callback);
     }
 
-    public void getInvoiceList(Context context) {
+    public void getInvoiceList(Context context, RevealDetailsCallbacks callback) {
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        InvoiceModel invoiceModel = new InvoiceModel();
-        Call<List<InvoiceModel>> call = invoiceAPI.getAllInvoices(invoiceModel);
+        Call<List<InvoiceModel>> call = invoiceAPI.getAllInvoices();
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
                 List<InvoiceModel> invoices = response.body();
-                Log.d("mere","intr-un final");
+                if(callback != null) {
+                    callback.getDataFromResult(invoices);
+                }
             }
 
             @Override
             public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", "de la mama omida stie");
+                Log.d("eroare", t.toString());
             }
         });
     }
 
     @Override
     public void onInvoiceListener(int position) {
-
+        InvoiceDetails secondFragment = new InvoiceDetails();
     }
+
     @Override
     protected void onStop() {
         compositeDisposable.clear();

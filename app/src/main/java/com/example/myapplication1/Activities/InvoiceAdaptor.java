@@ -18,7 +18,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
 
-    public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList, OnInvoiceListener onInvoiceListener) {
+    public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList,OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
         this.mList = mList;
         this.monInvoiceListener=onInvoiceListener;
@@ -27,14 +27,14 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     @NonNull
     @Override
     public ExempleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.invoice_recycle_view, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.invoice_recycle_view,parent,false);
         return new ExempleViewHolder(v,monInvoiceListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
         InvoiceModel item = mList.get(position);
-        String aux = "Numar factura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nEmisa la data: " + item.getDueDate();
+        String aux = "no bine";
         holder.textView.setText(aux);
     }
 
@@ -47,9 +47,9 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
         public TextView textView;
         OnInvoiceListener onInvoiceListener;
 
-        public ExempleViewHolder(@NonNull View itemView,OnInvoiceListener onInvoiceListener) {
+        public ExempleViewHolder(@NonNull View itemView, OnInvoiceListener onInvoiceListener) {
             super(itemView);
-            textView = itemView.findViewById(R.id.invoiceRecycleView);
+            textView = itemView.findViewById(R.id.invoice_recycle_text);
             this.onInvoiceListener=onInvoiceListener;
             itemView.setOnClickListener(this);
         }
@@ -59,6 +59,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             onInvoiceListener.onInvoiceListener(getAdapterPosition());
         }
     }
+
     public interface OnInvoiceListener {
         void onInvoiceListener(int position);
     }
