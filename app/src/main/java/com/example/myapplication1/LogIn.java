@@ -12,10 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication1.Model.UserLogIn;
-import com.example.myapplication1.Remote.LogInAPI;
+import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -23,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 import android.content.SharedPreferences;
 public class LogIn extends AppCompatActivity {
 
-    LogInAPI logInAPI;
+    APIInterfaces logInAPI;
     CompositeDisposable compositeDisposable= new CompositeDisposable();
 
     EditText userName, userPassword;
@@ -43,12 +42,10 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("User info", Context.MODE_PRIVATE);
-
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("user", userName.getText().toString());
                 editor.putString("password", userPassword.getText().toString());
                 editor.apply();
-
                 Toast.makeText(getApplicationContext(), "Saved!", Toast.LENGTH_SHORT).show();
 
             }
@@ -68,7 +65,7 @@ public class LogIn extends AppCompatActivity {
         });
 
         //initializare api
-        logInAPI = RetrofitClientLogIn.getInstance().create(LogInAPI.class);
+        logInAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
 
         userName = findViewById(R.id.userName);
         userPassword = findViewById(R.id.userPassword);
@@ -90,18 +87,13 @@ public class LogIn extends AppCompatActivity {
                                 Toast.makeText(LogIn.this, s, Toast.LENGTH_LONG).show();
                                 Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
                                 startActivity(intentAutentificare);
-
                             }
                         }, new Consumer<Throwable>() {
                             @Override
                             public void accept(Throwable throwable) throws Exception {
                                 Toast.makeText(LogIn.this, throwable.getMessage(), Toast.LENGTH_LONG).show();
-
                             }
                         }));
-
-
-
             }
         });
     }

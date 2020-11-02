@@ -4,10 +4,6 @@ public class UserLogIn {
     private String userName;
     private String password;
 
-    public UserLogIn(){
-
-    }
-
     public UserLogIn(String userName, String password) {
         this.userName = userName;
         this.password = password;

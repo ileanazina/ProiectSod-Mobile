@@ -1,4 +1,4 @@
-package com.example.myapplication1.RecycleView;
+package com.example.myapplication1.Activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,16 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 
 import java.util.List;
 
 public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleViewHolder> {
     private Context mContext;
-    private List<InvoiceRecycleView> mList;
+    private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
 
-    public InvoiceAdaptor(Context mContext, List<InvoiceRecycleView> mList,OnInvoiceListener onInvoiceListener) {
+    public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList, OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
         this.mList = mList;
         this.monInvoiceListener=onInvoiceListener;
@@ -32,8 +33,8 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
-        InvoiceRecycleView item = mList.get(position);
-        String aux = "Numar factura: " + item.getId() + "\nTotal de plata: " + item.getBill() + "\nEmisa la data: " + item.getDate();
+        InvoiceModel item = mList.get(position);
+        String aux = "Numar factura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nEmisa la data: " + item.getDueDate();
         holder.textView.setText(aux);
     }
 
