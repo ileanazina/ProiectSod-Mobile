@@ -12,7 +12,7 @@ public class RetrofitClientLogIn {
     public static Retrofit getInstance()
     {
         if(instance==null)
-            instance= new Retrofit.Builder().baseUrl("http://10.1.2.88:62297/swagger/").addConverterFactory(
+            instance= new Retrofit.Builder().baseUrl("http://10.1.2.88:62297/").addConverterFactory(
                     ScalarsConverterFactory.create()).addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
         return instance;
