@@ -2,10 +2,13 @@ package com.example.myapplication1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,10 +33,15 @@ public class LogIn extends AppCompatActivity {
 
     TextView saveData, restoreData;
 
+    private AlertDialog.Builder builder;
+    private AlertDialog dialogError, dialogNetwork;
+    private LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+
 
         saveData =(TextView) findViewById(R.id.tvSave) ;
         restoreData = (TextView) findViewById(R.id.tvRemember);
@@ -49,7 +57,7 @@ public class LogIn extends AppCompatActivity {
                 editor.putString("password", userPassword.getText().toString());
                 editor.apply();
 
-                Toast.makeText(getApplicationContext(), "Saved!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Salvat!", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -87,17 +95,73 @@ public class LogIn extends AppCompatActivity {
                         .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
                             @Override
                             public void accept(String s) throws Exception {
-                                Toast.makeText(LogIn.this, s, Toast.LENGTH_LONG).show();
-                                Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
-                                startActivity(intentAutentificare);
 
+                                    Toast.makeText(LogIn.this, "Conectare...", Toast.LENGTH_LONG).show();
+                                    Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
+                                    startActivity(intentAutentificare);
                             }
                         }, new Consumer<Throwable>() {
                             @Override
                             public void accept(Throwable throwable) throws Exception {
-                                Toast.makeText(LogIn.this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                if(throwable.getMessage().equals("HTTP 404 Not Found")) {
+                                    builder = new AlertDialog.Builder(LogIn.this);
 
-                            }
+                                    inflater = LayoutInflater.from(LogIn.this);
+                                    View view = inflater.inflate(R.layout.custom_alert_dialog, null);
+
+                                    Button noButton = view.findViewById(R.id.button_cancel);
+                                    Button yesButton = view.findViewById(R.id.button_reload);
+
+                                    builder.setView(view);
+                                    dialogError = builder.create();
+                                    dialogError.show();
+
+                                    yesButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            dialogError.dismiss();
+                                        }
+                                    });
+                                    noButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            android.os.Process.killProcess(android.os.Process.myPid());
+                                        }
+                                    });
+                                }
+                                    else
+                                    {
+                                        if(!throwable.getMessage().equals("HTTP 404 Not Found")&&throwable.getMessage().equals("200"))
+                                        {
+                                            builder = new AlertDialog.Builder(LogIn.this);
+
+                                            inflater = LayoutInflater.from(LogIn.this);
+                                            View view = inflater.inflate(R.layout.custom_network_dialog, null);
+
+                                            Button ntnoButton = view.findViewById(R.id.button_ntcancel);
+                                            Button ntyesButton = view.findViewById(R.id.button_ntreload);
+
+                                            builder.setView(view);
+                                            dialogNetwork = builder.create();
+                                            dialogNetwork.show();
+
+                                            ntyesButton.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    dialogNetwork.dismiss();
+                                                }
+                                            });
+                                            ntnoButton.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+
+
                         }));
 
 
