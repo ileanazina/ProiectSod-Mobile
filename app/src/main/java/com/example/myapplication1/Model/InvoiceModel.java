@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InvoiceModel {
+
     @SerializedName("invoiceId")
     private int invoiceId;
     @SerializedName("accountId")
