@@ -34,7 +34,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
         InvoiceModel item = mList.get(position);
-        String aux = "no bine";
+        String aux = "Numar facura: "+item.getInvoiceId()+"\nTotal de plata: "+item.getValueWithVat();
         holder.textView.setText(aux);
     }
 

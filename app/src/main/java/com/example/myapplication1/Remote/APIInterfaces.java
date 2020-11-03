@@ -1,5 +1,6 @@
 package com.example.myapplication1.Remote;
 
+import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.UserLogIn;
 
@@ -16,5 +17,5 @@ public interface APIInterfaces {
     Call<List<InvoiceModel>> getAllInvoices();
 
     @POST("Users/Login")
-    Observable<String> loginUser(@Body UserLogIn user);
+    Call<AccountModel> loginUser(@Body UserLogIn user);
 }

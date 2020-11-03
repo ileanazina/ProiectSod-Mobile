@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/White">
 
     <TextView
         android:id="@+id/invoice_recycle_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/profil_textsize"
+        android:fontFamily="@font/cherry_swash"
         android:text="">
     </TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plateste"
+        android:textColor="@color/black"
+        android:background="@color/Blue"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VizualizeazaFactura"
+        android:textColor="@color/black"
+        android:background="@color/Red"/>
 </LinearLayout>

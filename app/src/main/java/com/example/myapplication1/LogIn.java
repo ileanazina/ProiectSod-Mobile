@@ -6,28 +6,47 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication1.Activities.InvoiceAdaptor;
+import com.example.myapplication1.Activities.Invoices;
+import com.example.myapplication1.Model.AccountModel;
+import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.UserLogIn;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
+import com.google.gson.Gson;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import android.content.SharedPreferences;
+
+import java.util.List;
+
 public class LogIn extends AppCompatActivity {
+
+    public interface RevealDetailsCallbacks {
+        void getDataFromResult(AccountModel list);
+    }
 
     APIInterfaces logInAPI;
     CompositeDisposable compositeDisposable= new CompositeDisposable();
-
     EditText userName, userPassword;
-
     TextView saveData, restoreData;
+    RevealDetailsCallbacks callback;
 
     private AlertDialog.Builder builder;
     private AlertDialog dialogError, dialogNetwork;
@@ -38,6 +57,18 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         saveData =(TextView) findViewById(R.id.tvSave) ;
         restoreData = (TextView) findViewById(R.id.tvRemember);
+
+        this.callback = new RevealDetailsCallbacks() {
+            @Override
+            public void getDataFromResult(AccountModel account) {
+                SharedPreferences  mPrefs = PreferenceManager.getDefaultSharedPreferences(LogIn.this);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(account);
+                prefsEditor.putString("AccountInfo", json);
+                prefsEditor.commit();
+            }
+        };
 
         saveData.setOnClickListener(new View.OnClickListener(){
 
@@ -79,73 +110,77 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserLogIn user = new UserLogIn(userName.getText().toString(), userPassword.getText().toString());
-                compositeDisposable.add(logInAPI.loginUser(user).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
-                            @Override
-                            public void accept(String s) throws Exception {
+                Call<AccountModel> call = logInAPI.loginUser(user);
+                call.enqueue(new Callback<AccountModel>() {
+                    @Override
+                    public void onResponse(Call<AccountModel> call, Response<AccountModel> response) {
+                        AccountModel account = response.body();
+                        if(account == null) {
+                            builder = new AlertDialog.Builder(LogIn.this);
 
-                                Toast.makeText(LogIn.this, "Conectare...", Toast.LENGTH_LONG).show();
-                                Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
-                                startActivity(intentAutentificare);
-                            }
-                        }, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) throws Exception {
-                                if (throwable.getMessage().equals("HTTP 404 Not Found")) {
-                                    builder = new AlertDialog.Builder(LogIn.this);
+                            inflater = LayoutInflater.from(LogIn.this);
+                            View view = inflater.inflate(R.layout.custom_alert_dialog, null);
 
-                                    inflater = LayoutInflater.from(LogIn.this);
-                                    View view = inflater.inflate(R.layout.custom_alert_dialog, null);
+                            Button noButton = view.findViewById(R.id.button_cancel);
+                            Button yesButton = view.findViewById(R.id.button_reload);
 
-                                    Button noButton = view.findViewById(R.id.button_cancel);
-                                    Button yesButton = view.findViewById(R.id.button_reload);
+                            builder.setView(view);
+                            dialogError = builder.create();
+                            dialogError.show();
 
-                                    builder.setView(view);
-                                    dialogError = builder.create();
-                                    dialogError.show();
-
-                                    yesButton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialogError.dismiss();
-                                        }
-                                    });
-                                    noButton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            android.os.Process.killProcess(android.os.Process.myPid());
-                                        }
-                                    });
-                                } else {
-                                    if (!throwable.getMessage().equals("HTTP 404 Not Found") && throwable.getMessage().equals("200")) {
-                                        builder = new AlertDialog.Builder(LogIn.this);
-
-                                        inflater = LayoutInflater.from(LogIn.this);
-                                        View view = inflater.inflate(R.layout.custom_network_dialog, null);
-
-                                        Button ntnoButton = view.findViewById(R.id.button_ntcancel);
-                                        Button ntyesButton = view.findViewById(R.id.button_ntreload);
-
-                                        builder.setView(view);
-                                        dialogNetwork = builder.create();
-                                        dialogNetwork.show();
-
-                                        ntyesButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                dialogNetwork.dismiss();
-                                            }
-                                        });
-                                        ntnoButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                android.os.Process.killProcess(android.os.Process.myPid());
-                                            }
-                                        });
-                                    }
+                            yesButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialogError.dismiss();
                                 }
+                            });
+                            noButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                }
+                            });
+                        }
+                        else {
+                            if(callback != null) {
+                                callback.getDataFromResult(account);
                             }
-                        }));
+
+                            Toast.makeText(LogIn.this, "Conectare...", Toast.LENGTH_LONG).show();
+                            Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
+                            startActivity(intentAutentificare);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AccountModel> call, Throwable t) {
+                        call.cancel();
+                        builder = new AlertDialog.Builder(LogIn.this);
+
+                        inflater = LayoutInflater.from(LogIn.this);
+                        View view = inflater.inflate(R.layout.custom_network_dialog, null);
+
+                        Button ntnoButton = view.findViewById(R.id.button_ntcancel);
+                        Button ntyesButton = view.findViewById(R.id.button_ntreload);
+
+                        builder.setView(view);
+                        dialogNetwork = builder.create();
+                        dialogNetwork.show();
+
+                        ntyesButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialogNetwork.dismiss();
+                            }
+                        });
+                        ntnoButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                            }
+                        });
+                    }
+                });
             }
         });
     }
