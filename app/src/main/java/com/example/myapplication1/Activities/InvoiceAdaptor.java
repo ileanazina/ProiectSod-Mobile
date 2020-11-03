@@ -1,6 +1,8 @@
 package com.example.myapplication1.Activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -18,11 +22,17 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     private Context mContext;
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
+    public AccountModel account;
 
     public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList,OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
         this.mList = mList;
         this.monInvoiceListener=onInvoiceListener;
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this.mContext);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("AccountInfo",null);
+        account = gson.fromJson(json, AccountModel.class);
     }
 
     @NonNull
@@ -35,10 +45,12 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
         InvoiceModel item = mList.get(position);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dataDue = formatter.format(item.getDueDate());
-        String aux = "Numar facura: "+item.getInvoiceId()+"\nTotal de plata: "+item.getValueWithVat() +"\nData scadenta: "+dataDue;
-        holder.textView.setText(aux);
+        if(account.getAccountId() == item.getAccountId()) {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String dataDue = formatter.format(item.getDueDate());
+            String aux = "Numar facura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nData scadenta: " + dataDue;
+            holder.textView.setText(aux);
+        }
     }
 
     @Override

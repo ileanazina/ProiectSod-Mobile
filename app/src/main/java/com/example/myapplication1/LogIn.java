@@ -55,8 +55,8 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        saveData =(TextView) findViewById(R.id.tvSave) ;
-        restoreData = (TextView) findViewById(R.id.tvRemember);
+        saveData = findViewById(R.id.tvSave) ;
+        restoreData = findViewById(R.id.tvRemember);
 
         this.callback = new RevealDetailsCallbacks() {
             @Override
