@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleViewHolder> {
@@ -34,7 +35,9 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
         InvoiceModel item = mList.get(position);
-        String aux = "Numar facura: "+item.getInvoiceId()+"\nTotal de plata: "+item.getValueWithVat();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dataDue = formatter.format(item.getDueDate());
+        String aux = "Numar facura: "+item.getInvoiceId()+"\nTotal de plata: "+item.getValueWithVat() +"\nData scadenta: "+dataDue;
         holder.textView.setText(aux);
     }
 

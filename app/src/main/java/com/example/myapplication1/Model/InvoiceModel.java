@@ -1,7 +1,11 @@
 package com.example.myapplication1.Model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InvoiceModel {
@@ -17,11 +21,11 @@ public class InvoiceModel {
     private float valueWithVat;
     @SerializedName("valueWithoutVAT")
     private float valueWithoutVAT;
-    /*@SerializedName("dateOfIssue")
+    @SerializedName("dateOfIssue")
     private Date dateOfIssue;
     @SerializedName("dueDate")
     private Date dueDate;
-    @SerializedName("cuiIssuer")*/
+    @SerializedName("cuiIssuer")
     private int CUIIssuer;
     @SerializedName("issuerAddress")
     private String issuerAddress;
@@ -30,15 +34,15 @@ public class InvoiceModel {
     {}
 
     public InvoiceModel( int invoiceId, int accountId, int addressId, float vat, float valueWithVat, float valueWithoutVAT,
-                         Date dateOfIssue, Date dueDate, int cuiIssuer, String issuerAddress) {
+                         Date dateOfIssue, Date dueDate, int cuiIssuer, String issuerAddress) throws ParseException {
         this.invoiceId = invoiceId;
         this.accountId = accountId;
         this.addressId = addressId;
         this.VAT = vat;
         this.valueWithVat = valueWithVat;
         this.valueWithoutVAT = valueWithoutVAT;
-        //this.dateOfIssue = dateOfIssue;
-        //this.dueDate = dueDate;
+        this.dateOfIssue = dateOfIssue;
+        this.dueDate = dueDate;
         this.CUIIssuer = cuiIssuer;
         this.issuerAddress = issuerAddress;
     }
@@ -55,9 +59,9 @@ public class InvoiceModel {
         return CUIIssuer;
     }
 
-   /* public Date getDueDate() {
+    public Date getDueDate() {
         return dueDate;
-    }*/
+    }
 
     public int getInvoiceId() {
         return invoiceId;
@@ -83,7 +87,7 @@ public class InvoiceModel {
         return valueWithoutVAT;
     }
 
-    /*public Date getDateOfIssue() {
+    public Date getDateOfIssue() {
         return dateOfIssue;
-    }*/
+    }
 }
