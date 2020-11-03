@@ -22,17 +22,11 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     private Context mContext;
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
-    public AccountModel account;
 
     public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList,OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
         this.mList = mList;
         this.monInvoiceListener=onInvoiceListener;
-
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this.mContext);
-        Gson gson = new Gson();
-        String json = mPrefs.getString("AccountInfo",null);
-        account = gson.fromJson(json, AccountModel.class);
     }
 
     @NonNull
@@ -45,12 +39,11 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
         InvoiceModel item = mList.get(position);
-        if(account.getAccountId() == item.getAccountId()) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String dataDue = formatter.format(item.getDueDate());
-            String aux = "Numar facura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nData scadenta: " + dataDue;
-            holder.textView.setText(aux);
-        }
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dataDue = formatter.format(item.getDueDate());
+        String aux = "Numar facura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nData scadenta: " + dataDue;
+        holder.textView.setText(aux);
+
     }
 
     @Override
