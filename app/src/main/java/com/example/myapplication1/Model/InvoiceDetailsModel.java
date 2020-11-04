@@ -1,8 +1,5 @@
 package com.example.myapplication1.Model;
-
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
 
 public class InvoiceDetailsModel {
 

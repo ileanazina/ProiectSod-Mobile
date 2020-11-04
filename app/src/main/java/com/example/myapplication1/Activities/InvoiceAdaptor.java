@@ -2,8 +2,6 @@ package com.example.myapplication1.Activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
-import com.google.gson.Gson;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -25,12 +19,10 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
 
-
     public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList,OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
         this.mList = mList;
         this.monInvoiceListener=onInvoiceListener;
-
     }
 
     @NonNull
@@ -50,7 +42,6 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             holder.tvInvoiceNr.setText("Numar facura: " + item.getInvoiceId());
             holder.tvTotalPay.setText("Total de plata: " + item.getValueWithVat());
             holder.tvDueDate.setText("Data scadenta: " + dataDue);
-
     }
 
     @Override
@@ -69,7 +60,6 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             tvTotalPay = itemView.findViewById(R.id.toaltoPay);
             tvDueDate = itemView.findViewById(R.id.dataDue);
 
-
             viewInfo = itemView.findViewById(R.id.Viewbtn);
             payInvoice = itemView.findViewById(R.id.Paybtn);
 
@@ -80,10 +70,6 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             itemView.setOnClickListener(this);
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            onInvoiceListener.onInvoiceListener(getAdapterPosition());
-//        }
         @Override
         public void onClick(View v) {
             onInvoiceListener.onInvoiceListener(getAdapterPosition());
@@ -99,15 +85,14 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
                     paingInvoice(item.getInvoiceId());
                     break;
             }
-
         }
+
         private void viewInvoice(final int id)
         {
             Intent intentDetais = new Intent(mContext , InvoiceDetails.class);
             intentDetais.putExtra("extra", id);
             intentDetais.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intentDetais);
-
         }
 
         private void paingInvoice(final int id)
@@ -118,8 +103,6 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             mContext.startActivity(intentPay);
         }
     }
-
-
 
     public interface OnInvoiceListener {
         void onInvoiceListener(int position);

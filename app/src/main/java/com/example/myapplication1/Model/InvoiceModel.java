@@ -1,11 +1,6 @@
 package com.example.myapplication1.Model;
-
-import android.util.Log;
-
 import com.google.gson.annotations.SerializedName;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class InvoiceModel {
