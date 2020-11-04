@@ -16,10 +16,10 @@
         android:theme="@style/Theme.MyApplication1">
         <activity android:name=".MainActivity"/>
         <activity android:name=".Activities.Payments" />
-        <activity android:name=".Activities.InvoiceDetails" />
-        <activity android:name=".Activities.Index" />
+        <activity android:name=".Activities.Invoice.InvoiceDetails" />
+        <activity android:name=".Activities.Index.Index" />
         <activity android:name=".Activities.Forms" />
-        <activity android:name=".Activities.Invoices" />
+        <activity android:name=".Activities.Invoice.Invoices" />
         <activity android:name=".Activities.Profile" />
         <activity
             android:name=".LogIn">

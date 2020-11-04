@@ -1,4 +1,4 @@
-package com.example.myapplication1.Activities;
+package com.example.myapplication1.Activities.Invoice;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
@@ -20,7 +21,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvoiceListener{
+public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvoiceListener {
+
     public interface RevealDetailsCallbacks {
         void getDataFromResult(List<InvoiceModel> list);
     }
@@ -35,6 +37,7 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoices);
+
         recyclerView = this.findViewById(R.id.invoiceRecycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

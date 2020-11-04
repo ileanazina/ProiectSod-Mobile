@@ -1,4 +1,4 @@
-package com.example.myapplication1.Activities;
+package com.example.myapplication1.Activities.Invoice;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleViewHolder> {
+
     private Context mContext;
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
