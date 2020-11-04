@@ -18,12 +18,33 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo1" />
+    <Button
+        android:id="@+id/buttonDownloadId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cherry_swash"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:layout_gravity="end|top"
+        android:background="@drawable/button_invoices"
+        android:text="Descarca" />
+
+    <!-- about invoice -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_home_button"
+        android:fontFamily="@font/cherry_swash"
+        android:background="@drawable/profile_border"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/invoicedetails_textsize"
+        android:text="Detalii factura" />
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/profile_margin_leftright"
-        android:layout_marginTop="@dimen/invoice_details_margin_top"
         android:layout_marginRight="@dimen/profile_margin_leftright"
         android:background="@drawable/profile_border"
         android:columnCount="2"
@@ -55,6 +76,146 @@
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="~invoiceId~"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Data emitere"/>
+        <TextView
+            android:id="@+id/dateOfIssue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~dataOfIssue~"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Data scadenta"/>
+        <TextView
+            android:id="@+id/dueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~dueDate~"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Total de plata"/>
+        <TextView
+            android:id="@+id/youHaveToPay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~valueWithVat + sold~"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Data scadenta"/>
+        <TextView
+            android:id="@+id/soldFromPast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~sold~"/>
+
+    </GridLayout>
+
+    <!-- about client -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_home_button"
+        android:fontFamily="@font/cherry_swash"
+        android:background="@drawable/profile_border"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/invoicedetails_textsize"
+        android:text="Detalii client" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/profile_margin_leftright"
+        android:layout_marginRight="@dimen/profile_margin_leftright"
+        android:background="@drawable/profile_border"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:rowCount="7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Adresa de facturare"/>
+        <TextView
+            android:id="@+id/addressId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~call in baza de date cu addressId~"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,6 +240,77 @@
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="~acccountId~"/>
 
+    </GridLayout>
+
+    <!-- about price -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_home_button"
+        android:fontFamily="@font/cherry_swash"
+        android:background="@drawable/profile_border"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/invoicedetails_textsize"
+        android:text="Detalii pret" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/profile_margin_leftright"
+        android:layout_marginRight="@dimen/profile_margin_leftright"
+        android:background="@drawable/profile_border"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:rowCount="7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Unitate de masura"/>
+        <TextView
+            android:id="@+id/unitMeasurementType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~call in baza de date pentru a prelua unitatea de masura~"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Pretul per unitate"/>
+        <TextView
+            android:id="@+id/pricePerUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~pricePerUnit~"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,20 +321,19 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Adresa de facturare"/>
+            android:text="Cantitate consumata"/>
         <TextView
-            android:id="@+id/addressId"
+            android:id="@+id/consumedQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
             android:layout_column="1"
-            android:layout_marginRight="@dimen/profile_margin_top"
             android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="~call in baza de date cu addressId~"/>
-
+            android:text="~consumedQuantity~"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,7 +356,124 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="~VAT"/>
+            android:text="~VAT~"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Pret fara TVA"/>
+        <TextView
+            android:id="@+id/valueWithoutVAT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~valueWithoutVAT~"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Pret cu TVA"/>
+        <TextView
+            android:id="@+id/valueWithVat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~valueWithVat~"/>
+
+    </GridLayout>
+
+    <!-- about issuer -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_home_button"
+        android:fontFamily="@font/cherry_swash"
+        android:background="@drawable/profile_border"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="@dimen/invoicedetails_textsize"
+        android:text="Detalii furnizor" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/profile_margin_leftright"
+        android:layout_marginRight="@dimen/profile_margin_leftright"
+        android:background="@drawable/profile_border"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:rowCount="7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="CUI"/>
+        <TextView
+            android:id="@+id/IssueCUI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~CUIIssue~"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="@dimen/margin_home_button"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="Adresa"/>
+        <TextView
+            android:id="@+id/IssueAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_margin="@dimen/margin_home_button"
+            android:layout_marginRight="@dimen/profile_margin_top"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"
+            android:textSize="@dimen/invoicedetails_textsize"
+            android:text="~issueAddress~"/>
     </GridLayout>
 </LinearLayout>

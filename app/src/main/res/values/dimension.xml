@@ -8,4 +8,6 @@
     <dimen name="profile_margin_leftright">20dp</dimen>
     <dimen name="profil_textsize">23sp</dimen>
     <dimen name="invoicedetails_textsize">15sp</dimen>
+    <dimen name="invoices_button_text">18sp</dimen>
+    <dimen name="invoicedetails_button_margins">45dp</dimen>
 </resources>

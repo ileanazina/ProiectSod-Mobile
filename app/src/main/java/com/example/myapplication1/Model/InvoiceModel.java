@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class InvoiceModel {
-
     @SerializedName("invoiceId")
     private int invoiceId;
     @SerializedName("accountId")

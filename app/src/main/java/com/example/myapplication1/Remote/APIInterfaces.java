@@ -2,6 +2,7 @@ package com.example.myapplication1.Remote;
 
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
+import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.UserLogIn;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface APIInterfaces {
 
     @POST("Users/Login")
     Call<AccountModel> loginUser(@Body UserLogIn user);
+
+    @GET("Payment/GetPayments")
+    Call<List<PaymentModel>> getAllPayments();
 }
