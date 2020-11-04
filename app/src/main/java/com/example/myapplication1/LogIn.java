@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -15,26 +14,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication1.Activities.InvoiceAdaptor;
-import com.example.myapplication1.Activities.Invoices;
 import com.example.myapplication1.Model.AccountModel;
-import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.UserLogIn;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
 import com.google.gson.Gson;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.SharedPreferences;
-
-import java.util.List;
 
 public class LogIn extends AppCompatActivity {
 

@@ -1,6 +1,7 @@
 package com.example.myapplication1.Remote;
 
 import com.example.myapplication1.Model.AccountModel;
+import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.UserLogIn;
@@ -12,6 +13,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface APIInterfaces {
+
+    @GET("Invoices/GetAll")
+    Call<List<IndexModel>> getAllIndexis();
+
     @GET("Invoices/GetAll")
     Call<List<InvoiceModel>> getAllInvoices();
 
