@@ -5,14 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.R;
 import com.google.gson.Gson;
-
-import io.reactivex.disposables.CompositeDisposable;
 
 public class Profile extends AppCompatActivity {
 
@@ -20,7 +17,6 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         CompleteTheProfile();
     }
 
