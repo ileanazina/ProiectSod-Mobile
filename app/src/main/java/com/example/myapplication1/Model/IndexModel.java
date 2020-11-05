@@ -7,12 +7,25 @@ import java.util.Date;
 public class IndexModel {
     @SerializedName("indexId")
     private int indexId;
+    @SerializedName("accountId")
+    private int accountId;
+    @SerializedName("addressId")
+    private int addressId;
     @SerializedName("indexValue")
     private float indexValue;
     @SerializedName("indexDate")
     private Date indexDate;
     @SerializedName("averageIndex")
     private float averageIndex;
+
+
+
+    public IndexModel(int indexId ,float indexValue, Date indexDate, float averageIndex) {
+        this.indexId= indexId;
+        this.indexValue = indexValue;
+        this.indexDate = indexDate;
+        this.averageIndex = averageIndex;
+    }
 
     public int getIndexId() {
         return indexId;
@@ -22,12 +35,22 @@ public class IndexModel {
         this.indexId = indexId;
     }
 
-    public IndexModel(int indexId ,float indexValue, Date indexDate, float averageIndex) {
-        this.indexId= indexId;
-        this.indexValue = indexValue;
-        this.indexDate = indexDate;
-        this.averageIndex = averageIndex;
+    public int getAddressId() {
+        return addressId;
     }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
 
     public float getIndexValue() {
         return indexValue;
