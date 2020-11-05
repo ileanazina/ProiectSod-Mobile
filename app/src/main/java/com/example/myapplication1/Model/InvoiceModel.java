@@ -1,9 +1,11 @@
 package com.example.myapplication1.Model;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 
-public class InvoiceModel {
+public class InvoiceModel implements Serializable {
     @SerializedName("invoiceId")
     private int invoiceId;
     @SerializedName("accountId")

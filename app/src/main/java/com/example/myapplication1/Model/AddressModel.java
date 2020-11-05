@@ -13,15 +13,19 @@ public class AddressModel {
     private int accountId;
     @SerializedName("street")
     private String street;
+    @SerializedName("streetNumber")
+    private String streetNumber;
+    @SerializedName("immobileNumber")
+    private String immobileNumber;
     @SerializedName("flatNumber")
     private int flatNumber;
-    @SerializedName("floorNumber\n")
+    @SerializedName("floorNumber")
     private int floorNumber;
     @SerializedName("stairNumber")
-    private int stairNumber;
+    private String stairNumber;
 
     public AddressModel(int addressId, int addressType, int cityId, int accountId, String street, int flatNumber,
-                        int floorNumber, int stairNumber) {
+                        int floorNumber, String stairNumber, String immobileNumber, String streetNumber) {
         this.addressId = addressId;
         this.addressType = addressType;
         this.cityId = cityId;
@@ -30,6 +34,8 @@ public class AddressModel {
         this.flatNumber = flatNumber;
         this.floorNumber = floorNumber;
         this.stairNumber = stairNumber;
+        this.immobileNumber = immobileNumber;
+        this.streetNumber = streetNumber;
     }
 
     public int getAddressId() {
@@ -88,11 +94,27 @@ public class AddressModel {
         this.floorNumber = floorNumber;
     }
 
-    public int getStairNumber() {
+    public String getStairNumber() {
         return stairNumber;
     }
 
-    public void setStairNumber(int stairNumber) {
+    public void setStairNumber(String stairNumber) {
         this.stairNumber = stairNumber;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public String getImmobileNumber() {
+        return immobileNumber;
+    }
+
+    public void setImmobileNumber(String immobileNumber) {
+        this.immobileNumber = immobileNumber;
     }
 }

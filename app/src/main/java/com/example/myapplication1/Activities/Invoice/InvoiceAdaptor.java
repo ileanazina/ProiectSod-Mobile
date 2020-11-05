@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
+
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleViewHolder> {
+public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleViewHolder>{
 
     private Context mContext;
     private List<InvoiceModel> mList;
@@ -41,7 +43,6 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dataDue = formatter.format(item.getDueDate());
-            //String aux = "Numar facura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nData scadenta: " + dataDue;
             holder.tvInvoiceNr.setText("Numar facura: " + item.getInvoiceId());
             holder.tvTotalPay.setText("Total de plata: " + item.getValueWithVat());
             holder.tvDueDate.setText("Data scadenta: " + dataDue);
@@ -82,7 +83,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
             switch (v.getId()) {
                 case R.id.Viewbtn:
-                    viewInvoice(item.getInvoiceId());
+                    viewInvoice(item);
                     break;
                 case R.id.Paybtn:
                     paingInvoice(item.getInvoiceId());
@@ -90,10 +91,10 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             }
         }
 
-        private void viewInvoice(final int id)
+        private void viewInvoice( InvoiceModel obj)
         {
             Intent intentDetais = new Intent(mContext , InvoiceDetails.class);
-            intentDetais.putExtra("extra", id);
+            intentDetais.putExtra("extra", obj);
             intentDetais.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intentDetais);
         }

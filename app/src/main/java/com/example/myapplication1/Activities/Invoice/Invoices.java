@@ -194,7 +194,6 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
                 invoiceAdaptor.notifyDataSetChanged();
             }
         }
-
     }
 
     public void putUnpayedInvoices()
