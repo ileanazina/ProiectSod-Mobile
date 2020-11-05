@@ -39,7 +39,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
-        InvoiceModel item = mList.get(position);
+            InvoiceModel item = mList.get(position);
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dataDue = formatter.format(item.getDueDate());

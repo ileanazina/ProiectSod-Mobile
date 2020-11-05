@@ -22,12 +22,12 @@ import java.util.List;
 public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewHolder> {
 
     private Context mContext;
-    private List<IndexModel> mList;
+    private List<IndexModel> indexList;
     private IndexAdaptor.OnIndexListener monIndexListener;
 
     public IndexAdaptor(Context mContext, List<IndexModel> mList, IndexAdaptor.OnIndexListener onIndexListener) {
         this.mContext = mContext;
-        this.mList = mList;
+        this.indexList = mList;
         this.monIndexListener=onIndexListener;
     }
 
@@ -40,24 +40,25 @@ public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewH
 
     @Override
     public void onBindViewHolder(@NonNull IndexAdaptor.ExempleViewHolder holder, int position) {
-        IndexModel item = mList.get(position);
+
+        IndexModel item = indexList.get(position);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataDue = formatter.format(item.getIndexDate());
         //String aux = "Numar facura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nData scadenta: " + dataDue;
         holder.tvIndexNr.setText("Valoare index: " + item.getIndexValue());
-        holder.tvIndexDate.setText("Data index: " + item.getAverageIndex());
-        holder.tvIndexavr.setText("Consum mediu: " + dataDue);
+        holder.tvIndexDate.setText("Data index: " + dataDue);
+        holder.tvIndexavr.setText("Consum mediu: " + item.getAverageIndex());
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return indexList.size();
     }
 
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView tvIndexNr,tvIndexDate, tvIndexavr;
 
+        public TextView tvIndexNr,tvIndexDate, tvIndexavr;
         IndexAdaptor.OnIndexListener onIndexListener;
 
         public ExempleViewHolder(@NonNull View itemView, IndexAdaptor.OnIndexListener onIndexListener) {

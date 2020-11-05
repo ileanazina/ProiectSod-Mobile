@@ -31,8 +31,8 @@
                 android:id="@+id/indexDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/invoiceNr"
-                android:paddingTop="4dp"
+                android:layout_below="@+id/indexValue"
+                android:paddingTop="10dp"
                 android:textSize="18sp"
                 android:textStyle="italic"
                 android:layout_marginRight="12dp"/>
@@ -41,8 +41,8 @@
                 android:id="@+id/indexAvr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/toaltoPay"
-                android:paddingTop="4dp"
+                android:layout_below="@+id/indexDate"
+                android:paddingTop="10dp"
                 android:textSize="18sp"
                 android:textStyle="italic"
                 android:layout_marginRight="12dp"/>
