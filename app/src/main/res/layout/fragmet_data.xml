@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools = "http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_marginRight="@dimen/profile_margin_leftright"
+    android:layout_marginLeft="@dimen/profile_margin_leftright"
     android:background="@drawable/profile_border"
     android:layout_height="match_parent">
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="TEST"
-        android:textSize="30sp"/>
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/startDateSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ampm_label_size"
+            android:fontFamily="@font/cherry_swash"
+            android:textSize="@dimen/invoices_button_text"
+            android:text="[Incepand cu data ...]" />
+
+        <TextView
+            android:id="@+id/endDateSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cherry_swash"
+            android:textSize="@dimen/invoices_button_text"
+            android:layout_margin="@dimen/ampm_label_size"
+            android:text="[Pana la data ...]" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/searchButtonByData"
+        android:padding="@dimen/margin_recycleview_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/search"/>
 </LinearLayout>

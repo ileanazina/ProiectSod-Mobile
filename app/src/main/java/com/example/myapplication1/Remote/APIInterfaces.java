@@ -14,6 +14,7 @@ import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Model.UserLogIn;
 
+import java.util.Date;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -38,6 +39,9 @@ public interface APIInterfaces {
 
     @POST("Users/Login")
     Call<AccountModel> loginUser(@Body UserLogIn user);
+
+    @POST("Invoices/GetInvoicesByAccountIdWithinDates")
+    Call<List<InvoiceModel>> getInvoicesByAccountIdWithinDates(@Body int accountId, String date1, String date2);
 
     @GET("Payment/GetPayments")
     Call<List<PaymentModel>> getAllPayments();

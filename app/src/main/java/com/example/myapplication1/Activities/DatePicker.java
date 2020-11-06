@@ -21,8 +21,9 @@ public class DatePicker extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("day",String.valueOf(picker.getDayOfMonth())).putExtra("year",String.valueOf(picker.getYear()))
-                        .putExtra("month",String.valueOf(picker.getMonth()));
+                String aux =picker.getYear() + "-" + picker.getMonth() + "-" + picker.getDayOfMonth();
+                intent.removeExtra("date");
+                intent.putExtra("date", aux);
                 setResult(RESULT_OK,intent);
                 finish();
             }

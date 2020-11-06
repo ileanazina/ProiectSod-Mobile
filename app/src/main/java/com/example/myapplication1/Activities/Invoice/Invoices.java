@@ -175,6 +175,26 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
     @Override
     public void onInvoiceListener(int position) {}
 
+    public void getInvoiceListFromSearchFragment(String startDate, String endDate) {
+        invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountIdWithinDates(account.getAccountId(),startDate, endDate);
+        call.enqueue(new Callback<List<InvoiceModel>>() {
+            @Override
+            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
+                List<InvoiceModel> invoices = response.body();
+                if(callback != null) {
+                    callback.getDataFromInvoices(invoices);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
+                call.cancel();
+                Log.d("eroare", t.toString());
+            }
+        });
+    }
+
     @Override
     protected void onStop() {
         compositeDisposable.clear();
