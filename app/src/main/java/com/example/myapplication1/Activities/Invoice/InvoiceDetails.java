@@ -1,6 +1,8 @@
 package com.example.myapplication1.Activities.Invoice;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +18,6 @@ import com.example.myapplication1.Model.CountryModel;
 import com.example.myapplication1.Model.DistrictModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
-import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
@@ -25,7 +26,6 @@ import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,6 +59,7 @@ public class InvoiceDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_details);
 
+        final ProgressDialog dialog = ProgressDialog.show(this, null, "Va rog sa asteptati");
         Intent i = getIntent();
         invoice_obj = (InvoiceModel) i.getSerializableExtra("extra");
 
@@ -71,7 +72,9 @@ public class InvoiceDetails extends AppCompatActivity {
             @Override
             public void getDataFromInvoiceDetails(InvoiceDetailsModel invoiceDetails) {
                 invoiceDetails_obj = invoiceDetails;
-                getUnitMeasurementFromInvoiceDetail(InvoiceDetails.this, callback);
+                if(invoiceDetails != null)
+                    getUnitMeasurementFromInvoiceDetail(InvoiceDetails.this, callback);
+                else getAddressByAccount(InvoiceDetails.this, callback);
             }
 
             @Override
@@ -106,6 +109,7 @@ public class InvoiceDetails extends AppCompatActivity {
             public void getDataFromCountry(CountryModel country) {
                 country_obj = country;
                 completeTheView();
+                dialog.dismiss();
             }
         };
 
@@ -252,16 +256,6 @@ public class InvoiceDetails extends AppCompatActivity {
             textView_dueData.setText("-");
         else textView_dueData.setText(df.format(invoice_obj.getDueDate()));
 
-        //youHaveToPay
-        TextView textView_toPay = findViewById(R.id.youHaveToPay);
-        textView_toPay.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()+invoiceDetails_obj.getSold()));
-
-        //sold
-        TextView textView_sold = findViewById(R.id.soldFromPast);
-        if(invoiceDetails_obj.getSold() == 0)
-            textView_sold.setText("-");
-        else textView_sold.setText(String.valueOf(invoiceDetails_obj.getSold()));
-
         //accountId
         TextView textView_accountId = findViewById(R.id.accountId_invoicesdetail);
         textView_accountId.setText(String.valueOf(invoice_obj.getAccountId()));
@@ -269,42 +263,6 @@ public class InvoiceDetails extends AppCompatActivity {
         //clientAddress
         TextView textView_addressClient = findViewById(R.id.addressId);
         textView_addressClient.setText(buildAddress());
-
-        //unitMeasurementType
-        TextView textView_unitM = findViewById(R.id.unitMeasurementType);
-        if(invoiceDetails_obj.getUnitMeasurementType() == 0)
-            textView_unitM.setText("-");
-        else textView_unitM.setText(unitMeasurements_obj.getUnitMeasurementType());
-
-        //pricePerUnit
-        TextView textView_pricePerUnit = findViewById(R.id.pricePerUnit);
-        if(invoiceDetails_obj.getPricePerUnit() == 0)
-            textView_pricePerUnit.setText("-");
-        else textView_pricePerUnit.setText(String.valueOf(invoiceDetails_obj.getPricePerUnit()));
-
-        //consumedQuantity
-        TextView textView_consumedQuantity = findViewById(R.id.consumedQuantity);
-        if(invoiceDetails_obj.getConsumedQuantity() == 0)
-            textView_consumedQuantity.setText("-");
-        else textView_consumedQuantity.setText(String.valueOf(invoiceDetails_obj.getConsumedQuantity()));
-
-        //VAT
-        TextView textView_VAT = findViewById(R.id.simplyVAT);
-        if(invoiceDetails_obj.getVAT() == 0)
-            textView_VAT.setText("-");
-        else textView_VAT.setText(String.valueOf(invoiceDetails_obj.getVAT()));
-
-        //valueWithoutVAT
-        TextView textView_valueWithoutVAT = findViewById(R.id.valueWithoutVAT);
-        if(invoiceDetails_obj.getValueWithoutVAT() == 0)
-            textView_valueWithoutVAT.setText("-");
-        else textView_valueWithoutVAT.setText(String.valueOf(invoiceDetails_obj.getValueWithoutVAT()));
-
-        //valueWithVat
-        TextView textView_valueWithVat = findViewById(R.id.valueWithVat);
-        if(invoiceDetails_obj.getValueWithVat() == 0)
-            textView_valueWithVat.setText("-");
-        else textView_valueWithVat.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()));
 
         //CUI issue company
         TextView textView_cui = findViewById(R.id.IssueCUI);
@@ -317,6 +275,54 @@ public class InvoiceDetails extends AppCompatActivity {
         if(invoice_obj.getIssuerAddress() == null || invoice_obj.getIssuerAddress() == "")
             textView_addressIssue.setText("-");
         else textView_addressIssue.setText(invoice_obj.getIssuerAddress());
+
+        if(invoiceDetails_obj != null){
+            //youHaveToPay
+            TextView textView_toPay = findViewById(R.id.youHaveToPay);
+            textView_toPay.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()+invoiceDetails_obj.getSold()));
+
+            //sold
+            TextView textView_sold = findViewById(R.id.soldFromPast);
+            if(invoiceDetails_obj.getSold() == 0)
+                textView_sold.setText("-");
+            else textView_sold.setText(String.valueOf(invoiceDetails_obj.getSold()));
+
+            //unitMeasurementType
+            TextView textView_unitM = findViewById(R.id.unitMeasurementType);
+            if(invoiceDetails_obj.getUnitMeasurementType() == 0)
+                textView_unitM.setText("-");
+            else textView_unitM.setText(unitMeasurements_obj.getUnitMeasurementType());
+
+            //pricePerUnit
+            TextView textView_pricePerUnit = findViewById(R.id.pricePerUnit);
+            if(invoiceDetails_obj.getPricePerUnit() == 0)
+                textView_pricePerUnit.setText("-");
+            else textView_pricePerUnit.setText(String.valueOf(invoiceDetails_obj.getPricePerUnit()));
+
+            //consumedQuantity
+            TextView textView_consumedQuantity = findViewById(R.id.consumedQuantity);
+            if(invoiceDetails_obj.getConsumedQuantity() == 0)
+                textView_consumedQuantity.setText("-");
+            else textView_consumedQuantity.setText(String.valueOf(invoiceDetails_obj.getConsumedQuantity()));
+
+            //VAT
+            TextView textView_VAT = findViewById(R.id.simplyVAT);
+            if(invoiceDetails_obj.getVAT() == 0)
+                textView_VAT.setText("-");
+            else textView_VAT.setText(String.valueOf(invoiceDetails_obj.getVAT()));
+
+            //valueWithoutVAT
+            TextView textView_valueWithoutVAT = findViewById(R.id.valueWithoutVAT);
+            if(invoiceDetails_obj.getValueWithoutVAT() == 0)
+                textView_valueWithoutVAT.setText("-");
+            else textView_valueWithoutVAT.setText(String.valueOf(invoiceDetails_obj.getValueWithoutVAT()));
+
+            //valueWithVat
+            TextView textView_valueWithVat = findViewById(R.id.valueWithVat);
+            if(invoiceDetails_obj.getValueWithVat() == 0)
+                textView_valueWithVat.setText("-");
+            else textView_valueWithVat.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()));
+        }
     }
 
     public String buildAddress()

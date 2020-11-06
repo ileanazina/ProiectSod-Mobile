@@ -27,8 +27,14 @@ public interface APIInterfaces {
     @GET("Index/GetIndexesByAccountId/{accountId}")
     Call<List<IndexModel>> getAllIndexis(@Path("accountId") int accountId);
 
-    @GET("Invoices/GetAll")
-    Call<List<InvoiceModel>> getAllInvoices();
+    @GET("Invoices/GetUnpaidInvoicesByAccountId/{accountId}")
+    Call<List<InvoiceModel>> getUnpaidInvoicesByAccountId(@Path("accountId") int accountId);
+
+    @GET("Invoices/GetPaidInvoicesByAccountId/{accountId}")
+    Call<List<InvoiceModel>> getPaidInvoicesByAccountId(@Path("accountId") int accountId);
+
+    @GET("Invoices/GetInvoicesByAccountId/{accountId}")
+    Call<List<InvoiceModel>> getInvoicesByAccountId(@Path("accountId") int accountId);
 
     @POST("Users/Login")
     Call<AccountModel> loginUser(@Body UserLogIn user);

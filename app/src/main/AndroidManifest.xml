@@ -22,6 +22,8 @@
         <activity android:name=".Activities.Forms" />
         <activity android:name=".Activities.Invoice.Invoices" />
         <activity android:name=".Activities.Profile" />
+        <activity android:name=".Activities.DatePicker"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
         <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

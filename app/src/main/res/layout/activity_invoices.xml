@@ -18,51 +18,77 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo1" />
 
-    <GridLayout
-        android:id="@+id/gridViewForButtons"
+        <LinearLayout
+            android:id="@+id/firstbuttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/imageView"
+            android:stretchMode="spacingWidthUniform">
+            <Button
+                android:id="@+id/unpayedInvoices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Facturi neplatite"
+                android:gravity="right"
+                android:background="@drawable/button_invoices"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:layout_gravity="start|top"
+                android:textSize="@dimen/invoices_button_text"
+                android:fontFamily="@font/cherry_swash"/>
+
+            <Button
+                android:id="@+id/allInvoices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_invoices"
+                android:fontFamily="@font/cherry_swash"
+                android:textSize="@dimen/invoices_button_text"
+                android:text="Toate facturile"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondbuttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/firstbuttons">
+            <Button
+                android:id="@+id/payedInvoices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Facturi platite"
+                android:textAllCaps="false"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:background="@drawable/button_invoices"
+                android:textSize="@dimen/invoices_button_text"
+                android:fontFamily="@font/cherry_swash"/>
+
+            <Button
+                android:id="@+id/afterdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_invoices"
+                android:fontFamily="@font/cherry_swash"
+                android:textSize="@dimen/invoices_button_text"
+                android:text="Cauta dupa data"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/dataFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        android:stretchMode="spacingWidthUniform"
-        android:orientation="horizontal"
-        android:layout_below="@id/imageView">
-
-        <Button
-            android:id="@+id/unpayedInvoices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Facturi\nneplatite"
-            android:background="@drawable/button_invoices"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:layout_gravity="start|top"
-            android:textSize="@dimen/invoices_button_text"
-            android:fontFamily="@font/cherry_swash"/>
-
-        <Button
-            android:id="@+id/payedInvoices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Facturi\nplatite"
-            android:textAllCaps="false"
-            android:layout_gravity="center|top"
-            android:textColor="@color/black"
-            android:background="@drawable/button_invoices"
-            android:textSize="@dimen/invoices_button_text"
-            android:fontFamily="@font/cherry_swash"/>
-
-        <Button
-            android:id="@+id/allInvoices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_invoices"
-            android:fontFamily="@font/cherry_swash"
-            android:textSize="@dimen/invoices_button_text"
-            android:text="Toate\nfacturile"
-            android:textAllCaps="false"
-            android:textColor="@color/black" />
-    </GridLayout>
+        android:layout_below="@id/secondbuttons"
+        android:name="com.example.myapplication1.Activities.SearchDateFragment"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:background="@drawable/profile_border"
@@ -72,5 +98,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:layout_below= "@id/gridViewForButtons"/>
+        android:layout_below= "@id/dataFragment"/>
 </RelativeLayout>
