@@ -7,6 +7,11 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication1.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 public class DatePicker extends AppCompatActivity {
     android.widget.DatePicker picker;
     Button btnGet;
@@ -21,9 +26,15 @@ public class DatePicker extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                String aux =picker.getYear() + "-" + picker.getMonth() + "-" + picker.getDayOfMonth();
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(picker.getYear(), picker.getMonth(), picker.getDayOfMonth());
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+                df.setTimeZone(TimeZone.getTimeZone("Europe/London"));
+
+                String date = df.format(calendar.getTime());
+
                 intent.removeExtra("date");
-                intent.putExtra("date", aux);
+                intent.putExtra("date", date);
                 setResult(RESULT_OK,intent);
                 finish();
             }
