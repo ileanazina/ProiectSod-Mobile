@@ -9,16 +9,48 @@
     android:background="@drawable/backgrlogin"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/logo1" />
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="left"
+            app:srcCompat="@drawable/logo1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sold: "
+            android:textSize="@dimen/profil_textsize"
+            android:fontFamily="@font/cherry_swash"
+            android:layout_marginLeft="@dimen/margin_top"
+            android:layout_marginTop="@dimen/ampm_left_padding"/>
+        <TextView
+            android:id="@+id/valLastUnpaidInvoices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="@dimen/profil_textsize"
+            android:fontFamily="@font/cherry_swash"
+            android:layout_marginLeft="@dimen/ampm_left_padding"
+            android:layout_marginTop="@dimen/ampm_left_padding"/>
+        <Button
+            android:id="@+id/mainMenuPayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Plateste"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/ampm_left_padding"/>
+    </LinearLayout>
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -29,8 +61,7 @@
         android:columnOrderPreserved="false"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/profile_margin_top"
-        android:columnCount="2"
-        >
+        android:columnCount="2">
 
         <Button
             android:id="@+id/buttonForms"
