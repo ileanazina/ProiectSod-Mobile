@@ -59,7 +59,7 @@ public class InvoiceDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_details);
 
-        final ProgressDialog dialog = ProgressDialog.show(this, null, "Va rog sa asteptati");
+        final ProgressDialog dialog = ProgressDialog.show(this, null, getResources().getString(R.string.invoice_detail_please_wait));
         Intent i = getIntent();
         invoice_obj = (InvoiceModel) i.getSerializableExtra("extra");
 
@@ -131,7 +131,6 @@ public class InvoiceDetails extends AppCompatActivity {
             @Override
             public void onFailure(Call<InvoiceDetailsModel> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
@@ -151,7 +150,6 @@ public class InvoiceDetails extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<AddressModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
@@ -171,7 +169,6 @@ public class InvoiceDetails extends AppCompatActivity {
             @Override
             public void onFailure(Call<CityModel> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
@@ -191,7 +188,6 @@ public class InvoiceDetails extends AppCompatActivity {
             @Override
             public void onFailure(Call<DistrictModel> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }

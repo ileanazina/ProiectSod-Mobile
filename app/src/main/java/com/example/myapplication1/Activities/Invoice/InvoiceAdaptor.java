@@ -43,9 +43,9 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dataDue = formatter.format(item.getDueDate());
-            holder.tvInvoiceNr.setText("Numar facura: " + item.getInvoiceId());
-            holder.tvTotalPay.setText("Total de plata: " + item.getValueWithVat());
-            holder.tvDueDate.setText("Data scadenta: " + dataDue);
+            holder.tvInvoiceNr.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_number) + item.getInvoiceId());
+            holder.tvTotalPay.setText(mContext.getResources().getString(R.string.invoice_adaptor_to_paid) + item.getValueWithVat());
+            holder.tvDueDate.setText(mContext.getResources().getString(R.string.invoice_adaptor_due_date) + dataDue);
     }
 
     @Override
