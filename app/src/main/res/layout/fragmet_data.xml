@@ -19,7 +19,7 @@
             android:layout_margin="@dimen/ampm_label_size"
             android:fontFamily="@font/cherry_swash"
             android:textSize="@dimen/invoices_button_text"
-            android:text="[Incepand cu data ...]" />
+            android:text="@string/fragment_date_start" />
 
         <TextView
             android:id="@+id/endDateSearch"
@@ -28,7 +28,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textSize="@dimen/invoices_button_text"
             android:layout_margin="@dimen/ampm_label_size"
-            android:text="[Pana la data ...]" />
+            android:text="@string/fragment_date_end" />
     </LinearLayout>
 
     <ImageButton

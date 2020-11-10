@@ -11,7 +11,7 @@
     <string name="company_details_address">Bucharest North Road no. 8-10, floor 8</string>
     <string name="main_menu_invoices">Invoices</string>
     <string name="company_detail_schedule">Schedule M-F 9:00-19:00</string>
-    <string name="datatime_picker_save_button">Save</string>
+    <string name="datetime_picker_save_button">Save</string>
     <string name="index_hint">Enter the value of the index</string>
     <string name="invoice_detail_download_button">Download</string>
     <string name="invoice_detail_invoiceId_intro">Invoice code</string>
@@ -42,4 +42,21 @@
     <string name="invoices_all_button">All the invoices</string>
     <string name="invoices_paid_button">Paid invoices</string>
     <string name="invoices_search_by_date_button">Search by date</string>
+    <string name="profile_user_code_intro">Client code:</string>
+    <string name="profile_name_intro">Name:</string>
+    <string name="profile_phone_intro">Phone number:</string>
+    <string name="alert_dialog_info">Login failed. You have entered your login details incorrectly.</string>
+    <string name="alert_dialog_quit_button">Quit</string>
+    <string name="alert_dialog_try_again_button">Try again</string>
+    <string name="network_dialog_info">Unexpected error</string>
+    <string name="network_dialog_quit_button">Quit</string>
+    <string name="network_dialog_try_again_button">Try again</string>
+    <string name="fragment_date_start">[Starting date ...]</string>
+    <string name="fragment_date_end">" [Until date ...]"</string>
+    <string name="search_date_fragment_invalid_dates">Invalide dates...</string>
+    <string name="search_date_fragment_from">"From: "</string>
+    <string name="search_date_fragment_until">"To: "</string>
+    <string name="profile_company_name">Company name</string>
+    <string name="profile_individual_person">Individual person</string>
+    <string name="login_save_toast">Saved!</string>
 </resources>

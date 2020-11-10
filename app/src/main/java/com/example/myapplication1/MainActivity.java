@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }

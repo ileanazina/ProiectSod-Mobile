@@ -19,7 +19,7 @@ public class DatePicker extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_datapicker);
+        setContentView(R.layout.activity_datepicker);
         picker=findViewById(R.id.datePicker);
         btnGet=findViewById(R.id.button_save_data);
         btnGet.setOnClickListener(new View.OnClickListener() {

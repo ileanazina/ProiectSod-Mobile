@@ -39,7 +39,7 @@
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
             android:fontFamily="@font/cherry_swash"
-            android:text="Cod client:"
+            android:text="@string/profile_user_code_intro"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize" />
         <TextView
@@ -63,7 +63,7 @@
             android:layout_column="0"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize"
-            android:text="Nume:" />
+            android:text="@string/profile_name_intro" />
 
         <TextView
             android:id="@+id/name"
@@ -130,7 +130,7 @@
             android:layout_column="0"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize"
-            android:text="Email:" />
+            android:text="@string/profile_email_intro" />
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
             android:layout_column="0"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize"
-            android:text="Telefon:" />
+            android:text="@string/profile_phone_intro" />
         <TextView
             android:id="@+id/telephonNumber"
             android:layout_width="wrap_content"

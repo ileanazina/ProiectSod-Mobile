@@ -18,5 +18,5 @@
         android:textSize="@dimen/invoices_button_text"
         android:fontFamily="@font/cherry_swash"
         android:textAllCaps="false"
-        android:text="@string/datatime_picker_save_button" />
+        android:text="@string/datetime_picker_save_button" />
 </RelativeLayout>

@@ -2,11 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,7 +24,7 @@
             <TextView
                 android:id="@+id/text_ntalert"
                 android:layout_below="@id/imageViewError"
-                android:text="Eroare neasteptata"
+                android:text="@string/network_dialog_info"
                 android:layout_marginTop="23dp"
                 android:layout_centerHorizontal="true"
                 android:padding="6dp"
@@ -37,7 +35,7 @@
             <Button
                 android:id="@+id/button_ntcancel"
                 android:layout_below="@id/text_ntalert"
-                android:text="Renunta"
+                android:text="@string/network_dialog_quit_button"
                 android:layout_marginTop="23dp"
                 android:textColor="@color/CadetBlue"
                 android:layout_width="wrap_content"
@@ -46,7 +44,7 @@
             <Button
                 android:id="@+id/button_ntreload"
                 android:layout_below="@id/text_ntalert"
-                android:text="Reincarca"
+                android:text="@string/network_dialog_try_again_button"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="23dp"
                 android:textColor="@color/CadetBlue"
@@ -56,9 +54,4 @@
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
-
-
-
-
 </LinearLayout>

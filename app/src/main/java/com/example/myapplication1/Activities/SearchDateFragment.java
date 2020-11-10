@@ -69,7 +69,7 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
                     SearchByDate searchByDate = new SearchByDate(account.getAccountId(), save_startDate,save_endDate);
                     ((Invoices) getActivity()).getInvoiceListFromSearchFragment(searchByDate);
                 }
-                else Toast.makeText(getActivity(), "Date invalide...", Toast.LENGTH_LONG).show();
+                else Toast.makeText(getActivity(), getResources().getString(R.string.search_date_fragment_invalid_dates), Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -84,7 +84,7 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
             Date first_date;
             try {
                 first_date = df.parse(save_startDate);
-                startDate.setText("Pana la: " + DateFormat.format("dd", first_date) + "/"
+                startDate.setText(getResources().getString(R.string.search_date_fragment_from) + DateFormat.format("dd", first_date) + "/"
                         + DateFormat.format("MM", first_date) + "/"
                         + DateFormat.format("yyyy", first_date));
             } catch (ParseException e) {
@@ -97,7 +97,7 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
                 Date end_date;
                 try {
                     end_date = df.parse(save_endDate);
-                    endDate.setText("Pana la: " + DateFormat.format("dd", end_date) + "/"
+                    endDate.setText(getResources().getString(R.string.search_date_fragment_until) + DateFormat.format("dd", end_date) + "/"
                             + DateFormat.format("MM", end_date) + "/"
                             + DateFormat.format("yyyy", end_date));
                 } catch (ParseException e) {

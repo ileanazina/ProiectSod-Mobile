@@ -56,8 +56,8 @@ public class Profile extends AppCompatActivity {
         TextView textView_cnp_cui_intro = findViewById(R.id.personalCOD_intro);
         if (account.isIndividual() == true)
         {
-            textView_companyname.setText("Persoana fizica");
-            textView_cnp_cui_intro.setText("CNP");
+            textView_companyname.setText(getResources().getString(R.string.profile_individual_person));
+            textView_cnp_cui_intro.setText(getResources().getString(R.string.profile_cnp));
             if(account.getCnp() == 0)
                 textView_cnp_cui.setText("-");
             else
@@ -65,13 +65,13 @@ public class Profile extends AppCompatActivity {
         }
         else
         {
-            textView_cnp_cui_intro.setText("CUI");
+            textView_cnp_cui_intro.setText(getResources().getString(R.string.profile_cui));
             if(account.getCui() == 0)
                 textView_cnp_cui.setText("-");
             else
                 textView_cnp_cui.setText(String.valueOf(account.getCui()));
 
-            textView_companyintro.setText("Company Name");
+            textView_companyintro.setText(getResources().getString(R.string.profile_company_name));
             if(account.getCompanyName() == "" || account.getCompanyName() == null) {
                 textView_companyname.setText("-");
             }

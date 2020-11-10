@@ -72,7 +72,7 @@ public class LogIn extends AppCompatActivity {
                 editor.putString("password", userPassword.getText().toString());
                 editor.apply();
 
-                Toast.makeText(getApplicationContext(), "Salvat!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.login_save_toast), Toast.LENGTH_SHORT).show();
             }
         });
 

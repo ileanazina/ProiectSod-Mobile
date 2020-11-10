@@ -6,8 +6,8 @@
     <string name="company_detail_email" translatable="false">totalsoft@ts.ro</string>
     <string name="company_detail_phone" translatable="false">0741316398</string>
 
-    <!--activity_datapicker.xml-->
-    <string name="datatime_picker_save_button">Salvează</string>
+    <!--activity_datepicker.xml-->
+    <string name="datetime_picker_save_button">Salvează</string>
 
     <!--activity_index.xml-->
     <string name="index_hint">Introduceți valoarea indexului</string>
@@ -62,14 +62,53 @@
     <string name="payments_pay_now_button">Platește acum</string>
 
     <!--activity_profile.xml-->
+    <string name="profile_user_code_intro">Cod client:</string>
+    <string name="profile_name_intro">Nume:</string>
+    <string name="profile_email_intro" translatable="false">Email:</string>
+    <string name="profile_phone_intro">Telefon:</string>
 
     <!--custom_alert_dialog.xml-->
+    <string name="alert_dialog_info">Autentificare eșuată. Ați introdus greșit datele de logare.</string>
+    <string name="alert_dialog_quit_button">Renunță</string>
+    <string name="alert_dialog_try_again_button">Reîncarcă</string>
 
     <!--custom_network_dialog.xml-->
+    <string name="network_dialog_info">Eroare neașteptată</string>
+    <string name="network_dialog_quit_button">Renunță</string>
+    <string name="network_dialog_try_again_button">Reîncarcă</string>
 
     <!--fragment_data.xml-->
+    <string name="fragment_date_start">[Începând cu data ...]</string>
+    <string name="fragment_date_end">[Până la data ...]</string>
 
-    <!--index_row_view.xml-->
+    <!--Index-->
 
-    <!--invoice_row_view.xml-->
+    <!--IndexAdaptor-->
+
+    <!--InvoiceAdaptor-->
+
+    <!--InvoiceDetails-->
+
+    <!--Invoices-->
+
+    <!--CompanyDetails-->
+
+    <!--DatePicker-->
+
+    <!--Payments-->
+
+    <!--Profile-->
+    <string name="profile_individual_person">Persoana fizica</string>
+    <string name="profile_cnp" translatable="false">CNP</string>
+    <string name="profile_cui" translatable="false">CUI</string>
+    <string name="profile_company_name">Numele companiei</string>
+
+    <!--SearchDateFragment-->
+    <string name="search_date_fragment_invalid_dates">Date invalide...</string>
+    <string name="search_date_fragment_from">De la: </string>
+    <string name="search_date_fragment_until">Până la: </string>
+
+    <!--LogIn-->
+    <string name="login_save_toast">Salvat!</string>
+
 </resources>
