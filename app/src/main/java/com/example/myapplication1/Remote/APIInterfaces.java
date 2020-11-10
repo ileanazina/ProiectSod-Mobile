@@ -1,6 +1,7 @@
 package com.example.myapplication1.Remote;
 
 import com.example.myapplication1.Model.AccountModel;
+import com.example.myapplication1.Model.AddIIndex;
 import com.example.myapplication1.Model.AddressModel;
 import com.example.myapplication1.Model.CityModel;
 import com.example.myapplication1.Model.CountryModel;
@@ -46,7 +47,7 @@ public interface APIInterfaces {
     Call<List<PaymentModel>> getAllPayments();
 
     @POST("Index/AddIndexToAccountId")
-    Call<ModelAddIndex> insertIndex(@Field("accountId") int accountId,@Field("addresstId") int addresstId,@Field("indexValue") float indexValue);
+    Call<IndexModel> insertIndex(@Body AddIIndex index);
 
     @GET("InvoiceDetail/GetInvoiceDetails/{invoiceId}")
     Call<InvoiceDetailsModel> getInvoiceDetailsByInvoice(@Path("invoiceId") int invoiceId);
