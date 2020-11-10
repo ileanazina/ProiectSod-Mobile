@@ -30,7 +30,7 @@
         android:textColor="@color/black"
         android:layout_gravity="end|top"
         android:background="@drawable/button_invoices"
-        android:text="Descarca" />
+        android:text="@string/invoice_detail_download_button" />
 
     <!-- about invoice -->
     <TextView
@@ -42,7 +42,7 @@
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="@dimen/invoicedetails_textsize"
-        android:text="Detalii factura" />
+        android:text="@string/invoice_detail_first_border" />
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Cod factura"/>
+            android:text="@string/invoice_detail_invoiceId_intro"/>
         <TextView
             android:id="@+id/invoiceId"
             android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Data emitere"/>
+            android:text="@string/invoice_detail_issue_date_intro"/>
         <TextView
             android:id="@+id/dateOfIssue"
             android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Data scadenta"/>
+            android:text="@string/invoice_detail_due_date_intro"/>
         <TextView
             android:id="@+id/dueDate"
             android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Total de plata"/>
+            android:text="@string/invoice_detail_all_pay_intro"/>
         <TextView
             android:id="@+id/youHaveToPay"
             android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Sold restant"/>
+            android:text="@string/invoice_detail_remaining_balance_intro"/>
         <TextView
             android:id="@+id/soldFromPast"
             android:layout_width="wrap_content"
@@ -178,7 +178,7 @@
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="@dimen/invoicedetails_textsize"
-        android:text="Detalii client" />
+        android:text="@string/invoice_detail_second_border" />
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Cod utilizator"/>
+            android:text="@string/invoice_detail_accountId_intro"/>
         <TextView
             android:id="@+id/accountId_invoicesdetail"
             android:layout_width="wrap_content"

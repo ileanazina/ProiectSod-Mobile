@@ -1,3 +1,75 @@
 <resources>
-    <string name="app_name">My Application1</string>
+    <!--activity_company_details.xml-->
+    <string name="company_details_title" translatable="false">TotalSoft SA.</string>
+    <string name="company_details_address">Soseaua Bucuresti Nord nr 8-10, etaj 8</string>
+    <string name="company_detail_schedule">Program L-V 9:00-19:00</string>
+    <string name="company_detail_email" translatable="false">totalsoft@ts.ro</string>
+    <string name="company_detail_phone" translatable="false">0741316398</string>
+
+    <!--activity_datapicker.xml-->
+    <string name="datatime_picker_save_button">Salvează</string>
+
+    <!--activity_index.xml-->
+    <string name="index_hint">Introduceți valoarea indexului</string>
+
+    <!--activity_invoice_details.xml-->
+    <string name="invoice_detail_download_button">Descarcă</string>
+    <string name="invoice_detail_first_border">Detalii factură</string>
+    <string name="invoice_detail_invoiceId_intro">Cod factură</string>
+    <string name="invoice_detail_issue_date_intro">Dată emitere</string>
+    <string name="invoice_detail_due_date_intro">Dată scadentă</string>
+    <string name="invoice_detail_all_pay_intro">Total de plată</string>
+    <string name="invoice_detail_remaining_balance_intro">Sold restant</string>
+    <string name="invoice_detail_second_border">Detalii client</string>
+    <string name="invoice_detail_accountId_intro">Cod utilizator</string>
+    <string name="invoice_detail_billing_address_intro">Adresă de facturare</string>
+    <string name="invoice_detail_third_border">Detalii preț</string>
+    <string name="invoice_detail_unit_measurement_intro">Unitate de măsură</string>
+    <string name="invoice_detail_price_unit_intro">Prețul per unitate</string>
+    <string name="invoice_detail_quantity_consumed_intro">Cantitate consumată</string>
+    <string name="invoice_detail_tva_intro">TVA</string>
+    <string name="invoice_detail_price_without_tva_intro">Preț fără TVA</string>
+    <string name="invoice_detail_price_with_tva_intro">Preț cu TVA</string>
+    <string name="invoice_detail_fourth_border">Detalii furnizor</string>
+    <string name="invoice_detail_cui_intro" translatable="false">CUI</string>
+    <string name="invoice_detail_issue_address_intro">Adresă</string>
+
+    <!--activity_invoice.xml-->
+    <string name="invoices_unpaid_button">Facturi neplătite</string>
+    <string name="invoices_all_button">Toate facturile</string>
+    <string name="invoices_paid_button">Facturi plătite</string>
+    <string name="invoices_search_by_date_button">Caută după dată</string>
+
+    <!--activity_log_in.xml-->
+    <string name="log_in_enter_username">Cont de utilizator</string>
+    <string name="log_in_enter_password">Parolă</string>
+    <string name="log_in_save_me">Ține-mă minte!</string>
+    <string name="log_in_remember_me">Reamintește-mă!</string>
+    <string name="log_in_enter_button">Autentificare</string>
+
+    <!--activity_main.xml-->
+    <string name="app_name">Aplicația mea</string>
+    <string name="main_menu_sold">Sold: </string>
+    <string name="main_menu_pay_button">Plătește</string>
+    <string name="main_menu_forms">Formulare</string>
+    <string name="main_menu_indexes">Index</string>
+    <string name="main_menu_invoices">Facturi</string>
+    <string name="main_menu_profile">Profil</string>
+    <string name="main_menu_info">Detalii</string>
+    <string name="main_menu_payment">Plăți</string>
+
+    <!--activity_payments.xml-->
+    <string name="payments_pay_now_button">Platește acum</string>
+
+    <!--activity_profile.xml-->
+
+    <!--custom_alert_dialog.xml-->
+
+    <!--custom_network_dialog.xml-->
+
+    <!--fragment_data.xml-->
+
+    <!--index_row_view.xml-->
+
+    <!--invoice_row_view.xml-->
 </resources>

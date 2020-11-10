@@ -24,7 +24,7 @@
         android:background="@color/black"
         android:fontFamily="@font/cherry_swash"
         android:textAllCaps="false"
-        android:text="Plateste acum"
+        android:text="@string/payments_pay_now_button"
         android:textColor="@color/black" />
 
 

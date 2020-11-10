@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="main_menu_sold">Sold: </string>
+    <string name="main_menu_pay_button">Pay</string>
+    <string name="main_menu_indexes">Indexes</string>
+    <string name="main_menu_forms">Forms</string>
+    <string name="main_menu_profile">Profile</string>
+    <string name="main_menu_payment">Payment</string>
+    <string name="main_menu_info">Info</string>
+    <string name="company_details_address">Bucharest North Road no. 8-10, floor 8</string>
+    <string name="main_menu_invoices">Invoices</string>
+    <string name="company_detail_schedule">Schedule M-F 9:00-19:00</string>
+    <string name="datatime_picker_save_button">Save</string>
+    <string name="index_hint">Enter the value of the index</string>
+    <string name="invoice_detail_download_button">Download</string>
+    <string name="invoice_detail_invoiceId_intro">Invoice code</string>
+    <string name="invoice_detail_issue_date_intro">Issue date</string>
+    <string name="invoice_detail_due_date_intro">Due date</string>
+    <string name="invoice_detail_all_pay_intro">Total payment</string>
+    <string name="invoice_detail_remaining_balance_intro">Remaining balance</string>
+    <string name="invoice_detail_second_border">Customer details</string>
+    <string name="invoice_detail_accountId_intro">User code</string>
+    <string name="invoice_detail_billing_address_intro">Billing address</string>
+    <string name="invoice_detail_third_border">Price details</string>
+    <string name="invoice_detail_unit_measurement_intro">Measurement unit</string>
+    <string name="invoice_detail_tva_intro">VAT</string>
+    <string name="invoice_detail_quantity_consumed_intro">Consumed quantity</string>
+    <string name="invoice_detail_price_without_tva_intro">Price without VAT</string>
+    <string name="invoice_detail_price_with_tva_intro">Price with VAT</string>
+    <string name="invoice_detail_price_unit_intro">Price per unit</string>
+    <string name="invoice_detail_issue_address_intro">Address</string>
+    <string name="invoice_detail_fourth_border">Supplier details</string>
+    <string name="invoice_detail_first_border">Invoice details</string>
+    <string name="log_in_enter_username">Username</string>
+    <string name="log_in_enter_password">Password</string>
+    <string name="log_in_save_me">Save me!</string>
+    <string name="log_in_remember_me">Remember me!</string>
+    <string name="log_in_enter_button">Log in</string>
+    <string name="payments_pay_now_button">Pay now</string>
+    <string name="invoices_unpaid_button">Unpaid invoices</string>
+    <string name="invoices_all_button">All the invoices</string>
+    <string name="invoices_paid_button">Paid invoices</string>
+    <string name="invoices_search_by_date_button">Search by date</string>
+</resources>

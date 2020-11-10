@@ -30,7 +30,7 @@
                 android:id="@+id/unpayedInvoices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Facturi neplatite"
+                android:text="@string/invoices_unpaid_button"
                 android:gravity="right"
                 android:background="@drawable/button_invoices"
                 android:textAllCaps="false"
@@ -46,7 +46,7 @@
                 android:background="@drawable/button_invoices"
                 android:fontFamily="@font/cherry_swash"
                 android:textSize="@dimen/invoices_button_text"
-                android:text="Toate facturile"
+                android:text="@string/invoices_all_button"
                 android:textAllCaps="false"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -62,7 +62,7 @@
                 android:id="@+id/payedInvoices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Facturi platite"
+                android:text="@string/invoices_paid_button"
                 android:textAllCaps="false"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
@@ -78,7 +78,7 @@
                 android:background="@drawable/button_invoices"
                 android:fontFamily="@font/cherry_swash"
                 android:textSize="@dimen/invoices_button_text"
-                android:text="Cauta dupa data"
+                android:text="@string/invoices_search_by_date_button"
                 android:textAllCaps="false"
                 android:textColor="@color/black" />
         </LinearLayout>

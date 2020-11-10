@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sold: "
+            android:text="@string/main_menu_sold"
             android:textSize="@dimen/profil_textsize"
             android:fontFamily="@font/cherry_swash"
             android:layout_marginLeft="@dimen/margin_top"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Plateste"
+            android:text="@string/main_menu_pay_button"
             android:textColor="@color/black"
             android:fontFamily="@font/cherry_swash"
             android:textAllCaps="false"
@@ -74,7 +74,7 @@
             android:textAllCaps="false"
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/form"
-            android:text="Formulare"
+            android:text="@string/main_menu_forms"
             android:textColor="@color/Black" />
 
         <Button
@@ -88,7 +88,7 @@
             android:drawableTop="@drawable/index"
             android:fontFamily="@font/cherry_swash"
             android:textAllCaps="false"
-            android:text="Index"
+            android:text="@string/main_menu_indexes"
             android:textColor="@color/Black"
             />
 
@@ -103,7 +103,7 @@
             android:fontFamily="@font/cherry_swash"
             android:textAllCaps="false"
             android:drawableTop="@drawable/invoice"
-            android:text="Facturi"
+            android:text="@string/main_menu_invoices"
             android:textColor="@color/Black" />
 
         <Button
@@ -117,7 +117,7 @@
             android:drawableTop="@drawable/moredetais"
             android:fontFamily="@font/cherry_swash"
             android:textAllCaps="false"
-            android:text="Detalii"
+            android:text="@string/main_menu_info"
             android:textColor="@color/Black" />
 
 
@@ -132,7 +132,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/payment"
-            android:text="Plati"
+            android:text="@string/main_menu_payment"
             android:textColor="@color/Black" />
 
         <Button
@@ -146,7 +146,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:background="@drawable/margini_buton"
             android:drawableTop="@drawable/profile"
-            android:text="Profil"
+            android:text="@string/main_menu_profile"
             android:textColor="@color/Black" />
     </GridLayout>
 </LinearLayout>
