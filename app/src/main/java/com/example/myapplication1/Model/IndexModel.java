@@ -17,14 +17,30 @@ public class IndexModel {
     private Date indexDate;
     @SerializedName("averageIndex")
     private float averageIndex;
+    @SerializedName("address")
+    private String address;
 
 
-
-    public IndexModel(int indexId ,float indexValue, Date indexDate, float averageIndex) {
-        this.indexId= indexId;
+    public IndexModel(int indexId, int accountId, int addressId, float indexValue, Date indexDate, float averageIndex, String address) {
+        this.indexId = indexId;
+        this.accountId = accountId;
+        this.addressId = addressId;
         this.indexValue = indexValue;
         this.indexDate = indexDate;
         this.averageIndex = averageIndex;
+        this.address=address;
+    }
+
+    public IndexModel(float indexValue) {
+        this.indexValue = indexValue;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getIndexId() {
