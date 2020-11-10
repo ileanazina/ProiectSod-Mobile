@@ -1,6 +1,5 @@
 package com.example.myapplication1.Remote;
 
-import com.example.myapplication1.Activities.Invoice.InvoiceDetails;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddIIndex;
 import com.example.myapplication1.Model.AddressModel;
@@ -12,10 +11,10 @@ import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.ModelAddIndex;
 import com.example.myapplication1.Model.PaymentModel;
+import com.example.myapplication1.Model.SearchByDate;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Model.UserLogIn;
 
-import java.util.Date;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -42,7 +41,7 @@ public interface APIInterfaces {
     Call<AccountModel> loginUser(@Body UserLogIn user);
 
     @POST("Invoices/GetInvoicesByAccountIdWithinDates")
-    Call<List<InvoiceModel>> getInvoicesByAccountIdWithinDates(@Body int accountId, String date1, String date2);
+    Call<List<InvoiceModel>> getInvoicesByAccountIdWithinDates(@Body SearchByDate searchByDate);
 
     @GET("Payment/GetPayments")
     Call<List<PaymentModel>> getAllPayments();

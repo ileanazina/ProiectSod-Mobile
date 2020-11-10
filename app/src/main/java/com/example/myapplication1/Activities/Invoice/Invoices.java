@@ -15,6 +15,7 @@ import com.example.myapplication1.Activities.SearchDateFragment;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.PaymentModel;
+import com.example.myapplication1.Model.SearchByDate;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
@@ -175,9 +176,9 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
     @Override
     public void onInvoiceListener(int position) {}
 
-    public void getInvoiceListFromSearchFragment(String startDate, String endDate) {
+    public void getInvoiceListFromSearchFragment(SearchByDate searchByDate) {
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountIdWithinDates(account.getAccountId(),startDate, endDate);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountIdWithinDates(searchByDate);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
