@@ -2,6 +2,7 @@ package com.example.myapplication1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -9,7 +10,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.myapplication1.Activities.CompanyDetails;
@@ -20,11 +23,18 @@ import com.example.myapplication1.Activities.Invoice.Invoices;
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Activities.Profile;
 import com.example.myapplication1.Model.AccountModel;
+import com.example.myapplication1.Model.AddressModel;
+import com.example.myapplication1.Model.CityModel;
+import com.example.myapplication1.Model.CountryModel;
+import com.example.myapplication1.Model.DistrictModel;
+import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
+import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,10 +43,17 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public interface RevealDetailsCallbacks {
+        void getDataFromAddress (List<AddressModel> address);
+        void getDataFromInvoices(List<InvoiceModel> invoiceModels);
+    }
+
     private APIInterfaces invoiceAPI;
-    private Invoices.RevealDetailsCallbacks callback;
+    private RevealDetailsCallbacks callback;
     private InvoiceModel lastUnpaidInvoice = null;
     private AccountModel account;
+
+    private ArrayList<String> FullAddressName= new ArrayList<String>();
 
     public static int getScreenWidth() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -54,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
+
 
         Button buttonDetails = (Button) findViewById(R.id.buttonDetails);
         setDimensions(buttonDetails);
@@ -121,7 +139,26 @@ public class MainActivity extends AppCompatActivity {
         TextView textView_sold = findViewById(R.id.valLastUnpaidInvoices);
         Button payButton = findViewById(R.id.mainMenuPayButton);
 
-        this.callback = new Invoices.RevealDetailsCallbacks() {
+        this.callback = new MainActivity.RevealDetailsCallbacks() {
+            @Override
+            public void getDataFromAddress(List<AddressModel> address) {
+                for(AddressModel model: address)
+                {
+                    FullAddressName.add(model.getFullAddressName());
+                }
+                Log.e("Dimensiune", String.valueOf(FullAddressName.size()));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this,
+                                android.R.layout.simple_spinner_item, (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
+                        Spinner addressSpinner = (Spinner) findViewById(R.id.spAddress);
+                        addressSpinner.setAdapter(dataAdapter);
+                    }
+                });
+
+            }
+
             @Override
             public void getDataFromInvoices(List<InvoiceModel> list) {
                 if(list != null){
@@ -133,7 +170,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        getAddressByAccount(this, callback);
         getUnpaidInvoices();
+
+
+
     }
 
     void setDimensions(Button button)
@@ -170,6 +211,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Payments.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    public void getAddressByAccount(Context context, RevealDetailsCallbacks callback) {
+        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+        Call<List<AddressModel>> call = invoiceAPI.getAddressesByAccountId(account.getAccountId());
+        call.enqueue(new Callback<List<AddressModel>>() {
+            @Override
+            public void onResponse(Call<List<AddressModel>> call, Response<List<AddressModel>> response) {
+                List<AddressModel> address = response.body();
+                if(callback != null) {
+                    callback.getDataFromAddress(address);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AddressModel>> call, Throwable t) {
+                call.cancel();
+                Log.d("eroare", t.toString());
             }
         });
     }

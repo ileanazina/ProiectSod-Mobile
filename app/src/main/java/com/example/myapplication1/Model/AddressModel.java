@@ -23,19 +23,31 @@ public class AddressModel {
     private int floorNumber;
     @SerializedName("stairNumber")
     private String stairNumber;
+    @SerializedName("fullAddressName")
+    private String fullAddressName;
 
-    public AddressModel(int addressId, int addressType, int cityId, int accountId, String street, int flatNumber,
-                        int floorNumber, String stairNumber, String immobileNumber, String streetNumber) {
+    public AddressModel(int addressId, int addressType, int cityId, int accountId, String street,
+                        String streetNumber, String immobileNumber, int flatNumber,
+                        int floorNumber, String stairNumber, String fullAddressName) {
         this.addressId = addressId;
         this.addressType = addressType;
         this.cityId = cityId;
         this.accountId = accountId;
         this.street = street;
+        this.streetNumber = streetNumber;
+        this.immobileNumber = immobileNumber;
         this.flatNumber = flatNumber;
         this.floorNumber = floorNumber;
         this.stairNumber = stairNumber;
-        this.immobileNumber = immobileNumber;
-        this.streetNumber = streetNumber;
+        this.fullAddressName = fullAddressName;
+    }
+
+    public String getFullAddressName() {
+        return fullAddressName;
+    }
+
+    public void setFullAddressName(String fullAddressName) {
+        this.fullAddressName = fullAddressName;
     }
 
     public int getAddressId() {
