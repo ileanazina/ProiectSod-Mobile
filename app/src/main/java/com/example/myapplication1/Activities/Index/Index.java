@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,7 +22,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication1.Activities.CompanyDetails;
 import com.example.myapplication1.Activities.Invoice.InvoiceDetails;
+import com.example.myapplication1.LogIn;
+import com.example.myapplication1.MainActivity;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddIIndex;
 import com.example.myapplication1.Model.AddressModel;
@@ -63,7 +67,7 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
     private DistrictModel district_obj;
     private CountryModel country_obj;
     private List<IndexModel> index_obj;
-
+    private AlertDialog.Builder builder;
 
     private Button addIndex;
     private EditText addIndexValue;
@@ -73,7 +77,9 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
     private List<IndexModel> allIndexes;
     private List<IndexModel> forAdaptorIndexes;
     AccountModel account;
+    private int AddressIdFromSpinner;
     IndexModel indexThink;
+    private AlertDialog dialogError;
 
     private LayoutInflater inflater;
     @Override
@@ -89,37 +95,39 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
         forAdaptorIndexes = new ArrayList<>();
 
 
-        indexesAdaptor = new IndexAdaptor(Index.this,forAdaptorIndexes,Index.this);
+        indexesAdaptor = new IndexAdaptor(Index.this, forAdaptorIndexes, Index.this);
         recyclerView.setAdapter(indexesAdaptor);
 
-        addIndex= findViewById(R.id.addIndex);
+        addIndex = findViewById(R.id.addIndex);
         addIndexValue = findViewById(R.id.addIndexValue);
-        img=findViewById(R.id.imageView);
+        img = findViewById(R.id.imageView);
 
 
-       // addIndex.setVisibility(View.INVISIBLE);
+        // addIndex.setVisibility(View.INVISIBLE);
         //addIndexValue.setVisibility(View.INVISIBLE);
         //img.setVisibility(View.VISIBLE);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         Gson gson = new Gson();
-        String json = mPrefs.getString("AccountInfo",null);
+        String json = mPrefs.getString("AccountInfo", null);
         account = gson.fromJson(json, AccountModel.class);
 
+        SharedPreferences  aPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        int ad= aPrefs.getInt("Address",0);
+        AddressIdFromSpinner = ad;
+        Log.e("AddressId", String.valueOf(AddressIdFromSpinner));
         this.callback = new Index.RevealDetailsCallbacks() {
             @Override
             public void getDataFromIndex(List<IndexModel> list) {
-                index_obj=list;
+                index_obj = list;
 
-                for(int i = 0; i< list.size(); i++)
-                {
-                    if(account.getAccountId() == list.get(i).getAccountId())
-                    {
+                for (int i = 0; i < list.size(); i++) {
+                    if (account.getAccountId() == list.get(i).getAccountId()) {
 
                         allIndexes.add(list.get(i));
                         forAdaptorIndexes.add(list.get(i));
                         indexesAdaptor.notifyDataSetChanged();
-                       // getAddressByAccount(Index.this, callback);
+                        // getAddressByAccount(Index.this, callback);
                         //list.get(i).setAddress(buildAddress());
 
                     }
@@ -132,28 +140,21 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
             }
 
 
-
         };
         getIndexList(this, callback);
 
-//        if(Calendar.DAY_OF_MONTH>=9 && Calendar.DAY_OF_MONTH<=25) {
-//            //img.setVisibility(View.INVISIBLE);
-//            addIndex.setVisibility(View.VISIBLE);
-//            addIndexValue.setVisibility(View.VISIBLE);
-
+        if (Calendar.DAY_OF_MONTH >= 20 && Calendar.DAY_OF_MONTH <= 25) {
             addIndex.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    String strIndex=String.valueOf(addIndexValue.getText());
-                    float indexValue= Float.parseFloat(strIndex);
-                    if (addIndexValue.getText().toString().isEmpty()||addIndexValue.getText()==null) {
-                        Toast.makeText(Index.this, "Introduceti indexul", Toast.LENGTH_SHORT).show();
+                    String strIndex = String.valueOf(addIndexValue.getText());
+                    float indexValue = Float.parseFloat(strIndex);
+                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null) {
+                        addIndexValue.setError("Index invalid");
                     } else {
-
-
-        //DUPA CE SE REALIZEAZA SPINNERUL PRINCIPAL SE REVINE AICI SA CA SA INLOCUIM ADDRESSID CU ID UL VAL DIN SPINNER
-                        AddIIndex index = new AddIIndex(indexValue, account.getAccountId(),6);
+                        //DUPA CE SE REALIZEAZA SPINNERUL PRINCIPAL SE REVINE AICI SA CA SA INLOCUIM ADDRESSID CU ID UL VAL DIN SPINNER
+                        AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
                         Call<IndexModel> call = indexesAPI.insertIndex(index);
                         call.enqueue(new Callback<IndexModel>() {
                             @Override
@@ -164,7 +165,6 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
                                 } else {
                                     Toast.makeText(Index.this, "Succes", Toast.LENGTH_LONG).show();
                                 }
-
                             }
 
                             @Override
@@ -176,6 +176,35 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
                 }
             });
         }
+        else
+        {
+            builder = new AlertDialog.Builder(Index.this);
+
+            inflater = LayoutInflater.from(Index.this);
+            View view = inflater.inflate(R.layout.index_alert_dialog, null);
+
+            Button noButton = view.findViewById(R.id.button_indcancel);
+            Button yesButton = view.findViewById(R.id.button_indreload);
+
+            builder.setView(view);
+            dialogError = builder.create();
+            dialogError.show();
+
+            yesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialogError.dismiss();
+                }
+            });
+            noButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Index.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+    }
 
 
     public void getIndexList(Context context, RevealDetailsCallbacks callback) {
