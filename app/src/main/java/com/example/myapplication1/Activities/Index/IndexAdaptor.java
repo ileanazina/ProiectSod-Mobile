@@ -49,7 +49,7 @@ public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewH
         holder.tvIndexNr.setText("Valoare index: " + item.getIndexValue());
         holder.tvIndexDate.setText("Data index: " + dataDue);
         holder.tvIndexavr.setText("Consum mediu: " + item.getAverageIndex());
-        holder.addressClient.setText("Adresa: "+ item.getAddress());
+        
     }
 
     @Override
@@ -67,7 +67,7 @@ public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewH
             tvIndexNr = itemView.findViewById(R.id.indexValue);
             tvIndexDate = itemView.findViewById(R.id.indexDate);
             tvIndexavr = itemView.findViewById(R.id.indexAvr);
-            addressClient = itemView.findViewById(R.id.indexAdress);
+
             this.onIndexListener=onIndexListener;
             itemView.setOnClickListener(this);
         }
