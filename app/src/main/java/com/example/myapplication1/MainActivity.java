@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -36,7 +37,9 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
+import io.reactivex.android.MainThreadDisposable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private AccountModel account;
 
     private ArrayList<String> FullAddressName= new ArrayList<String>();
+    private Vector<Integer> vaddressId= new Vector<>();
 
     public static int getScreenWidth() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -142,11 +146,16 @@ public class MainActivity extends AppCompatActivity {
         this.callback = new MainActivity.RevealDetailsCallbacks() {
             @Override
             public void getDataFromAddress(List<AddressModel> address) {
+                    int position=0;
                 for(AddressModel model: address)
                 {
                     FullAddressName.add(model.getFullAddressName());
+                    vaddressId.add(position,model.getAddressId()) ;
+                    position++;
+
                 }
                 Log.e("Dimensiune", String.valueOf(FullAddressName.size()));
+                Log.e("Vector adrese",String.valueOf(vaddressId.get(0)+" "+vaddressId.get(1)));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -154,10 +163,27 @@ public class MainActivity extends AppCompatActivity {
                                 android.R.layout.simple_spinner_item, (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
                         Spinner addressSpinner = (Spinner) findViewById(R.id.spAddress);
                         addressSpinner.setAdapter(dataAdapter);
+                        addressSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                int spinnerPosition = (int) addressSpinner.getItemIdAtPosition(position);
+                                SharedPreferences  aPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                                SharedPreferences.Editor aEditor = aPrefs.edit();
+                                aEditor.putInt("Address",vaddressId.get(spinnerPosition));
+                                aEditor.apply();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }
                 });
 
+
             }
+
 
             @Override
             public void getDataFromInvoices(List<InvoiceModel> list) {

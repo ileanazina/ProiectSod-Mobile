@@ -76,7 +76,7 @@
         android:orientation="horizontal"
         android:columnOrderPreserved="false"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/profile_margin_top"
+        android:layout_marginTop="70dp"
         android:columnCount="2">
 
         <Button

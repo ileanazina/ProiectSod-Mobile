@@ -42,16 +42,6 @@
                 android:textSize="18sp"
                 android:textStyle="italic"
                 android:layout_marginRight="12dp"/>
-            <TextView
-                android:id="@+id/indexAdress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/indexAvr"
-                android:paddingTop="10dp"
-                android:textSize="18sp"
-                android:textStyle="italic"
-                android:layout_marginRight="12dp"/>
-
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

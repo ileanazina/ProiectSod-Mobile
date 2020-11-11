@@ -68,7 +68,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
 
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="75dp"
         android:layout_marginRight="@dimen/profile_margin_leftright"
         android:layout_marginLeft="@dimen/profile_margin_leftright"
         android:id="@+id/indexRecycleView"
