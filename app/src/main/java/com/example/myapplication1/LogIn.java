@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +31,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.SharedPreferences;
+
+import java.util.Locale;
 
 public class LogIn extends AppCompatActivity {
 
@@ -44,10 +51,68 @@ public class LogIn extends AppCompatActivity {
     private LayoutInflater inflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Language", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String language = sharedPreferences.getString("saveTheLanguage","");
+        if(language == "")
+            setLanguage("ro-rRO");
+        else setLanguage(language);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         saveData = findViewById(R.id.tvSave) ;
         restoreData = findViewById(R.id.tvRemember);
+
+        //change the language
+        ImageButton imageButtonFlags = findViewById(R.id.languageButtonLogIn);
+        if(language == "" | language == "ro-rRO")
+            imageButtonFlags.setBackgroundResource(R.drawable.romanianflag);
+        else imageButtonFlags.setBackgroundResource(R.drawable.englishflag);
+
+        imageButtonFlags.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                builder = new AlertDialog.Builder(LogIn.this);
+                inflater = LayoutInflater.from(LogIn.this);
+                View view = inflater.inflate(R.layout.custom_language_dialog, null);
+
+                ImageButton ro_imageButton = view.findViewById(R.id.choseRomanianFlag);
+                ImageButton en_imageButton = view.findViewById(R.id.choseEnglishFlag);
+
+                builder.setView(view);
+                dialogError = builder.create();
+                dialogError.show();
+
+                ro_imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.putString("saveTheLanguage","ro-rRO");
+                        editor.apply();
+                        setLanguage("ro-rRO");
+                        finish();
+                        startActivity(getIntent());
+                        dialogError.dismiss();
+                    }
+                });
+
+                en_imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editor.putString("saveTheLanguage","en");
+                        editor.apply();
+                        setLanguage("en");
+                        finish();
+                        startActivity(getIntent());
+                        dialogError.dismiss();
+                    }
+                });
+            }
+        });
+
+
+        //here i finish with the language
 
         this.callback = new RevealDetailsCallbacks() {
             @Override
@@ -174,6 +239,15 @@ public class LogIn extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void setLanguage (String lang){
+        String languageToLoad  = lang; // your language
+        Locale.setDefault(new Locale(languageToLoad));
+        Configuration config = new Configuration();
+        config.locale = new Locale(languageToLoad);
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 
     @Override

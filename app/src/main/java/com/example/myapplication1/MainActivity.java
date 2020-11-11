@@ -154,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     position++;
 
                 }
-                Log.e("Dimensiune", String.valueOf(FullAddressName.size()));
-                Log.e("Vector adrese",String.valueOf(vaddressId.get(0)+" "+vaddressId.get(1)));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -181,9 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
             }
-
 
             @Override
             public void getDataFromInvoices(List<InvoiceModel> list) {
@@ -198,9 +194,6 @@ public class MainActivity extends AppCompatActivity {
         };
         getAddressByAccount(this, callback);
         getUnpaidInvoices();
-
-
-
     }
 
     void setDimensions(Button button)
