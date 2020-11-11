@@ -52,11 +52,15 @@
     <string name="network_dialog_quit_button">Quit</string>
     <string name="network_dialog_try_again_button">Try again</string>
     <string name="fragment_date_start">[Starting date ...]</string>
-    <string name="fragment_date_end">" [Until date ...]"</string>
+    <string name="fragment_date_end">[Until date ...]</string>
     <string name="search_date_fragment_invalid_dates">Invalide dates...</string>
-    <string name="search_date_fragment_from">"From: "</string>
-    <string name="search_date_fragment_until">"To: "</string>
+    <string name="search_date_fragment_from">From: </string>
+    <string name="search_date_fragment_until">To: </string>
     <string name="profile_company_name">Company name</string>
     <string name="profile_individual_person">Individual person</string>
     <string name="login_save_toast">Saved!</string>
+    <string name="invoice_detail_please_wait">Please wait a second</string>
+    <string name="invoice_adaptor_invoice_number">Invoice code: </string>
+    <string name="invoice_adaptor_to_paid">Total payment: </string>
+    <string name="invoice_adaptor_due_date">Due date: </string>
 </resources>

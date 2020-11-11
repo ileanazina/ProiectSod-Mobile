@@ -126,7 +126,6 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
             @Override
             public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
@@ -147,7 +146,6 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
             @Override
             public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
@@ -168,7 +166,6 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
             @Override
             public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
@@ -191,7 +188,6 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
             @Override
             public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }
