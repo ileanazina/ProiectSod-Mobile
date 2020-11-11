@@ -146,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
                 {
                     FullAddressName.add(model.getFullAddressName());
                 }
-                Log.e("Dimensiune", String.valueOf(FullAddressName.size()));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

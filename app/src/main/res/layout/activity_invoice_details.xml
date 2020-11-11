@@ -21,7 +21,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo1" />
-    <Button
+   <!-- <Button
         android:id="@+id/buttonDownloadId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:textColor="@color/black"
         android:layout_gravity="end|top"
         android:background="@drawable/button_invoices"
-        android:text="@string/invoice_detail_download_button" />
+        android:text="@string/invoice_detail_download_button" />-->
 
     <!-- about invoice -->
     <TextView

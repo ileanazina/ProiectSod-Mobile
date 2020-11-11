@@ -258,7 +258,9 @@ public class InvoiceDetails extends AppCompatActivity {
 
         //clientAddress
         TextView textView_addressClient = findViewById(R.id.addressId);
-        textView_addressClient.setText(buildAddress());
+        if(address_obj.getFullAddressName() == null || address_obj.getFullAddressName() =="")
+            textView_addressClient.setText("-");
+        else textView_addressClient.setText(address_obj.getFullAddressName());
 
         //CUI issue company
         TextView textView_cui = findViewById(R.id.IssueCUI);
@@ -319,47 +321,5 @@ public class InvoiceDetails extends AppCompatActivity {
                 textView_valueWithVat.setText("-");
             else textView_valueWithVat.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()));
         }
-    }
-
-    public String buildAddress()
-    {
-        String address ="";
-
-        if(country_obj.getCountryName() != null & country_obj.getCountryName() != "")
-            address = address + " Tara: " + country_obj.getCountryName() + " ";
-        if(country_obj.getCountryCode() != null & country_obj.getCountryCode() != "")
-            address = address + country_obj.getCountryCode() + " ";
-
-        if(district_obj.getDistrictName() != null & district_obj.getDistrictName() != "")
-            address = address + " Judet: " + district_obj.getDistrictName() + " ";
-        if(district_obj.getDistrictCode() != null & district_obj.getDistrictCode() != "")
-            address = address + district_obj.getDistrictCode() + " ";
-
-        if(city_obj.getCityName() != null & city_obj.getCityName() != "")
-            address = address + " Oras: " + city_obj.getCityName() + " ";
-        if(city_obj.getCityCode() != null & city_obj.getCityCode() != "")
-            address = address + city_obj.getCityCode() + " ";
-
-        if(address_obj.getStreet() != "" & address_obj.getStreet() != null)
-            address = address + " Strada: " + address_obj.getStreet() + " ";
-
-        if(address_obj.getStreetNumber() != "" & address_obj.getStreetNumber() != null)
-            address = address + " Numar: " + address_obj.getStreetNumber() + " ";
-
-        if(address_obj.getImmobileNumber() != null & address_obj.getImmobileNumber() != "")
-            address = address + " Cladirea: " + address_obj.getImmobileNumber() + " ";
-
-        if(address_obj.getStairNumber() != null & address_obj.getStairNumber() != "")
-            address = address + " Scara: " + address_obj.getStairNumber() + " ";
-
-        if(address_obj.getFloorNumber() != 0)
-            address = address + " Etaj: " + address_obj.getFloorNumber() + " ";
-
-        if(address_obj.getFlatNumber() != 0)
-            address = address + " Apartament: " + address_obj.getFlatNumber() + " ";
-
-        if(address == "")
-            return "-";
-        else return  address;
     }
 }
