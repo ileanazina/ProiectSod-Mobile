@@ -140,7 +140,7 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
         };
         getIndexList(this, callback);
 
-        if (Calendar.DAY_OF_MONTH >= 20 && Calendar.DAY_OF_MONTH <= 25) {
+
             addIndex.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -175,9 +175,9 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
                     startActivity(intent);
                 }
             });
-        }
-        else
-        {
+
+        if (Calendar.DAY_OF_MONTH >= 10 && Calendar.DAY_OF_MONTH <= 25) {
+
             builder = new AlertDialog.Builder(Index.this);
 
             inflater = LayoutInflater.from(Index.this);
