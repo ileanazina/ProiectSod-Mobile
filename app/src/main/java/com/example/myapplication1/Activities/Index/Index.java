@@ -102,8 +102,7 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
         addIndexValue = findViewById(R.id.addIndexValue);
         img = findViewById(R.id.imageView);
 
-
-        // addIndex.setVisibility(View.INVISIBLE);
+        //addIndex.setVisibility(View.INVISIBLE);
         //addIndexValue.setVisibility(View.INVISIBLE);
         //img.setVisibility(View.VISIBLE);
 
@@ -122,14 +121,13 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
                 index_obj = list;
 
                 for (int i = 0; i < list.size(); i++) {
-                    if (account.getAccountId() == list.get(i).getAccountId()) {
-
+                    if (account.getAccountId() == list.get(i).getAccountId()&&list.get(i).getAddressId()==AddressIdFromSpinner)
+                    {
                         allIndexes.add(list.get(i));
                         forAdaptorIndexes.add(list.get(i));
                         indexesAdaptor.notifyDataSetChanged();
                         // getAddressByAccount(Index.this, callback);
                         //list.get(i).setAddress(buildAddress());
-
                     }
                 }
             }
@@ -138,7 +136,6 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
             public void getDataFromResult(IndexModel index) {
 
             }
-
 
         };
         getIndexList(this, callback);
@@ -153,7 +150,7 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
                     if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null) {
                         addIndexValue.setError("Index invalid");
                     } else {
-                        //DUPA CE SE REALIZEAZA SPINNERUL PRINCIPAL SE REVINE AICI SA CA SA INLOCUIM ADDRESSID CU ID UL VAL DIN SPINNER
+
                         AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
                         Call<IndexModel> call = indexesAPI.insertIndex(index);
                         call.enqueue(new Callback<IndexModel>() {
