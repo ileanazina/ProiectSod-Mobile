@@ -9,7 +9,6 @@ import com.example.myapplication1.Model.DistrictModel;
 import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
-import com.example.myapplication1.Model.ModelAddIndex;
 import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.SearchByDate;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
@@ -18,7 +17,6 @@ import com.example.myapplication1.Model.UserLogIn;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -36,6 +34,9 @@ public interface APIInterfaces {
 
     @GET("Invoices/GetInvoicesByAccountId/{accountId}")
     Call<List<InvoiceModel>> getInvoicesByAccountId(@Path("accountId") int accountId);
+
+    @GET("Invoices/GetSold/{accountId}/{addressId}")
+    Call<Float> getSold(@Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @POST("Users/Login")
     Call<AccountModel> loginUser(@Body UserLogIn user);

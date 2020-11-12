@@ -13,7 +13,7 @@
     <string name="index_hint">Introduceți valoarea indexului</string>
 
     <!--activity_invoice_details.xml-->
-    <string name="invoice_detail_download_button">Descarcă</string>
+    <string name="invoice_detail_email_me_button">Trimite factura pe email</string>
     <string name="invoice_detail_first_border">Detalii factură</string>
     <string name="invoice_detail_invoiceId_intro">Cod factură</string>
     <string name="invoice_detail_issue_date_intro">Dată emitere</string>

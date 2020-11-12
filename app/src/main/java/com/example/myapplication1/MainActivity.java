@@ -8,16 +8,13 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.myapplication1.Activities.CompanyDetails;
-import com.example.myapplication1.Activities.Invoice.InvoiceDetails;
 import com.example.myapplication1.Activities.Forms;
 import com.example.myapplication1.Activities.Index.Index;
 import com.example.myapplication1.Activities.Invoice.Invoices;
@@ -25,12 +22,7 @@ import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Activities.Profile;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
-import com.example.myapplication1.Model.CityModel;
-import com.example.myapplication1.Model.CountryModel;
-import com.example.myapplication1.Model.DistrictModel;
-import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
-import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
 import com.google.gson.Gson;
@@ -39,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import io.reactivex.android.MainThreadDisposable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public interface RevealDetailsCallbacks {
         void getDataFromAddress (List<AddressModel> address);
-        void getDataFromInvoices(List<InvoiceModel> invoiceModels);
+        void getDataFromSold(Float sold);
     }
 
     private APIInterfaces invoiceAPI;
@@ -143,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView_sold = findViewById(R.id.valLastUnpaidInvoices);
         Button payButton = findViewById(R.id.mainMenuPayButton);
 
-        this.callback = new MainActivity.RevealDetailsCallbacks() {
+        this.callback = new RevealDetailsCallbacks() {
             @Override
             public void getDataFromAddress(List<AddressModel> address) {
                     int position=0;
@@ -154,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     position++;
 
                 }
+                getSold(MainActivity.this, callback, vaddressId.get(0));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -169,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                                 SharedPreferences.Editor aEditor = aPrefs.edit();
                                 aEditor.putInt("Address",vaddressId.get(spinnerPosition));
                                 aEditor.apply();
+                                getSold(MainActivity.this, callback, vaddressId.get(spinnerPosition));
                             }
 
                             @Override
@@ -178,22 +171,14 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 });
-
             }
 
             @Override
-            public void getDataFromInvoices(List<InvoiceModel> list) {
-                if(list != null){
-                    lastUnpaidInvoice = list.get(0);
-                    for(int i = 1; i < list.size(); i++)
-                        if(lastUnpaidInvoice.getDateOfIssue().compareTo(list.get(i).getDateOfIssue()) < 0)
-                            lastUnpaidInvoice = list.get(i);
-                    buttonAndSoldUpdated(textView_sold, payButton);
-                }
+            public void getDataFromSold(Float sold) {
+                buttonAndSoldUpdated(textView_sold, payButton, sold);
             }
         };
         getAddressByAccount(this, callback);
-        getUnpaidInvoices();
     }
 
     void setDimensions(Button button)
@@ -202,29 +187,9 @@ public class MainActivity extends AppCompatActivity {
         button.setHeight((int) (getScreenHeight()*0.2));
     }
 
-    public void getUnpaidInvoices()
+    public void buttonAndSoldUpdated(TextView textView, Button button, Float sold)
     {
-        invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getUnpaidInvoicesByAccountId(account.getAccountId());
-        call.enqueue(new Callback<List<InvoiceModel>>() {
-            @Override
-            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
-                List<InvoiceModel> invoices = response.body();
-                if(callback != null) {
-                    callback.getDataFromInvoices(invoices);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
-                call.cancel();
-            }
-        });
-    }
-
-    public void buttonAndSoldUpdated(TextView textView, Button button)
-    {
-        textView.setText(String.valueOf(lastUnpaidInvoice.getValueWithVat()));
+        textView.setText(String.valueOf(sold));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,6 +197,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void getSold(Context context, RevealDetailsCallbacks callback, int addressId){
+        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+        Call<Float> call = invoiceAPI.getSold(account.getAccountId(), addressId );
+        call.enqueue(new Callback<Float>() {
+            @Override
+            public void onResponse(Call<Float> call, Response<Float> response) {
+                Float sold = response.body();
+                if(callback != null) {
+                    callback.getDataFromSold(sold);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Float> call, Throwable t) {
+                call.cancel();
+            }
+        });
+
     }
 
     public void getAddressByAccount(Context context, RevealDetailsCallbacks callback) {
@@ -249,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<AddressModel>> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }

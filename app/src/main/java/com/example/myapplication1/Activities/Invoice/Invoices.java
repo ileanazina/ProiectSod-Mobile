@@ -39,6 +39,7 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
     private CompositeDisposable compositeDisposable= new CompositeDisposable();
     private RevealDetailsCallbacks callback;
     private AccountModel account;
+    private int addressId;
     boolean onClickDate = false;
 
     private List<InvoiceModel> forAdaptorInvoices;
@@ -61,6 +62,7 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
+        addressId = mPrefs.getInt("Address", 0);
 
         this.callback = new RevealDetailsCallbacks() {
             @Override
@@ -68,8 +70,10 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
                 forAdaptorInvoices.clear();
                 invoiceAdaptor.notifyDataSetChanged();
                 for(int i=0; i < list.size(); i++) {
-                    forAdaptorInvoices.add(list.get(i));
-                    invoiceAdaptor.notifyDataSetChanged();
+                    if(list.get(i).getAddressId() == addressId) {
+                        forAdaptorInvoices.add(list.get(i));
+                        invoiceAdaptor.notifyDataSetChanged();
+                    }
                 }
             }
         };
