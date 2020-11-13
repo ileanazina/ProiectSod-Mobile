@@ -14,12 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.example.myapplication1.Activities.CompanyDetails;
-import com.example.myapplication1.Activities.Forms;
-import com.example.myapplication1.Activities.Index.Index;
-import com.example.myapplication1.Activities.Invoice.Invoices;
+
+import com.example.myapplication1.Activities.FormsFragment;
+import com.example.myapplication1.Activities.Index.IndexFragment;
+import com.example.myapplication1.Activities.Invoice.InvoicesFragment;
 import com.example.myapplication1.Activities.Payments;
-import com.example.myapplication1.Activities.Profile;
+import com.example.myapplication1.Activities.ProfileFragment;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
 import com.example.myapplication1.Model.InvoiceModel;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         buttonForms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentForms = new Intent(MainActivity.this, Forms.class);
+                Intent intentForms = new Intent(MainActivity.this, FormsFragment.class);
                 startActivity(intentForms);
             }
         });
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intentIndex = new Intent(MainActivity.this, Index.class);
+                Intent intentIndex = new Intent(MainActivity.this, IndexFragment.class);
                 startActivity(intentIndex);
             }
         });
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         buttonInvoices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentInvoices = new Intent(MainActivity.this, Invoices.class);
+                Intent intentInvoices = new Intent(MainActivity.this, InvoicesFragment.class);
                 startActivity(intentInvoices);
             }
         });
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         buttonProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentProfile = new Intent(MainActivity.this, Profile.class);
+                Intent intentProfile = new Intent(MainActivity.this, ProfileFragment.class);
                 startActivity(intentProfile);
             }
         });

@@ -1,19 +1,16 @@
 package com.example.myapplication1;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
-
-import com.example.myapplication1.Activities.Forms;
-import com.example.myapplication1.Activities.Index.Index;
-import com.example.myapplication1.Activities.Index.IndexF;
-import com.example.myapplication1.Activities.Invoice.Invoices;
-import com.example.myapplication1.Activities.Profile;
+import com.example.myapplication1.Activities.FormsFragment;
+import com.example.myapplication1.Activities.Index.IndexFragment;
+import com.example.myapplication1.Activities.Invoice.InvoicesFragment;
+import com.example.myapplication1.Activities.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TryTest extends AppCompatActivity {
@@ -36,23 +33,22 @@ public class TryTest extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.index:
-                        selectedFragment = new IndexF();
+                        selectedFragment = new IndexFragment();
                         break;
-//                    case R.id.formulare:
-//                        selectedFragment = new Forms();
-//                        break;
+                    case R.id.formulare:
+                        selectedFragment = new FormsFragment();
+                        break;
 //                    case R.id.home:
 //                        selectedFragment = new MainActivity();
 //                        break;
-//                    case R.id.facturi:
-//                        selectedFragment = new Invoices();
-//                        break;
-//                    case R.id.profil:
-//                        selectedFragment = new Profile();
-//                        break;
+                    case R.id.facturi:
+                        selectedFragment = new InvoicesFragment();
+                        break;
+                    case R.id.profil:
+                        selectedFragment = new ProfileFragment();
+                        break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag,
-                        selectedFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, selectedFragment).commit();
                 return true;
             }
 

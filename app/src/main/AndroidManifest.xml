@@ -26,10 +26,10 @@
         <activity android:name=".LogIn" />
         <activity android:name=".Activities.Payments" />
         <activity android:name=".Activities.Invoice.InvoiceDetails" />
-        <activity android:name=".Activities.Index.Index" />
-        <activity android:name=".Activities.Forms" />
-        <activity android:name=".Activities.Invoice.Invoices" />
-        <activity android:name=".Activities.Profile" />
+        <activity android:name=".Activities.Index.IndexFragment" />
+        <activity android:name=".Activities.FormsFragment" />
+        <activity android:name=".Activities.Invoice.InvoicesFragment" />
+        <activity android:name=".Activities.ProfileFragment" />
         <activity
             android:name=".Activities.DatePicker"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />

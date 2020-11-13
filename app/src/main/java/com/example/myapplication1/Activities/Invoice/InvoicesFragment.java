@@ -1,20 +1,21 @@
 package com.example.myapplication1.Activities.Invoice;
-import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
-import android.app.Fragment;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.myapplication1.Activities.SearchDateFragment;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
-import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.SearchByDate;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
@@ -27,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvoiceListener {
+public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoiceListener {
 
     public interface RevealDetailsCallbacks {
         void getDataFromInvoices(List<InvoiceModel> list);
@@ -44,21 +45,21 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
 
     private List<InvoiceModel> forAdaptorInvoices;
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invoices);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_invoice_page, container, false);
 
-        recyclerView = this.findViewById(R.id.invoiceRecycleView);
+        recyclerView = view.findViewById(R.id.invoiceRecycleView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         forAdaptorInvoices = new ArrayList<>();
 
-        invoiceAdaptor = new InvoiceAdaptor(Invoices.this,forAdaptorInvoices,Invoices.this);
+        invoiceAdaptor = new InvoiceAdaptor(getContext(),forAdaptorInvoices, InvoicesFragment.this);
         recyclerView.setAdapter(invoiceAdaptor);
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
@@ -79,25 +80,25 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
         };
         getInvoiceList();
 
-        findViewById(R.id.allInvoices).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.allInvoices).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInvoiceList();
             }
         });
-        findViewById(R.id.payedInvoices).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.payedInvoices).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 putJustPayedInvoices();
             }
         });
-        findViewById(R.id.unpayedInvoices).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.unpayedInvoices).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 putUnpayedInvoices();
             }
         });
-        findViewById(R.id.afterdate).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.afterdate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SearchDateFragment searchDateFragment = new SearchDateFragment();
@@ -113,6 +114,7 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
                 }
             }
         });
+        return view;
     }
 
     public void getInvoiceList() {
@@ -194,11 +196,5 @@ public class Invoices extends AppCompatActivity implements InvoiceAdaptor.OnInvo
                 call.cancel();
             }
         });
-    }
-
-    @Override
-    protected void onStop() {
-        compositeDisposable.clear();
-        super.onStop();
     }
 }
