@@ -170,6 +170,9 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
                             }
                         });
                     }
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
                 }
             });
 
@@ -223,7 +226,6 @@ public class Index extends AppCompatActivity implements IndexAdaptor.OnIndexList
             }
         });
     }
-
 
     @Override
     public void onIndexListener(int position) {

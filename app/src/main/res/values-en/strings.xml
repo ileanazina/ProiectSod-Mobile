@@ -13,7 +13,7 @@
     <string name="company_detail_schedule">Schedule M-F 9:00-19:00</string>
     <string name="datetime_picker_save_button">Save</string>
     <string name="index_hint">Enter the value of the index</string>
-    <string name="invoice_detail_download_button">Download</string>
+    <string name="invoice_detail_email_me_button">Send the invoice by mail</string>
     <string name="invoice_detail_invoiceId_intro">Invoice code</string>
     <string name="invoice_detail_issue_date_intro">Issue date</string>
     <string name="invoice_detail_due_date_intro">Due date</string>
