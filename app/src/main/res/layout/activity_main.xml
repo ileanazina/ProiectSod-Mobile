@@ -73,103 +73,103 @@
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:rowCount="3"
-        android:orientation="horizontal"
-        android:columnOrderPreserved="false"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:columnCount="2">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:rowCount="3"
+            android:orientation="horizontal"
+            android:columnOrderPreserved="false"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:columnCount="2">
 
-        <Button
-            android:id="@+id/buttonForms"
-            android:layout_width="@dimen/home_button"
-            android:layout_height="@dimen/home_button"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
-            android:textAllCaps="false"
-            android:background="@drawable/margini_buton"
-            android:drawableTop="@drawable/form"
-            android:text="@string/main_menu_forms"
-            android:textColor="@color/Black" />
+            <Button
+                android:id="@+id/buttonForms"
+                android:layout_width="@dimen/home_button"
+                android:layout_height="@dimen/home_button"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_margin="@dimen/margin_home_button"
+                android:fontFamily="@font/cherry_swash"
+                android:textAllCaps="false"
+                android:background="@drawable/margini_buton"
+                android:drawableTop="@drawable/form"
+                android:text="@string/main_menu_forms"
+                android:textColor="@color/Black" />
 
-        <Button
-            android:id="@+id/buttonIndex"
-            android:layout_width="@dimen/home_button"
-            android:layout_height="@dimen/home_button"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_margin="@dimen/margin_home_button"
-            android:background="@drawable/margini_buton"
-            android:drawableTop="@drawable/index"
-            android:fontFamily="@font/cherry_swash"
-            android:textAllCaps="false"
-            android:text="@string/main_menu_indexes"
-            android:textColor="@color/Black"
-            />
+            <Button
+                android:id="@+id/buttonIndex"
+                android:layout_width="@dimen/home_button"
+                android:layout_height="@dimen/home_button"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_margin="@dimen/margin_home_button"
+                android:background="@drawable/margini_buton"
+                android:drawableTop="@drawable/index"
+                android:fontFamily="@font/cherry_swash"
+                android:textAllCaps="false"
+                android:text="@string/main_menu_indexes"
+                android:textColor="@color/Black"
+                />
 
-        <Button
-            android:id="@+id/buttonInvoice"
-            android:layout_width="@dimen/home_button"
-            android:layout_height="@dimen/home_button"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_margin="@dimen/margin_home_button"
-            android:background="@drawable/margini_buton"
-            android:fontFamily="@font/cherry_swash"
-            android:textAllCaps="false"
-            android:drawableTop="@drawable/invoice"
-            android:text="@string/main_menu_invoices"
-            android:textColor="@color/Black" />
+            <Button
+                android:id="@+id/buttonInvoice"
+                android:layout_width="@dimen/home_button"
+                android:layout_height="@dimen/home_button"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_margin="@dimen/margin_home_button"
+                android:background="@drawable/margini_buton"
+                android:fontFamily="@font/cherry_swash"
+                android:textAllCaps="false"
+                android:drawableTop="@drawable/invoice"
+                android:text="@string/main_menu_invoices"
+                android:textColor="@color/Black" />
 
-        <Button
-            android:id="@+id/buttonDetails"
-            android:layout_width="@dimen/home_button"
-            android:layout_height="@dimen/home_button"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_margin="@dimen/margin_home_button"
-            android:background="@drawable/margini_buton"
-            android:drawableTop="@drawable/moredetais"
-            android:fontFamily="@font/cherry_swash"
-            android:textAllCaps="false"
-            android:text="@string/main_menu_info"
-            android:textColor="@color/Black" />
+            <Button
+                android:id="@+id/buttonDetails"
+                android:layout_width="@dimen/home_button"
+                android:layout_height="@dimen/home_button"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_margin="@dimen/margin_home_button"
+                android:background="@drawable/margini_buton"
+                android:drawableTop="@drawable/moredetais"
+                android:fontFamily="@font/cherry_swash"
+                android:textAllCaps="false"
+                android:text="@string/main_menu_info"
+                android:textColor="@color/Black" />
 
 
-        <Button
-            android:id="@+id/buttonPayments"
-            android:layout_width="@dimen/home_button"
-            android:layout_height="@dimen/home_button"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:fontFamily="@font/cherry_swash"
-            android:textAllCaps="false"
-            android:layout_margin="@dimen/margin_home_button"
-            android:background="@drawable/margini_buton"
-            android:drawableTop="@drawable/payment"
-            android:text="@string/main_menu_payment"
-            android:textColor="@color/Black" />
+            <Button
+                android:id="@+id/buttonPayments"
+                android:layout_width="@dimen/home_button"
+                android:layout_height="@dimen/home_button"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:fontFamily="@font/cherry_swash"
+                android:textAllCaps="false"
+                android:layout_margin="@dimen/margin_home_button"
+                android:background="@drawable/margini_buton"
+                android:drawableTop="@drawable/payment"
+                android:text="@string/main_menu_payment"
+                android:textColor="@color/Black" />
 
-        <Button
-            android:id="@+id/buttonProfile"
-            android:layout_width="@dimen/home_button"
-            android:layout_height="@dimen/home_button"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:fontFamily="@font/cherry_swash"
-            android:textAllCaps="false"
-            android:layout_margin="@dimen/margin_home_button"
-            android:background="@drawable/margini_buton"
-            android:drawableTop="@drawable/profile"
-            android:text="@string/main_menu_profile"
-            android:textColor="@color/Black" />
-    </GridLayout>
+            <Button
+                android:id="@+id/buttonProfile"
+                android:layout_width="@dimen/home_button"
+                android:layout_height="@dimen/home_button"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:fontFamily="@font/cherry_swash"
+                android:textAllCaps="false"
+                android:layout_margin="@dimen/margin_home_button"
+                android:background="@drawable/margini_buton"
+                android:drawableTop="@drawable/profile"
+                android:text="@string/main_menu_profile"
+                android:textColor="@color/Black" />
+        </GridLayout>
 
     </LinearLayout>
 </ScrollView>

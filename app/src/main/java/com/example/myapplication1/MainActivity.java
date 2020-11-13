@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intentDetails = new Intent(MainActivity.this, CompanyDetails.class);
+                Intent intentDetails = new Intent(MainActivity.this, TryTest.class);
                 startActivity(intentDetails);
             }
         });

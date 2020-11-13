@@ -14,23 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.CompanyDetails"></activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Activities.Payments" />
-        <activity android:name=".Activities.Invoice.InvoiceDetails" />
-        <activity android:name=".Activities.Index.Index" />
-        <activity android:name=".Activities.Forms" />
-        <activity android:name=".Activities.Invoice.Invoices" />
-        <activity android:name=".Activities.Profile" />
-        <activity android:name=".Activities.DatePicker"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
-        <activity android:name=".LogIn">
+        <activity android:name=".TryTest">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.CompanyDetails" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LogIn" />
+        <activity android:name=".Activities.Payments" />
+        <activity android:name=".Activities.Invoice.InvoiceDetails" />
+        <activity android:name=".Activities.Index.Index" />
+        <activity android:name=".Activities.Forms" />
+        <activity android:name=".Activities.Invoice.Invoices" />
+        <activity android:name=".Activities.Profile" />
+        <activity
+            android:name=".Activities.DatePicker"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
     </application>
 
 </manifest>
