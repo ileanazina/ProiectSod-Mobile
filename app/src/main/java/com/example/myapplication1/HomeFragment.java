@@ -3,6 +3,7 @@ package com.example.myapplication1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,10 +23,12 @@ import android.widget.TextView;
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
+import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -39,6 +42,7 @@ public class HomeFragment extends Fragment {
     public interface RevealDetailsCallbacks {
         void getDataFromAddress (List<AddressModel> address);
         void getDataFromSold(Float sold);
+        void getDataFromInvoices(List<InvoiceModel> list);
     }
 
     private RevealDetailsCallbacks callback;
@@ -46,7 +50,8 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<String> FullAddressName= new ArrayList<String>();
     private Vector<Integer> vaddressId= new Vector<>();
-
+    private List<InvoiceModel> invoiceList ;
+    private TextView invoice1, invoice2, invoice3;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,7 +66,13 @@ public class HomeFragment extends Fragment {
         TextView textView_sold = view.findViewById(R.id.valLastUnpaidInvoices);
         Button payButton = view.findViewById(R.id.mainMenuPayButton);
 
+
+        invoice1= view.findViewById(R.id.factura1);
+        invoice2= view.findViewById(R.id.factura2);
+        invoice3= view.findViewById(R.id.factura3);
+
         this.callback = new RevealDetailsCallbacks() {
+
             @Override
             public void getDataFromAddress(List<AddressModel> address) {
                     int position=0;
@@ -99,12 +110,33 @@ public class HomeFragment extends Fragment {
                 });
             }
 
+
+            @Override
+            public void getDataFromInvoices(List<InvoiceModel> list) {
+                for(int i=0; i < 3; i++) {
+                    if(list.get(i).getAccountId() == account.getAccountId()) {
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                        String dataDue1 = formatter.format(list.get(0).getDueDate());
+                        String dataDue2 = formatter.format(list.get(1).getDueDate());
+                        String dataDue3 = formatter.format(list.get(2).getDueDate());
+                        invoice1.setText("Data scadenta: "+dataDue1 + ", valoare: "+list.get(0).getValueWithVat());
+                        invoice2.setText("Data scadenta: "+dataDue2 + ", valoare: "+list.get(1).getValueWithVat());
+                        invoice3.setText("Data scadenta: "+dataDue3 + ", valoare: "+list.get(2).getValueWithVat());
+                        //invoiceList.add(list.get(i));
+                    }
+                }
+
+            }
+
             @Override
             public void getDataFromSold(Float sold) {
                 buttonAndSoldUpdated(textView_sold, payButton, sold);
             }
+
         };
         getAddressByAccount(getContext(), callback);
+        get3Invoices(getContext(), callback);
         return view;
     }
 
@@ -155,6 +187,26 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<AddressModel>> call, Throwable t) {
+                call.cancel();
+            }
+        });
+    }
+
+    public void get3Invoices(Context context, RevealDetailsCallbacks callback)
+    {
+        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId());
+        call.enqueue(new Callback<List<InvoiceModel>>() {
+            @Override
+            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
+                List<InvoiceModel> invoices = response.body();
+                if(callback != null) {
+                    callback.getDataFromInvoices(invoices);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
                 call.cancel();
             }
         });

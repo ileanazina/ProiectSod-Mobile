@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication1">
 
+
+
     <uses-permission
         android:name="android.permission.INTERNET"
         android:usesCleartextTraffic="true" />
+
+
 
     <application
         android:allowBackup="true"
@@ -18,13 +22,18 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activities.Payments" />
+        <activity android:name=".MainActivity"/>
         <activity
             android:name=".Activities.DatePicker"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />
     </application>
+
+
 
 </manifest>
