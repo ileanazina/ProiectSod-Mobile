@@ -52,7 +52,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_menu_sold"
+            android:text="Sold"
             android:textSize="@dimen/profil_textsize"
             android:fontFamily="@font/cherry_swash"
             android:layout_marginLeft="@dimen/margin_top"
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/main_menu_pay_button"
+            android:text="Platește"
             android:textColor="@color/black"
             android:fontFamily="@font/cherry_swash"
             android:layout_marginTop="25dp"

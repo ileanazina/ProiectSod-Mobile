@@ -41,10 +41,9 @@ public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewH
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataDue = formatter.format(item.getIndexDate());
-        //String aux = "Numar facura: " + item.getInvoiceId() + "\nTotal de plata: " + item.getValueWithVat() + "\nData scadenta: " + dataDue;
-        holder.tvIndexNr.setText("Valoare index: " + item.getIndexValue());
-        holder.tvIndexDate.setText("Data index: " + dataDue);
-        holder.tvIndexavr.setText("Consum mediu: " + item.getAverageIndex());
+        holder.tvIndexNr.setText(mContext.getResources().getString(R.string.index_adaptor_value) + item.getIndexValue());
+        holder.tvIndexDate.setText(mContext.getResources().getString(R.string.index_adaptor_date) + dataDue);
+        holder.tvIndexavr.setText(mContext.getResources().getString(R.string.index_adaptor_consumption) + item.getAverageIndex());
         
     }
 
@@ -55,7 +54,7 @@ public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewH
 
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView tvIndexNr,tvIndexDate, tvIndexavr,addressClient;
+        public TextView tvIndexNr,tvIndexDate, tvIndexavr;
         IndexAdaptor.OnIndexListener onIndexListener;
 
         public ExempleViewHolder(@NonNull View itemView, IndexAdaptor.OnIndexListener onIndexListener) {

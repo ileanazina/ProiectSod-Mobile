@@ -17,8 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_below="@id/nav_view"/>
 
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
@@ -34,5 +32,4 @@
         app:itemIconTint="@color/White"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!--        android:elevation="@dimen/cardview_default_elevation"-->
 </RelativeLayout>

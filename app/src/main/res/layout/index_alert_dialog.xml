@@ -13,10 +13,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/imageViewError"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/error" />
+
             <TextView
                 android:id="@+id/text_ntalert"
                 android:layout_below="@id/imageViewError"
-                android:text="Indexul se poate introduce doar intre 20 si 25 ale lunii"
+                android:text="@string/index_alert_dialog_detail"
                 android:layout_marginTop="23dp"
                 android:layout_centerHorizontal="true"
                 android:padding="6dp"
@@ -27,7 +35,7 @@
             <Button
                 android:id="@+id/button_indcancel"
                 android:layout_below="@id/text_ntalert"
-                android:text="Meniu"
+                android:text="@string/index_alert_dialog_home_button"
                 android:layout_marginTop="23dp"
                 android:textColor="@color/CadetBlue"
                 android:layout_width="wrap_content"
@@ -36,7 +44,7 @@
             <Button
                 android:id="@+id/button_indreload"
                 android:layout_below="@id/text_ntalert"
-                android:text="Vizualizeaza"
+                android:text="@string/index_alert_dialog_watch_button"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="23dp"
                 android:textColor="@color/CadetBlue"

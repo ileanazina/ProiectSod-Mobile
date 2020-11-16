@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Application</string>
-    <string name="main_menu_sold">Sold: </string>
-    <string name="main_menu_pay_button">Pay</string>
-    <string name="main_menu_indexes">Indexes</string>
-    <string name="main_menu_forms">Forms</string>
-    <string name="main_menu_profile">Profile</string>
-    <string name="main_menu_payment">Payment</string>
-    <string name="main_menu_info">Info</string>
     <string name="company_details_address">Bucharest North Road no. 8-10, floor 8</string>
-    <string name="main_menu_invoices">Invoices</string>
     <string name="company_detail_schedule">Schedule M-F 9:00-19:00</string>
     <string name="datetime_picker_save_button">Save</string>
     <string name="index_hint">Enter the value of the index</string>
@@ -37,7 +29,6 @@
     <string name="log_in_save_me">Save me!</string>
     <string name="log_in_remember_me">Remember me!</string>
     <string name="log_in_enter_button">Log in</string>
-    <string name="payments_pay_now_button">Pay now</string>
     <string name="invoices_unpaid_button">Unpaid invoices</string>
     <string name="invoices_all_button">All the invoices</string>
     <string name="invoices_paid_button">Paid invoices</string>
@@ -63,4 +54,19 @@
     <string name="invoice_adaptor_invoice_number">Invoice code: </string>
     <string name="invoice_adaptor_to_paid">Total payment: </string>
     <string name="invoice_adaptor_due_date">Due date: </string>
+    <string name="index_adaptor_value">"Index value: "</string>
+    <string name="index_adaptor_date">"Index date: "</string>
+    <string name="index_adaptor_consumption">"Medium consumption: "</string>
+    <string name="index_fragment_invalid_index">Invalid Index!</string>
+    <string name="index_fragment_invalid">" Not valid!"</string>
+    <string name="index_fragment_success">Success!</string>
+    <string name="login_connect_toast">Connecting...</string>
+    <string name="nax_index">Index</string>
+    <string name="nax_forms">Forms</string>
+    <string name="nax_home">Home</string>
+    <string name="nax_invoices">Invoices</string>
+    <string name="nax_profile">Profile</string>
+    <string name="index_alert_dialog_detail">" The index can only be entered between the 20th and 25th of the month"</string>
+    <string name="index_alert_dialog_home_button">Home</string>
+    <string name="index_alert_dialog_watch_button">" View"</string>
 </resources>
