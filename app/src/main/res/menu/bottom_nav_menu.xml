@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    
-    >
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/index"
+        android:id="@+id/indexNavbar"
         android:icon="@drawable/ic_indexgood"
         android:title="Index" />
 
     <item
-        android:id="@+id/formulare"
+        android:id="@+id/formsNavbav"
         android:icon="@drawable/ic_form"
         android:title="Formulare" />
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeNavbar"
         android:icon="@drawable/ic_index"
         android:title="Home" />
     <item
-        android:id="@+id/facturi"
+        android:id="@+id/invoicesNavbar"
         android:icon="@drawable/ic_action_user"
         android:title="Facturi" />
 
-
     <item
-        android:id="@+id/profil"
+        android:id="@+id/profilNavbar"
         android:icon="@drawable/ic_profile"
         android:title="Profil" />
-
-
-
 </menu>

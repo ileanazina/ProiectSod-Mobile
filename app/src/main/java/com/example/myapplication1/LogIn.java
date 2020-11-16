@@ -1,23 +1,18 @@
 package com.example.myapplication1;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +28,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.SharedPreferences;
-
-import java.time.chrono.MinguoChronology;
 import java.util.Locale;
 
 public class LogIn extends AppCompatActivity {
@@ -210,7 +203,7 @@ public class LogIn extends AppCompatActivity {
 //                            MainActivity t  = new MainActivity();
 //                            FragmentManager fragmentManager = getSupportFragmentManager();
 //                            fragmentManager.beginTransaction().replace(R.id.login, t).commit();
-                            Intent intentAutentificare = new Intent(LogIn.this, TryTest.class);
+                            Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
                             intentAutentificare.putExtra("startFromHome", R.id.home);
                             startActivity(intentAutentificare);
 //                            finish();
