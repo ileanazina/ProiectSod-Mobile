@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgrlogin"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/logo1" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_menu_sold"
+            android:textSize="@dimen/profil_textsize"
+            android:fontFamily="@font/cherry_swash"
+            android:layout_marginLeft="@dimen/margin_top"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/valLastUnpaidInvoices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="@dimen/profil_textsize"
+            android:fontFamily="@font/cherry_swash"
+            android:layout_marginLeft="@dimen/ampm_left_padding"
+            android:layout_marginTop="20dp"/>
+        <Button
+            android:id="@+id/mainMenuPayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/main_menu_pay_button"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/ampm_left_padding"/>
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/valLastUnpaidInvoices"
+            android:layout_marginLeft="30dp"
+            android:text="Selectati adresa:"
+            />
+        <Spinner
+            android:id="@+id/spAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/select"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:spinnerMode="dropdown" />
+
+
+        <TextView
+            android:id="@+id/datas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="detalii despre firma..."
+            />
+        <!--            android:layout_below="@id/valLastUnpaidInvoices"-->
+
+    </LinearLayout>
+</ScrollView>

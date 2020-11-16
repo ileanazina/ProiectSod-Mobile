@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
-import com.example.myapplication1.TryTest;
+import com.example.myapplication1.MainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -100,7 +100,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             Fragment objects = new InvoiceDetailsFragment();
             objects.setArguments(newBundle);
 
-            ((TryTest)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, objects).addToBackStack(null).commit();
+            ((MainActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, objects).addToBackStack(null).commit();
         }
 
         private void paingInvoice(final int id)
