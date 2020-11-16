@@ -149,7 +149,6 @@ public class InvoiceDetailsFragment extends Fragment {
             @Override
             public void onFailure(Call<UnitMeasurementsModel> call, Throwable t) {
                 call.cancel();
-                Log.d("eroare", t.toString());
             }
         });
     }

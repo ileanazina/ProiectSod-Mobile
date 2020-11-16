@@ -91,7 +91,6 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         SharedPreferences  aPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         int ad= aPrefs.getInt("Address",0);
         AddressIdFromSpinner = ad;
-        Log.e("AddressId", String.valueOf(AddressIdFromSpinner));
         this.callback = new IndexFragment.RevealDetailsCallbacks() {
             @Override
             public void getDataFromIndex(List<IndexModel> list) {
@@ -114,7 +113,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                     String strIndex = String.valueOf(addIndexValue.getText());
                     float indexValue = Float.parseFloat(strIndex);
                     if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null) {
-                        addIndexValue.setError("Index invalid");
+                        addIndexValue.setError(getContext().getResources().getString(R.string.index_fragment_invalid_index));
                     } else {
 
                         AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
@@ -124,9 +123,9 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                             public void onResponse(Call<IndexModel> call, Response<IndexModel> response) {
                                 IndexModel model = response.body();
                                 if (model == null) {
-                                    Toast.makeText(getContext(), "Invalid", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_invalid), Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(getContext(), "Succes", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_success), Toast.LENGTH_LONG).show();
                                 }
                             }
 

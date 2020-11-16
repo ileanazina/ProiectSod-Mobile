@@ -106,8 +106,6 @@ public class LogIn extends AppCompatActivity {
                 });
             }
         });
-
-
         //here i finish with the language
 
         this.callback = new RevealDetailsCallbacks() {
@@ -198,15 +196,11 @@ public class LogIn extends AppCompatActivity {
                                 callback.getDataFromResult(account);
                             }
 
-                            Toast.makeText(LogIn.this, "Conectare...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LogIn.this, LogIn.this.getResources().getString(R.string.login_connect_toast), Toast.LENGTH_LONG).show();
 
-//                            MainActivity t  = new MainActivity();
-//                            FragmentManager fragmentManager = getSupportFragmentManager();
-//                            fragmentManager.beginTransaction().replace(R.id.login, t).commit();
                             Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
                             intentAutentificare.putExtra("startFromHome", R.id.home);
                             startActivity(intentAutentificare);
-//                            finish();
 
                         }
                     }
