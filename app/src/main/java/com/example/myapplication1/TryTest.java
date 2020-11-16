@@ -20,7 +20,7 @@ public class TryTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_try_test);
-
+//pun si eu asta aici
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
 
         bottomNav.setOnNavigationItemSelectedListener(navListener);
