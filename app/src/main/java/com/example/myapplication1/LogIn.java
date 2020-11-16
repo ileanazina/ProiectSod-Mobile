@@ -1,6 +1,8 @@
 package com.example.myapplication1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +34,7 @@ import retrofit2.Response;
 
 import android.content.SharedPreferences;
 
+import java.time.chrono.MinguoChronology;
 import java.util.Locale;
 
 public class LogIn extends AppCompatActivity {
@@ -203,8 +206,15 @@ public class LogIn extends AppCompatActivity {
                             }
 
                             Toast.makeText(LogIn.this, "Conectare...", Toast.LENGTH_LONG).show();
-                            Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
+
+//                            MainActivity t  = new MainActivity();
+//                            FragmentManager fragmentManager = getSupportFragmentManager();
+//                            fragmentManager.beginTransaction().replace(R.id.login, t).commit();
+                            Intent intentAutentificare = new Intent(LogIn.this, TryTest.class);
+                            intentAutentificare.putExtra("startFromHome", R.id.home);
                             startActivity(intentAutentificare);
+//                            finish();
+
                         }
                     }
 
