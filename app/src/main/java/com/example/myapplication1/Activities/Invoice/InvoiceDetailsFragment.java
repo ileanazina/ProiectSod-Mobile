@@ -1,21 +1,22 @@
 package com.example.myapplication1.Activities.Invoice;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
-import com.example.myapplication1.Model.CityModel;
-import com.example.myapplication1.Model.CountryModel;
-import com.example.myapplication1.Model.DistrictModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
@@ -32,14 +33,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InvoiceDetails extends AppCompatActivity {
+public class InvoiceDetailsFragment extends Fragment {
 
     public interface RevealDetailsCallbacks {
         void getDataFromInvoiceDetails(InvoiceDetailsModel invoiceDetails);
         void getDataFromAddress (List<AddressModel> address);
-        void getDataFromCity(CityModel city);
-        void getDataFromDistrict(DistrictModel district);
-        void getDataFromCountry(CountryModel country);
         void getDataFromUnitMeasurement(UnitMeasurementsModel unitMeasurements);
     }
 
@@ -49,21 +47,20 @@ public class InvoiceDetails extends AppCompatActivity {
     private InvoiceModel invoice_obj;
     private InvoiceDetailsModel invoiceDetails_obj;
     private AddressModel address_obj;
-    private CityModel city_obj;
-    private DistrictModel district_obj;
-    private CountryModel country_obj;
     private UnitMeasurementsModel unitMeasurements_obj;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invoice_details);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_invoice_details, container, false);
 
-        final ProgressDialog dialog = ProgressDialog.show(this, null, getResources().getString(R.string.invoice_detail_please_wait));
-        Intent i = getIntent();
-        invoice_obj = (InvoiceModel) i.getSerializableExtra("extra");
+        final ProgressDialog dialog = ProgressDialog.show(getContext(), null, getResources().getString(R.string.invoice_detail_please_wait));
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            invoice_obj = (InvoiceModel) bundle.getSerializable("extra");
+        }
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
@@ -73,14 +70,14 @@ public class InvoiceDetails extends AppCompatActivity {
             public void getDataFromInvoiceDetails(InvoiceDetailsModel invoiceDetails) {
                 invoiceDetails_obj = invoiceDetails;
                 if(invoiceDetails != null)
-                    getUnitMeasurementFromInvoiceDetail(InvoiceDetails.this, callback);
-                else getAddressByAccount(InvoiceDetails.this, callback);
+                    getUnitMeasurementFromInvoiceDetail(getContext(), callback);
+                else getAddressByAccount(getContext(), callback);
             }
 
             @Override
             public void getDataFromUnitMeasurement(UnitMeasurementsModel unitMeasurements) {
                 unitMeasurements_obj = unitMeasurements;
-                getAddressByAccount(InvoiceDetails.this, callback);
+                getAddressByAccount(getContext(), callback);
             }
 
             @Override
@@ -90,30 +87,13 @@ public class InvoiceDetails extends AppCompatActivity {
                         address_obj = address.get(i);
                         break;
                     }
-                getCityFromAddress(InvoiceDetails.this, callback);
-            }
-
-            @Override
-            public void getDataFromCity(CityModel city) {
-                city_obj = city;
-                getDistrictFromCity(InvoiceDetails.this, callback);
-            }
-
-            @Override
-            public void getDataFromDistrict(DistrictModel district) {
-                district_obj = district;
-                getCountryFromDistrict(InvoiceDetails.this, callback);
-            }
-
-            @Override
-            public void getDataFromCountry(CountryModel country) {
-                country_obj = country;
-                completeTheView();
+                completeTheView(view);
                 dialog.dismiss();
             }
         };
 
-        getInvoiceDetail(this, callback);
+        getInvoiceDetail(getContext(), callback);
+        return  view;
     }
 
     public void getInvoiceDetail(Context context, RevealDetailsCallbacks callback) {
@@ -154,64 +134,6 @@ public class InvoiceDetails extends AppCompatActivity {
         });
     }
 
-    public void getCityFromAddress(Context context, RevealDetailsCallbacks callback) {
-        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<CityModel> call = invoiceAPI.getCityByCityId(address_obj.getCityId());
-        call.enqueue(new Callback<CityModel>() {
-            @Override
-            public void onResponse(Call<CityModel> call, Response<CityModel> response) {
-                CityModel city = response.body();
-                if(callback != null) {
-                    callback.getDataFromCity(city);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CityModel> call, Throwable t) {
-                call.cancel();
-            }
-        });
-    }
-
-    public void getDistrictFromCity(Context context, RevealDetailsCallbacks callback) {
-        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<DistrictModel> call = invoiceAPI.getDistrictByDistrictId(city_obj.getDistrictId());
-        call.enqueue(new Callback<DistrictModel>() {
-            @Override
-            public void onResponse(Call<DistrictModel> call, Response<DistrictModel> response) {
-                DistrictModel district = response.body();
-                if(callback != null) {
-                    callback.getDataFromDistrict(district);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DistrictModel> call, Throwable t) {
-                call.cancel();
-            }
-        });
-    }
-
-    public void getCountryFromDistrict(Context context, RevealDetailsCallbacks callback) {
-        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<CountryModel> call = invoiceAPI.getCountryByCountryId(district_obj.getCountryId());
-        call.enqueue(new Callback<CountryModel>() {
-            @Override
-            public void onResponse(Call<CountryModel> call, Response<CountryModel> response) {
-                CountryModel country = response.body();
-                if(callback != null) {
-                    callback.getDataFromCountry(country);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CountryModel> call, Throwable t) {
-                call.cancel();
-                Log.d("eroare", t.toString());
-            }
-        });
-    }
-
     public void getUnitMeasurementFromInvoiceDetail(Context context, RevealDetailsCallbacks callback) {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
         Call<UnitMeasurementsModel> call = invoiceAPI.getUnitMeasurementsByUMId(invoiceDetails_obj.getUnitMeasurementType());
@@ -232,91 +154,91 @@ public class InvoiceDetails extends AppCompatActivity {
         });
     }
 
-    public void completeTheView()
+    public void completeTheView(View view)
     {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
         //invoice id
-        TextView textView_invoiceID = findViewById(R.id.invoiceId);
+        TextView textView_invoiceID = view.findViewById(R.id.invoiceId);
         textView_invoiceID.setText(Integer.toString(invoice_obj.getInvoiceId()));
 
         //dateOfIssue
-        TextView textView_dateOfIssue = findViewById(R.id.dateOfIssue);
+        TextView textView_dateOfIssue = view.findViewById(R.id.dateOfIssue);
         if(invoice_obj.getDateOfIssue() == null)
             textView_dateOfIssue.setText("-");
         else textView_dateOfIssue.setText(df.format(invoice_obj.getDateOfIssue()));
 
         //dueData
-        TextView textView_dueData = findViewById(R.id.dueDate);
+        TextView textView_dueData = view.findViewById(R.id.dueDate);
         if(invoice_obj.getDueDate() == null)
             textView_dueData.setText("-");
         else textView_dueData.setText(df.format(invoice_obj.getDueDate()));
 
         //accountId
-        TextView textView_accountId = findViewById(R.id.accountId_invoicesdetail);
+        TextView textView_accountId = view.findViewById(R.id.accountId_invoicesdetail);
         textView_accountId.setText(String.valueOf(invoice_obj.getAccountId()));
 
         //clientAddress
-        TextView textView_addressClient = findViewById(R.id.addressId);
+        TextView textView_addressClient = view.findViewById(R.id.addressId);
         if(address_obj.getFullAddressName() == null || address_obj.getFullAddressName() =="")
             textView_addressClient.setText("-");
         else textView_addressClient.setText(address_obj.getFullAddressName());
 
         //CUI issue company
-        TextView textView_cui = findViewById(R.id.IssueCUI);
+        TextView textView_cui = view.findViewById(R.id.IssueCUI);
         if(invoice_obj.getCUIIssuer() == 0)
             textView_cui.setText("-");
         else textView_cui.setText(String.valueOf(invoice_obj.getCUIIssuer()));
 
         //addressIssue
-        TextView textView_addressIssue = findViewById(R.id.IssueAddress);
+        TextView textView_addressIssue = view.findViewById(R.id.IssueAddress);
         if(invoice_obj.getIssuerAddress() == null || invoice_obj.getIssuerAddress() == "")
             textView_addressIssue.setText("-");
         else textView_addressIssue.setText(invoice_obj.getIssuerAddress());
 
         if(invoiceDetails_obj != null){
             //youHaveToPay
-            TextView textView_toPay = findViewById(R.id.youHaveToPay);
+            TextView textView_toPay = view.findViewById(R.id.youHaveToPay);
             textView_toPay.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()+invoiceDetails_obj.getSold()));
 
             //sold
-            TextView textView_sold = findViewById(R.id.soldFromPast);
+            TextView textView_sold = view.findViewById(R.id.soldFromPast);
             if(invoiceDetails_obj.getSold() == 0)
                 textView_sold.setText("-");
             else textView_sold.setText(String.valueOf(invoiceDetails_obj.getSold()));
 
             //unitMeasurementType
-            TextView textView_unitM = findViewById(R.id.unitMeasurementType);
+            TextView textView_unitM = view.findViewById(R.id.unitMeasurementType);
             if(invoiceDetails_obj.getUnitMeasurementType() == 0)
                 textView_unitM.setText("-");
             else textView_unitM.setText(unitMeasurements_obj.getUnitMeasurementType());
 
             //pricePerUnit
-            TextView textView_pricePerUnit = findViewById(R.id.pricePerUnit);
+            TextView textView_pricePerUnit = view.findViewById(R.id.pricePerUnit);
             if(invoiceDetails_obj.getPricePerUnit() == 0)
                 textView_pricePerUnit.setText("-");
             else textView_pricePerUnit.setText(String.valueOf(invoiceDetails_obj.getPricePerUnit()));
 
             //consumedQuantity
-            TextView textView_consumedQuantity = findViewById(R.id.consumedQuantity);
+            TextView textView_consumedQuantity = view.findViewById(R.id.consumedQuantity);
             if(invoiceDetails_obj.getConsumedQuantity() == 0)
                 textView_consumedQuantity.setText("-");
             else textView_consumedQuantity.setText(String.valueOf(invoiceDetails_obj.getConsumedQuantity()));
 
             //VAT
-            TextView textView_VAT = findViewById(R.id.simplyVAT);
+            TextView textView_VAT = view.findViewById(R.id.simplyVAT);
             if(invoiceDetails_obj.getVAT() == 0)
                 textView_VAT.setText("-");
             else textView_VAT.setText(String.valueOf(invoiceDetails_obj.getVAT()));
 
             //valueWithoutVAT
-            TextView textView_valueWithoutVAT = findViewById(R.id.valueWithoutVAT);
+            TextView textView_valueWithoutVAT = view.findViewById(R.id.valueWithoutVAT);
             if(invoiceDetails_obj.getValueWithoutVAT() == 0)
                 textView_valueWithoutVAT.setText("-");
             else textView_valueWithoutVAT.setText(String.valueOf(invoiceDetails_obj.getValueWithoutVAT()));
 
             //valueWithVat
-            TextView textView_valueWithVat = findViewById(R.id.valueWithVat);
+            TextView textView_valueWithVat = view.findViewById(R.id.valueWithVat);
             if(invoiceDetails_obj.getValueWithVat() == 0)
                 textView_valueWithVat.setText("-");
             else textView_valueWithVat.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()));

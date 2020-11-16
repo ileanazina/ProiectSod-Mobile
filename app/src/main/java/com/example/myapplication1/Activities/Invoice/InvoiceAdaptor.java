@@ -2,19 +2,21 @@ package com.example.myapplication1.Activities.Invoice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
+import com.example.myapplication1.TryTest;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -93,10 +95,12 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
         private void viewInvoice( InvoiceModel obj)
         {
-            Intent intentDetais = new Intent(mContext , InvoiceDetails.class);
-            intentDetais.putExtra("extra", obj);
-            intentDetais.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(intentDetais);
+            Bundle newBundle = new Bundle();
+            newBundle.putSerializable("extra", obj);
+            Fragment objects = new InvoiceDetailsFragment();
+            objects.setArguments(newBundle);
+
+            ((TryTest)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, objects).addToBackStack(null).commit();
         }
 
         private void paingInvoice(final int id)

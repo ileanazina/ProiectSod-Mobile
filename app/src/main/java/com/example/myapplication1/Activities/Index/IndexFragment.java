@@ -20,16 +20,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication1.MainActivity;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddIIndex;
-import com.example.myapplication1.Model.AddressModel;
-import com.example.myapplication1.Model.CityModel;
-import com.example.myapplication1.Model.CountryModel;
-import com.example.myapplication1.Model.DistrictModel;
 import com.example.myapplication1.Model.IndexModel;
 
 import com.example.myapplication1.R;
@@ -51,7 +46,6 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
     public interface RevealDetailsCallbacks {
         void getDataFromIndex(List<IndexModel> list);
-        void getDataFromResult(IndexModel index);
     }
 
     private RecyclerView recyclerView;
@@ -82,7 +76,6 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         allIndexes = new ArrayList<>();
         forAdaptorIndexes = new ArrayList<>();
 
-
         indexesAdaptor = new IndexAdaptor(getContext(), forAdaptorIndexes, IndexFragment.this);
         recyclerView.setAdapter(indexesAdaptor);
 
@@ -111,13 +104,8 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                     }
                 }
             }
-
-            @Override
-            public void getDataFromResult(IndexModel index) {
-
-            }
-
         };
+
         getIndexList(getContext(), callback);
             addIndex.setOnClickListener(new View.OnClickListener() {
 
