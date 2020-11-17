@@ -9,22 +9,16 @@
     <FrameLayout
         android:id="@+id/fragment_container_view_tag"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_below="@id/nav_view"/>
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/nav_view"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_container_view_tag"
+        android:layout_alignParentBottom="true"
         app:itemTextColor="@color/White"
         app:labelVisibilityMode="labeled"
         app:itemIconSize="35dp"

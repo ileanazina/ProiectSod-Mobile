@@ -18,11 +18,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
-import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
@@ -43,15 +41,14 @@ public class HomeFragment extends Fragment {
         void getDataFromAddress (List<AddressModel> address);
         void getDataFromSold(Float sold);
         void getDataFromInvoices(List<InvoiceModel> list);
-        String invoiceStatus(int id);
+        void getDataFromInvoicePayment(Boolean bool, int index);
     }
 
     private RevealDetailsCallbacks callback;
     private AccountModel account;
-
+    private List<InvoiceModel> invoiceList = new ArrayList<>();
     private ArrayList<String> FullAddressName= new ArrayList<String>();
     private Vector<Integer> vaddressId= new Vector<>();
-    private List<InvoiceModel> invoiceList ;
     private TextView invoice1, invoice2, invoice3;
 
     @Override
@@ -67,13 +64,11 @@ public class HomeFragment extends Fragment {
         TextView textView_sold = view.findViewById(R.id.valLastUnpaidInvoices);
         Button payButton = view.findViewById(R.id.mainMenuPayButton);
 
-
         invoice1= view.findViewById(R.id.firstInvoice);
         invoice2= view.findViewById(R.id.secondInvoice);
         invoice3= view.findViewById(R.id.thirdInvoice);
 
         this.callback = new RevealDetailsCallbacks() {
-
             @Override
             public void getDataFromAddress(List<AddressModel> address) {
                     int position=0;
@@ -82,8 +77,8 @@ public class HomeFragment extends Fragment {
                     FullAddressName.add(model.getFullAddressName());
                     vaddressId.add(position,model.getAddressId()) ;
                     position++;
-
                 }
+
                 getSold(getContext(), callback, vaddressId.get(0));
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -112,49 +107,35 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public String invoiceStatus(int id) {
-                String payed="Platita"; String unpayed="NEPLATITA";
-                if (invoiceIsPayd(id))
-                    return payed;
-                else
-                    return unpayed;
-                return null;
+            public void getDataFromInvoices(List<InvoiceModel> list) {
+                invoiceList = list;
+                completeTextView();
             }
 
             @Override
-            public void getDataFromInvoices(List<InvoiceModel> list) {
-                String payed="Platita"; String unpayed="NEPLATITA";
-                for(int i=0; i < 3; i++) {
-                    if(list.get(i).getAccountId() == account.getAccountId()) {
-
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                        String dataDue1 = formatter.format(list.get(0).getDueDate());
-                        String dataDue2 = formatter.format(list.get(1).getDueDate());
-                        String dataDue3 = formatter.format(list.get(2).getDueDate());
-                        invoice1.setText("Numar factura: "+list.get(0).getInvoiceId()+", data scadenta: "+dataDue1 + ", valoare: "+list.get(0).getValueWithVat()+", "+invoiceStatus(list.get(0).getInvoiceId()));
-                        invoice2.setText("Numar factura: "+list.get(1).getInvoiceId()+", data scadenta: "+dataDue2 + ", valoare: "+list.get(1).getValueWithVat()+", "+invoiceStatus(list.get(1).getInvoiceId()));
-                        invoice3.setText("Numar factura: "+list.get(2).getInvoiceId()+", data scadenta: "+dataDue3 + ", valoare: "+list.get(2).getValueWithVat()+", "+invoiceStatus(list.get(2).getInvoiceId()));
-                        //invoiceList.add(list.get(i));
-                    }
-                }
-
+            public void getDataFromInvoicePayment(Boolean isPayed,int index) {
+                String invoiceIsPayed;
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String dataDue = formatter.format(invoiceList.get(index).getDueDate());
+                if(isPayed)
+                    invoiceIsPayed = "Platita";
+                else invoiceIsPayed = "Neplatita";
+                if(index == 0)
+                    invoice1.setText("Numar factura: "+invoiceList.get(index).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "+invoiceList.get(index).getValueWithVat()+", "+ invoiceIsPayed);
+                else if (index == 1)
+                        invoice2.setText("Numar factura: "+invoiceList.get(index).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "+invoiceList.get(index).getValueWithVat()+", "+ invoiceIsPayed);
+                    else invoice3.setText("Numar factura: "+invoiceList.get(index).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "+invoiceList.get(index).getValueWithVat()+", "+ invoiceIsPayed);
             }
-
-
-
 
             @Override
             public void getDataFromSold(Float sold) {
                 buttonAndSoldUpdated(textView_sold, payButton, sold);
             }
-
         };
         getAddressByAccount(getContext(), callback);
-        invoiceIsPayd(getContext(), callback);
         get3Invoices(getContext(), callback);
         return view;
     }
-
 
     public void buttonAndSoldUpdated(TextView textView, Button button, Float sold)
     {
@@ -214,9 +195,8 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
-                List<InvoiceModel> invoices = response.body();
                 if(callback != null) {
-                    callback.getDataFromInvoices(invoices);
+                    callback.getDataFromInvoices(response.body());
                 }
             }
 
@@ -227,22 +207,27 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public boolean invoiceIsPayd(Context context, RevealDetailsCallbacks callback){
+    public void invoiceIsPayed(int invoiceId, int index){
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.isInvoicePaid(account.getAccountId());
-        call.enqueue(new Callback<List<InvoiceModel>>() {
+        Call<Boolean> call = invoiceAPI.isInvoicePaid(invoiceId);
+        call.enqueue(new Callback<Boolean>() {
             @Override
-            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
-                List<InvoiceModel> invoices = response.body();
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(callback != null) {
-                    callback.getDataFromInvoices(invoices);
+                    callback.getDataFromInvoicePayment(response.body(), index);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
+            public void onFailure(Call<Boolean> call, Throwable t) {
                 call.cancel();
             }
         });
+    }
+
+    void completeTextView()
+    {
+        for(int i=0; i < 3; i++)
+            invoiceIsPayed(invoiceList.get(i).getInvoiceId(), i);
     }
 }

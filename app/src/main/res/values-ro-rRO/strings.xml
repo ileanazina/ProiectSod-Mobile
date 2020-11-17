@@ -70,4 +70,6 @@
     <string name="fragment_home_pay_button">Platește</string>
     <string name="fragment_home_last_invoices">Ultimele facturi ale acestui cont:</string>
     <string name="fragment_home_address_spinner_announcement">Apăsați mai jos pentru a selecta adresa de referință:</string>
+    <string name="home_fragment_invoice_to_pay">, valoare</string>
+    <string name="home_fragment_invoice_date">"Dată scadentă: "</string>
 </resources>

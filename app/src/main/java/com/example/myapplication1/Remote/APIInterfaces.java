@@ -57,7 +57,7 @@ public interface APIInterfaces {
     Call<List<AddressModel>> getAddressesByAccountId(@Path("accountId") int accountId);
 
     @GET("/Invoices/IsInvoicePaid/{invoiceId}")
-    Call<List<InvoiceModel>> isInvoicePaid(@Path("invoiceId") int invoiceId);
+    Call<Boolean> isInvoicePaid(@Path("invoiceId") int invoiceId);
 
     @GET("City/GetCityByCityId/{cityId}")
     Call<CityModel> getCityByCityId(@Path("cityId") int cityId);

@@ -30,6 +30,10 @@
     <string name="search_date_fragment_from">De la: </string>
     <string name="search_date_fragment_until">Până la: </string>
 
+    <!--HomeFragment-->
+    <string name="home_fragment_invoice_date">Dată scadentă: </string>
+    <string name="home_fragment_invoice_to_pay">, valoare:</string>
+
     <!--LogIn-->
     <string name="login_save_toast">Salvat!</string>
     <string name="login_connect_toast">Conectare...</string>

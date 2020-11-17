@@ -71,4 +71,6 @@
     <string name="fragment_home_pay_button">Pay</string>
     <string name="fragment_home_address_spinner_announcement">" Click below to select the reference address:"</string>
     <string name="fragment_home_last_invoices">" Last invoices for this account:"</string>
+    <string name="home_fragment_invoice_date">"Due date: "</string>
+    <string name="home_fragment_invoice_to_pay">", value: "</string>
 </resources>
