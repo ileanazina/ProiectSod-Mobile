@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
+import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment {
         void getDataFromAddress (List<AddressModel> address);
         void getDataFromSold(Float sold);
         void getDataFromInvoices(List<InvoiceModel> list);
+        String invoiceStatus(int id);
     }
 
     private RevealDetailsCallbacks callback;
@@ -109,9 +111,19 @@ public class HomeFragment extends Fragment {
                 });
             }
 
+            @Override
+            public String invoiceStatus(int id) {
+                String payed="Platita"; String unpayed="NEPLATITA";
+                if (invoiceIsPayd(id))
+                    return payed;
+                else
+                    return unpayed;
+                return null;
+            }
 
             @Override
             public void getDataFromInvoices(List<InvoiceModel> list) {
+                String payed="Platita"; String unpayed="NEPLATITA";
                 for(int i=0; i < 3; i++) {
                     if(list.get(i).getAccountId() == account.getAccountId()) {
 
@@ -119,14 +131,17 @@ public class HomeFragment extends Fragment {
                         String dataDue1 = formatter.format(list.get(0).getDueDate());
                         String dataDue2 = formatter.format(list.get(1).getDueDate());
                         String dataDue3 = formatter.format(list.get(2).getDueDate());
-                        invoice1.setText("Data scadenta: "+dataDue1 + ", valoare: "+list.get(0).getValueWithVat());
-                        invoice2.setText("Data scadenta: "+dataDue2 + ", valoare: "+list.get(1).getValueWithVat());
-                        invoice3.setText("Data scadenta: "+dataDue3 + ", valoare: "+list.get(2).getValueWithVat());
+                        invoice1.setText("Numar factura: "+list.get(0).getInvoiceId()+", data scadenta: "+dataDue1 + ", valoare: "+list.get(0).getValueWithVat()+", "+invoiceStatus(list.get(0).getInvoiceId()));
+                        invoice2.setText("Numar factura: "+list.get(1).getInvoiceId()+", data scadenta: "+dataDue2 + ", valoare: "+list.get(1).getValueWithVat()+", "+invoiceStatus(list.get(1).getInvoiceId()));
+                        invoice3.setText("Numar factura: "+list.get(2).getInvoiceId()+", data scadenta: "+dataDue3 + ", valoare: "+list.get(2).getValueWithVat()+", "+invoiceStatus(list.get(2).getInvoiceId()));
                         //invoiceList.add(list.get(i));
                     }
                 }
 
             }
+
+
+
 
             @Override
             public void getDataFromSold(Float sold) {
@@ -135,6 +150,7 @@ public class HomeFragment extends Fragment {
 
         };
         getAddressByAccount(getContext(), callback);
+        invoiceIsPayd(getContext(), callback);
         get3Invoices(getContext(), callback);
         return view;
     }
@@ -195,6 +211,25 @@ public class HomeFragment extends Fragment {
     {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId());
+        call.enqueue(new Callback<List<InvoiceModel>>() {
+            @Override
+            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
+                List<InvoiceModel> invoices = response.body();
+                if(callback != null) {
+                    callback.getDataFromInvoices(invoices);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
+                call.cancel();
+            }
+        });
+    }
+
+    public boolean invoiceIsPayd(Context context, RevealDetailsCallbacks callback){
+        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+        Call<List<InvoiceModel>> call = invoiceAPI.isInvoicePaid(account.getAccountId());
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
