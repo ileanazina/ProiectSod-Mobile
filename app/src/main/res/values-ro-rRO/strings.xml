@@ -1,6 +1,5 @@
 <resources>
-    <string name="company_details_address">Soseaua Bucuresti Nord nr 8-10, etaj 8</string>
-    <string name="company_detail_schedule">Program L-V 9:00-19:00</string>
+    <string name="fragment_home_company_details_address">Soseaua Bucuresti Nord nr 8-10, etaj 8</string>
     <string name="datetime_picker_save_button">Salvează</string>
     <string name="index_hint">Introduceți valoarea indexului</string>
     <string name="invoice_detail_email_me_button">Trimite factura pe email</string>
@@ -68,4 +67,7 @@
     <string name="index_alert_dialog_detail">Indexul se poate introduce doar între 20 și 25 ale lunii</string>
     <string name="index_alert_dialog_home_button">Acasă</string>
     <string name="index_alert_dialog_watch_button">Vizualizează</string>
+    <string name="fragment_home_pay_button">Platește</string>
+    <string name="fragment_home_last_invoices">Ultimele facturi ale acestui cont:</string>
+    <string name="fragment_home_address_spinner_announcement">Apăsați mai jos pentru a selecta adresa de referință:</string>
 </resources>

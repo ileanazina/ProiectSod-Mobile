@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Application</string>
-    <string name="company_details_address">Bucharest North Road no. 8-10, floor 8</string>
-    <string name="company_detail_schedule">Schedule M-F 9:00-19:00</string>
+    <string name="fragment_home_company_details_address">Bucharest North Road no. 8-10, floor 8</string>
     <string name="datetime_picker_save_button">Save</string>
     <string name="index_hint">Enter the value of the index</string>
     <string name="invoice_detail_email_me_button">Send the invoice by mail</string>
@@ -69,4 +68,7 @@
     <string name="index_alert_dialog_detail">" The index can only be entered between the 20th and 25th of the month"</string>
     <string name="index_alert_dialog_home_button">Home</string>
     <string name="index_alert_dialog_watch_button">" View"</string>
+    <string name="fragment_home_pay_button">Pay</string>
+    <string name="fragment_home_address_spinner_announcement">" Click below to select the reference address:"</string>
+    <string name="fragment_home_last_invoices">" Last invoices for this account:"</string>
 </resources>
