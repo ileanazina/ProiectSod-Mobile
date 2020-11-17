@@ -63,7 +63,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
         public ExempleViewHolder(@NonNull View itemView, OnInvoiceListener onInvoiceListener) {
             super(itemView);
             tvInvoiceNr = itemView.findViewById(R.id.invoiceNr);
-            tvTotalPay = itemView.findViewById(R.id.toaltoPay);
+            tvTotalPay = itemView.findViewById(R.id.totalToPay);
             tvDueDate = itemView.findViewById(R.id.dataDue);
 
             viewInfo = itemView.findViewById(R.id.Viewbtn);

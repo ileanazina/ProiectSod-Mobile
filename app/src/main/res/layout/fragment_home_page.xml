@@ -30,10 +30,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:text="Dati click mai jos pentru a selecta adresa de referinta:"
-            />
+            android:layout_marginLeft="@dimen/home_margin"
+            android:layout_marginRight="@dimen/home_margin"
+            android:layout_marginTop="@dimen/home_margin"
+            android:text="@string/fragment_home_address_spinner_announcement"
+            android:textSize="@dimen/home_invoices_text"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"/>
         <Spinner
             android:id="@+id/spAddress"
             android:layout_width="match_parent"
@@ -43,120 +46,130 @@
             android:layout_marginTop="10dp"
             android:scrollbarSize="25dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:spinnerMode="dropdown" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="30dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sold"
-            android:textSize="@dimen/profil_textsize"
-            android:fontFamily="@font/cherry_swash"
-            android:layout_marginLeft="@dimen/margin_top"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:id="@+id/valLastUnpaidInvoices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textSize="@dimen/profil_textsize"
-            android:fontFamily="@font/cherry_swash"
-            android:layout_marginLeft="@dimen/ampm_left_padding"
-            android:layout_marginTop="10dp"/>
-        <Button
-            android:id="@+id/mainMenuPayButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Platește"
-            android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"
-            android:layout_marginTop="25dp"
-            android:textAllCaps="false"
-            android:layout_marginLeft="70dp"
-           />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_home_total_sold"
+                android:textSize="@dimen/profil_textsize"
+                android:fontFamily="@font/cherry_swash"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/margin_top"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/valLastUnpaidInvoices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="@dimen/profil_textsize"
+                android:textColor="@color/black"
+                android:fontFamily="@font/cherry_swash"
+                android:layout_marginLeft="@dimen/ampm_left_padding"
+                android:layout_marginTop="10dp"/>
+            <Button
+                android:id="@+id/mainMenuPayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/fragment_home_pay_button"
+                android:textColor="@color/black"
+                android:fontFamily="@font/cherry_swash"
+                android:layout_marginTop="25dp"
+                android:textAllCaps="false"
+                android:layout_marginLeft="70dp" />
     </LinearLayout>
 
-        <!--        de aici incep facturile-->
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/White"
-    android:orientation="vertical">
+        <!--invoices list-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/profile_border"
+        android:orientation="vertical">
         <TextView
-            android:id="@+id/invoices"
+            android:id="@+id/invoicesHomeList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageView"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="30dp"
-            android:text="Ultimele facturi ale acestui cont:"
-            />
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/home_margin"
+            android:layout_marginRight="@dimen/home_margin"
+            android:text="@string/fragment_home_last_invoices"
+            android:textSize="@dimen/home_invoices_text"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"/>
 
         <TextView
-            android:id="@+id/factura1"
+            android:id="@+id/firstInvoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:paddingTop="10dp"
-            android:textStyle="bold"
             android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp" />
+            android:layout_marginLeft="12dp"
+            android:textSize="@dimen/home_textsize"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"/>
 
         <TextView
-            android:id="@+id/factura2"
+            android:id="@+id/secondInvoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/invoiceNr"
             android:paddingTop="10dp"
-            android:textSize="18sp"
-            android:textStyle="italic"
             android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp"
+            android:textSize="@dimen/home_textsize"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"/>
 
         <TextView
-            android:id="@+id/factura3"
+            android:id="@+id/thirdInvoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toaltoPay"
+            android:layout_below="@+id/totalToPay"
             android:paddingTop="10dp"
-            android:textSize="18sp"
-            android:textStyle="italic"
             android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp"
+            android:textSize="@dimen/home_textsize"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cherry_swash"/>
 
-</LinearLayout>
+    </LinearLayout>
 
-<!--        de aici incep detaliile despre firma-->
-
+    <!--company details-->
         <TextView
-            android:id="@+id/datas"
+            android:id="@+id/companyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:text="TotalSoft S.A."
-            />
+            android:text="@string/fragment_home_company_details_title"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/datas1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Soseaua Bucuresti Nord nr 8-10."
-            />
-        <TextView
-            android:id="@+id/datas2"
+            android:id="@+id/companyAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="totalsoft@contact.ro"
-            />
-        <!--            android:layout_below="@id/valLastUnpaidInvoices"-->
-
+            android:text="@string/fragment_home_company_details_address"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/companyMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/fragment_home_company_detail_email"
+            android:fontFamily="@font/cherry_swash"
+            android:textColor="@color/black"/>
     </LinearLayout>
 </ScrollView>

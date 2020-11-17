@@ -3,7 +3,6 @@ package com.example.myapplication1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -67,9 +66,9 @@ public class HomeFragment extends Fragment {
         Button payButton = view.findViewById(R.id.mainMenuPayButton);
 
 
-        invoice1= view.findViewById(R.id.factura1);
-        invoice2= view.findViewById(R.id.factura2);
-        invoice3= view.findViewById(R.id.factura3);
+        invoice1= view.findViewById(R.id.firstInvoice);
+        invoice2= view.findViewById(R.id.secondInvoice);
+        invoice3= view.findViewById(R.id.thirdInvoice);
 
         this.callback = new RevealDetailsCallbacks() {
 
@@ -87,7 +86,7 @@ public class HomeFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
                         Spinner addressSpinner = (Spinner) view.findViewById(R.id.spAddress);
                         addressSpinner.setAdapter(dataAdapter);
                         addressSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
