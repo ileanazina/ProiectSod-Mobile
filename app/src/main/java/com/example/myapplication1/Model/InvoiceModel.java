@@ -26,12 +26,13 @@ public class InvoiceModel implements Serializable {
     private int CUIIssuer;
     @SerializedName("issuerAddress")
     private String issuerAddress;
-
+    @SerializedName("isPaid")
+    private boolean isPaid;
     public InvoiceModel()
     {}
 
     public InvoiceModel( int invoiceId, int accountId, int addressId, float vat, float valueWithVat, float valueWithoutVAT,
-                         Date dateOfIssue, Date dueDate, int cuiIssuer, String issuerAddress) throws ParseException {
+                         Date dateOfIssue, Date dueDate, int cuiIssuer, String issuerAddress, boolean isPaid) throws ParseException {
         this.invoiceId = invoiceId;
         this.accountId = accountId;
         this.addressId = addressId;
@@ -42,6 +43,15 @@ public class InvoiceModel implements Serializable {
         this.dueDate = dueDate;
         this.CUIIssuer = cuiIssuer;
         this.issuerAddress = issuerAddress;
+        this.isPaid=isPaid;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
     }
 
     public String getIssuerAddress() {

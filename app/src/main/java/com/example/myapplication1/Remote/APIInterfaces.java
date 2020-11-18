@@ -32,8 +32,8 @@ public interface APIInterfaces {
     @GET("Invoices/GetPaidInvoicesByAccountId/{accountId}")
     Call<List<InvoiceModel>> getPaidInvoicesByAccountId(@Path("accountId") int accountId);
 
-    @GET("Invoices/GetInvoicesByAccountId/{accountId}")
-    Call<List<InvoiceModel>> getInvoicesByAccountId(@Path("accountId") int accountId);
+    @GET("Invoices/GetInvoicesByAccountId/{accountId}/{addressId}")
+    Call<List<InvoiceModel>> getInvoicesByAccountId(@Path("accountId") int accountId,@Path("addressId") int addressId );
 
     @GET("Invoices/GetSold/{accountId}/{addressId}")
     Call<Float> getSold(@Path("accountId") int accountId, @Path("addressId") int addressId);
