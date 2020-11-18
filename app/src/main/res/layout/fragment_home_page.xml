@@ -106,6 +106,7 @@
 
         <TextView
             android:id="@+id/firstInvoice"
+            android:tag="homeInvoice0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -118,6 +119,7 @@
 
         <TextView
             android:id="@+id/secondInvoice"
+            android:tag="homeInvoice1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/invoiceNr"
@@ -131,6 +133,7 @@
 
         <TextView
             android:id="@+id/thirdInvoice"
+            android:tag="homeInvoice2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/totalToPay"

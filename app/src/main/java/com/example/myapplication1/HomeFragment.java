@@ -41,22 +41,19 @@ public class HomeFragment extends Fragment {
         void getDataFromAddress (List<AddressModel> address);
         void getDataFromSold(Float sold);
         void getDataFromInvoices(List<InvoiceModel> list);
-
     }
 
     private RevealDetailsCallbacks callback;
     private AccountModel account;
-    private List<InvoiceModel> invoiceList = new ArrayList<>();
     private ArrayList<String> FullAddressName= new ArrayList<String>();
     private Vector<Integer> vaddressId= new Vector<>();
-    private TextView invoice1, invoice2, invoice3;
     private int addressesID;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
@@ -64,10 +61,6 @@ public class HomeFragment extends Fragment {
         //Set the sold for the last unpaid invoice and set the button
         TextView textView_sold = view.findViewById(R.id.valLastUnpaidInvoices);
         Button payButton = view.findViewById(R.id.mainMenuPayButton);
-
-        invoice1= view.findViewById(R.id.firstInvoice);
-        invoice2= view.findViewById(R.id.secondInvoice);
-        invoice3= view.findViewById(R.id.thirdInvoice);
 
         this.callback = new RevealDetailsCallbacks() {
             @Override
@@ -87,62 +80,24 @@ public class HomeFragment extends Fragment {
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
                         Spinner addressSpinner = (Spinner) view.findViewById(R.id.spAddress);
                         addressSpinner.setAdapter(dataAdapter);
+
+                        int spinnerSelected = mPrefs.getInt("SpinnerPosition",-1);
+                        if(spinnerSelected != -1)
+                            addressSpinner.setSelection(spinnerSelected);
+
                         addressSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                String invoiceIsPayed;
                                 int spinnerPosition = (int) addressSpinner.getItemIdAtPosition(position);
-                                if(invoiceList.size()>=3){
-                                for(int index=0;index<3;index++){
-                                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                                String dataDue = formatter.format(invoiceList.get(index).getDueDate());
-                                if(invoiceList.get(index).isPaid())
-                                    invoiceIsPayed = "Platita";
-                                else
-                                    invoiceIsPayed = "Neplatita";
-                                if(index==0)
-                                invoice1.setText("Numar factura: "+invoiceList.get(0).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "
-                                        +invoiceList.get(0).getValueWithVat()+", "+ invoiceIsPayed);
-                                if(index==1)
-                                invoice2.setText("Numar factura: "+invoiceList.get(1).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "
-                                        +invoiceList.get(1).getValueWithVat()+", "+ invoiceIsPayed);
-                                if(index==2)
-                                invoice3.setText("Numar factura: "+invoiceList.get(2).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "
-                                        +invoiceList.get(2).getValueWithVat()+", "+ invoiceIsPayed);}}
-                                else{
-                                    if(invoiceList.size()==1)
-                                    {
-                                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                                        String dataDue = formatter.format(invoiceList.get(0).getDueDate());
-                                        if(invoiceList.get(0).isPaid())
-                                            invoiceIsPayed = "Platita";
-                                        else
-                                            invoiceIsPayed = "Neplatita";
-                                            invoice1.setText("Numar factura: "+invoiceList.get(0).getInvoiceId()+", data scadenta: "+dataDue + ", valoare: "
-                                                    +invoiceList.get(0).getValueWithVat()+", "+ invoiceIsPayed);
-                                    }
-                                    if(invoiceList.size()==2)
-                                    {
-                                        for(int index=0;index<2;index++) {
-                                            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                                            String dataDue = formatter.format(invoiceList.get(index).getDueDate());
-                                            if (invoiceList.get(index).isPaid())
-                                                invoiceIsPayed = "Platita";
-                                            else
-                                                invoiceIsPayed = "Neplatita";
-                                            if (index == 0)
-                                                invoice1.setText("Numar factura: " + invoiceList.get(0).getInvoiceId() + ", data scadenta: " + dataDue + ", valoare: "
-                                                        + invoiceList.get(0).getValueWithVat() + ", " + invoiceIsPayed);
-                                            if (index == 1)
-                                                invoice2.setText("Numar factura: " + invoiceList.get(1).getInvoiceId() + ", data scadenta: " + dataDue + ", valoare: "
-                                                        + invoiceList.get(1).getValueWithVat() + ", " + invoiceIsPayed);
-                                        }
-                                    }
-                                }
-                                SharedPreferences  aPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                                SharedPreferences.Editor aEditor = aPrefs.edit();
+
+                                SharedPreferences.Editor aEditor = mPrefs.edit();
                                 aEditor.putInt("Address",vaddressId.get(spinnerPosition));
+                                aEditor.putInt("SpinnerPosition", spinnerPosition);
                                 aEditor.apply();
+
+                                addressesID = vaddressId.get(spinnerPosition);
+                                get3Invoices(getContext(), callback);
+
                                 getSold(getContext(), callback, vaddressId.get(spinnerPosition));
                             }
 
@@ -157,8 +112,22 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void getDataFromInvoices(List<InvoiceModel> list) {
-                invoiceList = list;
-
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                for(int index = 0; list != null & index < 3 ; index ++)
+                {
+                    TextView textView = getView().findViewWithTag("homeInvoice" + index);
+                    if(list.size() > index) {
+                        String dataDue = formatter.format(list.get(index).getDueDate());
+                        String invoiceIsPayed;
+                        if (list.get(index).isPaid())
+                            invoiceIsPayed = "Platita";
+                        else
+                            invoiceIsPayed = "Neplatita";
+                        textView.setText("Numar factura: " + list.get(index).getInvoiceId() + ", data scadenta: " + dataDue + ", valoare: "
+                                + list.get(index).getValueWithVat() + ", " + invoiceIsPayed);
+                    }
+                    else textView.setText("");
+                }
             }
 
             @Override
@@ -167,9 +136,7 @@ public class HomeFragment extends Fragment {
             }
         };
 
-        SharedPreferences  aPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int ad= aPrefs.getInt("Address",0);
-        addressesID=ad;
+        addressesID = mPrefs.getInt("Address",0);
         getAddressByAccount(getContext(), callback);
         get3Invoices(getContext(), callback);
         return view;
@@ -204,7 +171,6 @@ public class HomeFragment extends Fragment {
                 call.cancel();
             }
         });
-
     }
 
     public void getAddressByAccount(Context context, RevealDetailsCallbacks callback) {
@@ -226,27 +192,22 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
     public void get3Invoices(Context context, RevealDetailsCallbacks callback)
     {
-
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(), addressesID);
-            call.enqueue(new Callback<List<InvoiceModel>>() {
-                @Override
-                public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
-                    if (callback != null) {
-                        callback.getDataFromInvoices(response.body());
-                    }
+        call.enqueue(new Callback<List<InvoiceModel>>() {
+            @Override
+            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
+                if (callback != null) {
+                    callback.getDataFromInvoices(response.body());
                 }
+            }
 
-                @Override
-                public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
-                    call.cancel();
-                }
-            });
-
+            @Override
+            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
+                call.cancel();
+            }
+        });
     }
-
-
 }

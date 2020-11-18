@@ -9,8 +9,8 @@ public class AddressModel {
     private int addressType;
     @SerializedName("cityId")
     private int cityId;
-    @SerializedName("accountId")
-    private int accountId;
+    @SerializedName("contractId")
+    private int contractId;
     @SerializedName("street")
     private String street;
     @SerializedName("streetNumber")
@@ -26,13 +26,13 @@ public class AddressModel {
     @SerializedName("fullAddressName")
     private String fullAddressName;
 
-    public AddressModel(int addressId, int addressType, int cityId, int accountId, String street,
+    public AddressModel(int addressId, int addressType, int cityId, int contractId, String street,
                         String streetNumber, String immobileNumber, int flatNumber,
                         int floorNumber, String stairNumber, String fullAddressName) {
         this.addressId = addressId;
         this.addressType = addressType;
         this.cityId = cityId;
-        this.accountId = accountId;
+        this.contractId = contractId;
         this.street = street;
         this.streetNumber = streetNumber;
         this.immobileNumber = immobileNumber;
@@ -74,12 +74,12 @@ public class AddressModel {
         this.cityId = cityId;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public int geContactId() {
+        return contractId;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setContactId(int contractId) {
+        this.contractId = contractId;
     }
 
     public String getStreet() {
