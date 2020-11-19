@@ -1,6 +1,5 @@
 package com.example.myapplication1.Activities;
 
-import android.content.Context;
 import android.os.StrictMode;
 import android.util.Pair;
 
