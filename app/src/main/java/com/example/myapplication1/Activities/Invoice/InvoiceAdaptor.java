@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +20,6 @@ import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 import com.example.myapplication1.MainActivity;
 
-import java.security.AccessController;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -140,8 +138,10 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
         private void paingInvoice(InvoiceModel obj)
         {
-          Payments payments = new Payments();
-          payments.payInvoice(obj.getInvoiceId(),obj.getValueWithVat());
+            Intent intentPay = new Intent(mContext , Payments.class);
+            intentPay.putExtra("extra", obj);
+            intentPay.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intentPay);
         }
     }
 
