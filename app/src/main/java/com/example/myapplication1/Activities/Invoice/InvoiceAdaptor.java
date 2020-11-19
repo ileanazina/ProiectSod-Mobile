@@ -141,7 +141,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
         private void paingInvoice(InvoiceModel obj)
         {
           Payments payments = new Payments();
-          payments.payInvoice(obj.getInvoiceId(),obj.getValueWithVat(), mContext);
+          payments.payInvoice(obj.getInvoiceId(),obj.getValueWithVat());
         }
     }
 
