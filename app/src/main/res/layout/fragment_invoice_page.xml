@@ -82,7 +82,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="@dimen/margin_recycleview_top"
-        android:background="@drawable/profile_border"
+        android:background="@drawable/row_border"
         android:layout_marginRight="@dimen/profile_margin_leftright"
         android:layout_marginLeft="@dimen/profile_margin_leftright"
         android:id="@+id/invoiceRecycleView"

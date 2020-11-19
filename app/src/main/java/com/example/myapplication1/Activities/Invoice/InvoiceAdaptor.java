@@ -50,9 +50,13 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dataDue = formatter.format(item.getDueDate());
-            holder.tvInvoiceNr.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_number) + item.getInvoiceId());
-            holder.tvTotalPay.setText(mContext.getResources().getString(R.string.invoice_adaptor_to_paid) + item.getValueWithVat());
-            holder.tvDueDate.setText(mContext.getResources().getString(R.string.invoice_adaptor_due_date) + dataDue);
+            holder.tvInvoiceNr.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_number)+" " + item.getInvoiceId());
+            holder.tvTotalPay.setText(mContext.getResources().getString(R.string.invoice_adaptor_to_paid) +" "+ item.getValueWithVat());
+            holder.tvDueDate.setText(mContext.getResources().getString(R.string.invoice_adaptor_due_date)+" " + dataDue);
+            if(item.isPaid())
+                holder.tvIsPayd.setText("Status factura: Platita");
+            else
+                holder.tvIsPayd.setText("Status factura: Neplatita");
     }
 
     @Override
@@ -61,7 +65,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     }
 
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView tvInvoiceNr,tvTotalPay, tvDueDate;
+        public TextView tvInvoiceNr,tvTotalPay, tvDueDate, tvIsPayd;
         public Button viewInfo,payInvoice;
         OnInvoiceListener onInvoiceListener;
 
@@ -70,6 +74,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             tvInvoiceNr = itemView.findViewById(R.id.invoiceNr);
             tvTotalPay = itemView.findViewById(R.id.totalToPay);
             tvDueDate = itemView.findViewById(R.id.dataDue);
+            tvIsPayd= itemView.findViewById(R.id.invoiceIsPayd);
 
             viewInfo = itemView.findViewById(R.id.Viewbtn);
             payInvoice = itemView.findViewById(R.id.Paybtn);

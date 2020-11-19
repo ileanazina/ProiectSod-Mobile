@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/indexNavbar"
-        android:icon="@drawable/ic_indexgood"
+        android:icon="@drawable/ic_goodind"
         android:title="Index" />
 
     <item
@@ -13,11 +13,11 @@
         android:title="Formulare" />
     <item
         android:id="@+id/homeNavbar"
-        android:icon="@drawable/ic_index"
+        android:icon="@drawable/ic_homebtn"
         android:title="Home" />
     <item
         android:id="@+id/invoicesNavbar"
-        android:icon="@drawable/ic_action_user"
+        android:icon="@drawable/ic_invoicesbtn"
         android:title="Facturi" />
 
     <item

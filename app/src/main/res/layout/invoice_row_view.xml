@@ -13,7 +13,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/profile_border"
+            android:background="@drawable/row_border"
             android:padding="15dp">
 
             <TextView
@@ -21,6 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textColor="#4D4D4D"
                 android:textStyle="bold"
                 android:layout_marginRight="12dp" />
 
@@ -29,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/invoiceNr"
+                android:textColor="#464646"
                 android:paddingTop="4dp"
                 android:textSize="18sp"
                 android:textStyle="italic"
@@ -39,6 +41,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/totalToPay"
+                android:paddingTop="4dp"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/invoiceIsPayd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dataDue"
                 android:paddingTop="4dp"
                 android:textSize="18sp"
                 android:textStyle="italic"
