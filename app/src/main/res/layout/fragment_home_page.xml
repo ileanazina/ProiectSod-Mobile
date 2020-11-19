@@ -33,7 +33,7 @@
             android:layout_marginLeft="@dimen/home_margin"
             android:layout_marginRight="@dimen/home_margin"
             android:layout_marginTop="@dimen/home_margin"
-            android:text="@string/fragment_home_address_spinner_announcement"
+            android:text="Locatie:"
             android:textSize="@dimen/home_invoices_text"
             android:textColor="@color/black"
             android:fontFamily="@font/cherry_swash"/>

@@ -91,6 +91,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         SharedPreferences  aPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         int ad= aPrefs.getInt("Address",0);
         AddressIdFromSpinner = ad;
+
         this.callback = new IndexFragment.RevealDetailsCallbacks() {
             @Override
             public void getDataFromIndex(List<IndexModel> list) {

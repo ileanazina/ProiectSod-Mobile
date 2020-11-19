@@ -1,7 +1,10 @@
 package com.example.myapplication1.Activities.Invoice;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +21,7 @@ import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 import com.example.myapplication1.MainActivity;
 
+import java.security.AccessController;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -25,6 +30,8 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     private Context mContext;
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialogError;
 
     public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList,OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
@@ -88,9 +95,37 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
                     viewInvoice(item);
                     break;
                 case R.id.Paybtn:
+                    if(!item.isPaid()) {
                     paingInvoice(item.getInvoiceId());
                     break;
+                    }
+                    else
+                    {
+                        showalertDialog();
+                        break;
+                    }
             }
+        }
+
+        private void showalertDialog(){
+            TextView textView = new TextView(viewInfo.getRootView().getContext());
+            textView.setTextSize(20F);
+            textView.setBackgroundColor(Color.WHITE);
+            textView.setTextColor(Color.BLACK);
+
+            builder = new AlertDialog.Builder(viewInfo.getRootView().getContext());
+            builder.setMessage("Factura este deja platita");
+            builder.setNeutralButton("OK",
+                    new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface arg0,
+                                            int arg1) {
+
+                        }
+                    });
+
+            builder.show();
+
         }
 
         private void viewInvoice( InvoiceModel obj)
@@ -105,6 +140,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
 
         private void paingInvoice(final int id)
         {
+
             Intent intentPay = new Intent(mContext , Payments.class);
             intentPay.putExtra("extra", id);
             intentPay.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
