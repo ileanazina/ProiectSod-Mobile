@@ -88,7 +88,7 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
                     viewInvoice(item);
                     break;
                 case R.id.Paybtn:
-                    paingInvoice(item.getInvoiceId());
+                    paingInvoice(item);
                     break;
             }
         }
@@ -103,12 +103,10 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             ((MainActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, objects).addToBackStack(null).commit();
         }
 
-        private void paingInvoice(final int id)
+        private void paingInvoice(InvoiceModel obj)
         {
-            Intent intentPay = new Intent(mContext , Payments.class);
-            intentPay.putExtra("extra", id);
-            intentPay.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(intentPay);
+          Payments payments = new Payments();
+          payments.payInvoice(obj.getInvoiceId(),obj.getValueWithVat(), mContext);
         }
     }
 
