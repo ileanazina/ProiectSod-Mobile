@@ -26,15 +26,13 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:layout_gravity="start|top"
-                android:textSize="@dimen/invoices_button_text"
-                android:fontFamily="@font/cherry_swash"/>
+                android:textSize="@dimen/invoices_button_text"/>
 
             <Button
                 android:id="@+id/allInvoices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_invoices"
-                android:fontFamily="@font/cherry_swash"
                 android:textSize="@dimen/invoices_button_text"
                 android:text="@string/invoices_all_button"
                 android:textAllCaps="false"
@@ -58,15 +56,13 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:background="@drawable/button_invoices"
-                android:textSize="@dimen/invoices_button_text"
-                android:fontFamily="@font/cherry_swash"/>
+                android:textSize="@dimen/invoices_button_text"/>
 
             <Button
                 android:id="@+id/afterdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_invoices"
-                android:fontFamily="@font/cherry_swash"
                 android:textSize="@dimen/invoices_button_text"
                 android:text="@string/invoices_search_by_date_button"
                 android:textAllCaps="false"

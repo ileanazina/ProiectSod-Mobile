@@ -17,7 +17,6 @@
         android:id="@+id/buttonEmailMyInvoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/cherry_swash"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:layout_gravity="end|top"
@@ -29,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_home_button"
-        android:fontFamily="@font/cherry_swash"
         android:background="@drawable/profile_border"
         android:textColor="@color/black"
         android:gravity="center"
@@ -54,7 +52,6 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="@string/invoice_detail_invoiceId_intro"/>
@@ -66,7 +63,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -76,7 +72,6 @@
             android:layout_row="1"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="@string/invoice_detail_issue_date_intro"/>
@@ -88,7 +83,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -98,7 +92,6 @@
             android:layout_row="3"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="@string/invoice_detail_due_date_intro"/>
@@ -110,7 +103,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -120,7 +112,6 @@
             android:layout_row="4"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="@string/invoice_detail_all_pay_intro"/>
@@ -132,7 +123,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -142,7 +132,6 @@
             android:layout_row="5"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="@string/invoice_detail_remaining_balance_intro"/>
@@ -154,7 +143,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -165,7 +153,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_home_button"
-        android:fontFamily="@font/cherry_swash"
         android:background="@drawable/profile_border"
         android:textColor="@color/black"
         android:gravity="center"
@@ -190,7 +177,6 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="@string/invoice_detail_accountId_intro"/>
@@ -202,7 +188,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -212,7 +197,6 @@
             android:layout_row="1"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Adresa de facturare"/>
@@ -224,7 +208,6 @@
             android:layout_column="1"
             android:layout_marginRight="@dimen/profile_margin_top"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black" />
 
     </GridLayout>
@@ -234,7 +217,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_home_button"
-        android:fontFamily="@font/cherry_swash"
         android:background="@drawable/profile_border"
         android:textColor="@color/black"
         android:gravity="center"
@@ -259,7 +241,6 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Unitate de masura"/>
@@ -271,7 +252,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -281,7 +261,6 @@
             android:layout_row="1"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Pretul per unitate"/>
@@ -293,7 +272,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -303,7 +281,6 @@
             android:layout_row="2"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Cantitate consumata"/>
@@ -315,7 +292,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -325,7 +301,6 @@
             android:layout_row="3"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="TVA"/>
@@ -337,7 +312,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -347,7 +321,6 @@
             android:layout_row="4"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Pret fara TVA"/>
@@ -359,7 +332,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -369,7 +341,6 @@
             android:layout_row="5"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Pret cu TVA"/>
@@ -381,7 +352,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -392,7 +362,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_home_button"
-        android:fontFamily="@font/cherry_swash"
         android:background="@drawable/profile_border"
         android:textColor="@color/black"
         android:gravity="center"
@@ -417,7 +386,6 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="CUI"/>
@@ -429,7 +397,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
 
@@ -439,7 +406,6 @@
             android:layout_row="1"
             android:layout_column="0"
             android:layout_margin="@dimen/margin_home_button"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
             android:text="Adresa"/>
@@ -451,7 +417,6 @@
             android:layout_column="1"
             android:layout_margin="@dimen/margin_home_button"
             android:layout_marginRight="@dimen/profile_margin_top"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize" />
     </GridLayout>
