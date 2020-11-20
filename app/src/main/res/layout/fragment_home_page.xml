@@ -44,8 +44,7 @@
             android:layout_marginTop="@dimen/home_margin"
             android:text="Locatie:"
             android:textSize="@dimen/home_invoices_text"
-            android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"/>
+            android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/spAddress"
             android:layout_width="match_parent"
@@ -78,7 +77,6 @@
             android:layout_height="wrap_content"
             android:text="Sold"
             android:textSize="@dimen/profil_textsize"
-            android:fontFamily="@font/cherry_swash"
             android:layout_marginLeft="@dimen/margin_top"
             android:layout_marginTop="@dimen/home_margin"/>
         <TextView
@@ -87,7 +85,6 @@
             android:layout_height="wrap_content"
             android:text="-"
             android:textSize="@dimen/profil_textsize"
-            android:fontFamily="@font/cherry_swash"
             android:layout_marginLeft="@dimen/ampm_left_padding"
             android:layout_marginTop="@dimen/home_margin"/>
         <Button
@@ -97,7 +94,6 @@
             android:layout_gravity="right"
             android:text="Platește"
             android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"
             android:layout_marginTop="@dimen/home_margin"
             android:textAllCaps="false"
             android:background="@color/Grey"
@@ -129,8 +125,7 @@
             android:layout_marginRight="@dimen/home_margin"
             android:text="@string/fragment_home_last_invoices"
             android:textSize="@dimen/home_invoices_text"
-            android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/firstInvoice"
@@ -142,8 +137,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:textSize="@dimen/home_textsize"
-            android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/secondInvoice"
@@ -156,8 +150,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:textSize="@dimen/home_textsize"
-            android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/thirdInvoice"
@@ -170,8 +163,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:textSize="@dimen/home_textsize"
-            android:textColor="@color/black"
-            android:fontFamily="@font/cherry_swash"/>
+            android:textColor="@color/black"/>
 
 </LinearLayout>
         <Space
@@ -191,7 +183,6 @@
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:text="@string/fragment_home_company_details_title"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"/>
         <TextView
             android:id="@+id/companyAddress"
@@ -200,7 +191,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/fragment_home_company_details_address"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"/>
         <TextView
             android:id="@+id/companyMail"
@@ -210,7 +200,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="50dp"
             android:text="@string/fragment_home_company_detail_email"
-            android:fontFamily="@font/cherry_swash"
             android:textColor="@color/black"/>
     </LinearLayout>
     </LinearLayout>

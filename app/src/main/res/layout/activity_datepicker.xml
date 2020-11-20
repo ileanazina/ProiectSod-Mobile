@@ -16,7 +16,6 @@
         android:layout_below="@+id/datePicker"
         android:textColor="@color/black"
         android:textSize="@dimen/invoices_button_text"
-        android:fontFamily="@font/cherry_swash"
         android:textAllCaps="false"
         android:text="@string/datetime_picker_save_button" />
 </RelativeLayout>
