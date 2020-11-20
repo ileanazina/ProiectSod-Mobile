@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -132,7 +133,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void getDataFromSold(Float sold) {
-                buttonAndSoldUpdated(textView_sold, payButton, sold);
+                buttonAndSoldUpdated(textView_sold,payButton, sold);
             }
         };
 

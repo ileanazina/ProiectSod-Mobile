@@ -22,7 +22,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             app:srcCompat="@drawable/logo1" />
 
         <Space
@@ -51,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/select"
-            android:background="@android:drawable/btn_dropdown"
+            android:background="@drawable/spinner_design"
             android:layout_marginTop="10dp"
             android:scrollbarSize="25dp"
             android:layout_marginLeft="10dp"
@@ -97,12 +96,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Platește"
             android:textColor="@color/black"
             android:fontFamily="@font/cherry_swash"
             android:layout_marginTop="@dimen/home_margin"
             android:textAllCaps="false"
-            android:background="@color/Grey"
+            android:background="@drawable/paymentmini"
             android:layout_marginLeft="70dp"
            />
             <TextView
@@ -114,6 +112,7 @@
         <Space
             android:layout_width="1dp"
             android:layout_height="30dp"/>
+
         <!--        de aici incep facturile-->
 <LinearLayout
     android:layout_width="wrap_content"
