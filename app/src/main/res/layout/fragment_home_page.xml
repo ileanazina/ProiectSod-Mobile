@@ -96,7 +96,9 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/home_margin"
             android:textAllCaps="false"
-            android:background="@drawable/paymentmini"
+            android:background="@drawable/margini_buton"
+            android:drawableTop="@drawable/paymentmini"
+            android:text="Plateste"
             android:layout_marginLeft="70dp"
            />
             <TextView
@@ -164,7 +166,14 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:textSize="@dimen/home_textsize"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/thirdInvoice"
+        />
 
 </LinearLayout>
         <Space
