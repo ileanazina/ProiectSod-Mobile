@@ -10,6 +10,7 @@
     tools:context=".Activities.ProfileFragment">
 
     <GridLayout
+        android:id="@+id/grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -142,7 +143,18 @@
             android:layout_column="1"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfile"
+            android:layout_gravity="center"
+            android:layout_below="@id/telephonNumber"
+            android:text="Actualizare date"
+            android:textColor="@color/black"
+            ></Button>
 
     </GridLayout>
+
+
 
 </ScrollView>

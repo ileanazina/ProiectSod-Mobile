@@ -2,6 +2,7 @@ package com.example.myapplication1.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.content.SharedPreferences;
@@ -10,6 +11,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication1.Model.AccountModel;
@@ -17,6 +20,8 @@ import com.example.myapplication1.R;
 import com.google.gson.Gson;
 
 public class ProfileFragment extends Fragment {
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
 
     @Nullable
     @Override
@@ -85,5 +90,35 @@ public class ProfileFragment extends Fragment {
                 textView_companyname.setText(account.getCompanyName());
             }
         }
+
+        //button update
+        Button updateData = view.findViewById(R.id.editProfile);
+        updateData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    createPopupEditDialog();
+            }
+        });
+    }
+
+    private void createPopupEditDialog() {
+        builder = new AlertDialog.Builder(getContext());
+        View view = getLayoutInflater().inflate(R.layout.edit_profile_popoup, null);
+
+        EditText editPhone= (EditText) view.findViewById(R.id.Edittelefon);
+        EditText editEmail= (EditText) view.findViewById(R.id.Editemail);
+        TextView title = (TextView) view.findViewById(R.id.editProfile);
+
+        Button update = (Button) view.findViewById(R.id.saveProfile);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        builder.setView(view);
+        dialog = builder.create();
+        dialog.show();
     }
 }
