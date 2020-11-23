@@ -44,7 +44,6 @@ public class IndexAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewH
         holder.tvIndexNr.setText(mContext.getResources().getString(R.string.index_adaptor_value) + item.getIndexValue());
         holder.tvIndexDate.setText(mContext.getResources().getString(R.string.index_adaptor_date) + dataDue);
         holder.tvIndexavr.setText(mContext.getResources().getString(R.string.index_adaptor_consumption) + item.getAverageIndex());
-        
     }
 
     @Override

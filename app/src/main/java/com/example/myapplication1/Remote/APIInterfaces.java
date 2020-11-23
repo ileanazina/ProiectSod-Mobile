@@ -12,6 +12,7 @@ import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.PaymentModel;
 import com.example.myapplication1.Model.SearchByDate;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
+import com.example.myapplication1.Model.UserEdit;
 import com.example.myapplication1.Model.UserLogIn;
 
 import java.util.List;
@@ -41,11 +42,11 @@ public interface APIInterfaces {
     @POST("Users/Login")
     Call<AccountModel> loginUser(@Body UserLogIn user);
 
+    @POST("Users/EditUser")
+    Call<Void> editUser(@Body UserEdit user);
+
     @POST("Invoices/GetInvoicesByAccountIdWithinDates")
     Call<List<InvoiceModel>> getInvoicesByAccountIdWithinDates(@Body SearchByDate searchByDate);
-
-    @GET("Payment/GetPayments")
-    Call<List<PaymentModel>> getAllPayments();
 
     @POST("Index/AddIndexToAccountId")
     Call<IndexModel> insertIndex(@Body AddIIndex index);

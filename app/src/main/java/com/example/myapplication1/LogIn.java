@@ -201,7 +201,6 @@ public class LogIn extends AppCompatActivity {
                             Intent intentAutentificare = new Intent(LogIn.this, MainActivity.class);
                             intentAutentificare.putExtra("startFromHome", R.id.home);
                             startActivity(intentAutentificare);
-
                         }
                     }
 

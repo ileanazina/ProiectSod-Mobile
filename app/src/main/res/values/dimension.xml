@@ -14,4 +14,5 @@
     <dimen name="invoicedetails_button_margins">45dp</dimen>
     <dimen name="home_margin">30dp</dimen>
     <dimen name="home_invoices_text">17dp</dimen>
+    <dimen name="padding_home">10dp</dimen>
 </resources>

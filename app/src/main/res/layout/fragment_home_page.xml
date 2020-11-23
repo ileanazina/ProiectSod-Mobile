@@ -63,12 +63,13 @@
     </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/home_border"
-            android:layout_marginTop="30dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/home_border"
+        android:layout_marginTop="@dimen/home_margin"
+        android:padding="@dimen/padding_home">
 
         <TextView
             android:id="@+id/sold"
@@ -77,8 +78,7 @@
             android:text="Sold"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize"
-            android:layout_marginLeft="@dimen/margin_top"
-            android:layout_marginTop="@dimen/home_margin"/>
+            android:layout_marginLeft="@dimen/margin_top" />
         <TextView
             android:id="@+id/valLastUnpaidInvoices"
             android:layout_width="wrap_content"
@@ -86,38 +86,28 @@
             android:text="-"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize"
-            android:layout_marginLeft="@dimen/ampm_left_padding"
-            android:layout_marginTop="@dimen/home_margin"/>
-        <Button
+            android:layout_marginLeft="@dimen/ampm_left_padding" />
+        <ImageButton
             android:id="@+id/mainMenuPayButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/home_margin"
-            android:textAllCaps="false"
-            android:background="@drawable/margini_buton"
-            android:drawableTop="@drawable/paymentmini"
-            android:text="Plateste"
-            android:layout_marginLeft="70dp"
-           />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/valLastUnpaidInvoices"
-                />
+            android:layout_gravity="center"
+            android:background="@drawable/paymentmini"
+            android:layout_marginLeft="100dp" />
+
     </LinearLayout>
+
         <Space
             android:layout_width="1dp"
             android:layout_height="30dp"/>
 
         <!--        de aici incep facturile-->
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/home_border"
-    android:id="@+id/invoicesDetails"
-    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_border"
+        android:id="@+id/invoicesDetails"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/invoices"
             android:layout_width="wrap_content"
@@ -166,14 +156,12 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:textSize="@dimen/home_textsize"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/thirdInvoice"
-        />
+        android:layout_below="@id/thirdInvoice" />
 
 </LinearLayout>
         <Space

@@ -8,20 +8,32 @@ import androidx.fragment.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication1.Model.AccountModel;
+import java.util.regex.Pattern;
+import com.example.myapplication1.Model.UserEdit;
 import com.example.myapplication1.R;
+import com.example.myapplication1.Remote.APIInterfaces;
+import com.example.myapplication1.Remote.RetrofitClientLogIn;
 import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
+    private AccountModel account;
+    private static final String regex = "^(.+)@(.+)$";
 
     @Nullable
     @Override
@@ -36,7 +48,7 @@ public class ProfileFragment extends Fragment {
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
-        AccountModel account = gson.fromJson(json, AccountModel.class);
+        account = gson.fromJson(json, AccountModel.class);
 
         //set accountId textview
         TextView textView_accountid = view.findViewById(R.id.accoundId);
@@ -54,7 +66,7 @@ public class ProfileFragment extends Fragment {
         if(account.getTelephoneNumber() == 0)
             textView_telephon.setText("-");
         else
-            textView_telephon.setText(String.valueOf(account.getTelephoneNumber()));
+            textView_telephon.setText("0" + account.getTelephoneNumber());
 
         //set nametextview
         TextView textView_name = view.findViewById(R.id.name);
@@ -96,24 +108,61 @@ public class ProfileFragment extends Fragment {
         updateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    createPopupEditDialog();
-            }
+                createPopupEditDialog(view); }
         });
     }
 
-    private void createPopupEditDialog() {
+    private void createPopupEditDialog(View profileView) {
         builder = new AlertDialog.Builder(getContext());
         View view = getLayoutInflater().inflate(R.layout.edit_profile_popoup, null);
 
-        EditText editPhone= (EditText) view.findViewById(R.id.Edittelefon);
-        EditText editEmail= (EditText) view.findViewById(R.id.Editemail);
-        TextView title = (TextView) view.findViewById(R.id.editProfile);
+        EditText editPhone = view.findViewById(R.id.editPhone);
+        editPhone.setText("0" + account.getTelephoneNumber());
+        EditText editEmail = view.findViewById(R.id.editMail);
+        editEmail.setText(account.getEmail());
 
-        Button update = (Button) view.findViewById(R.id.saveProfile);
+        Button update = view.findViewById(R.id.saveProfile);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserEdit user = new UserEdit(account.getAccountId(), editEmail.getText().toString(), Long.parseLong(editPhone.getText().toString()));
+                Pattern pattern = Pattern.compile(regex);
+                if(String.valueOf(user.getTelephoneNumber()).length() == 9 & pattern.matcher(user.getEmail()).matches())
+                {
+                    System.out.println(user.getEmail() + "    " + user.getTelephoneNumber());
+                    APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+                    Call<Void> call = invoiceAPI.editUser(user);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Toast.makeText(ProfileFragment.this.getContext(), "Modificari salvate", Toast.LENGTH_LONG).show();
 
+                            //set email textview
+                            account.setEmail(user.getEmail());
+                            TextView textView_email = profileView.findViewById(R.id.email);
+                            textView_email.setText(account.getEmail());
+
+                            //set telephone textview
+                            account.setTelephoneNumber(user.getTelephoneNumber());
+                            TextView textView_telephon = profileView.findViewById(R.id.telephonNumber);
+                            textView_telephon.setText("0" + account.getTelephoneNumber());
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.d("eroareeee", t.getMessage());
+                            Toast.makeText(ProfileFragment.this.getContext(), "Eroare de retea", Toast.LENGTH_LONG).show();
+                            call.cancel();
+                        }
+                    });
+                }
+                else
+                    if(!pattern.matcher(user.getEmail()).matches() | user.getEmail() == "")
+                        Toast.makeText(ProfileFragment.this.getContext(), "Email incorect", Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(ProfileFragment.this.getContext(), "Numar de telefon incorect", Toast.LENGTH_LONG).show();
+
+                dialog.dismiss();
             }
         });
 

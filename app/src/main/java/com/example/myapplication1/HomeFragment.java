@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         //Set the sold for the last unpaid invoice and set the button
         TextView textView_sold = view.findViewById(R.id.valLastUnpaidInvoices);
-        Button payButton = view.findViewById(R.id.mainMenuPayButton);
+        ImageButton payButton = view.findViewById(R.id.mainMenuPayButton);
 
         this.callback = new RevealDetailsCallbacks() {
             @Override
@@ -143,7 +142,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public void buttonAndSoldUpdated(TextView textView, Button button, Float sold)
+    public void buttonAndSoldUpdated(TextView textView, ImageButton button, Float sold)
     {
         textView.setText(String.valueOf(sold));
         button.setOnClickListener(new View.OnClickListener() {
