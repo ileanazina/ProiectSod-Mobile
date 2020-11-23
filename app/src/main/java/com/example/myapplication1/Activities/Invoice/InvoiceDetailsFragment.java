@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication1.Activities.ProfileFragment;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
@@ -91,6 +94,14 @@ public class InvoiceDetailsFragment extends Fragment {
                 dialog.dismiss();
             }
         };
+
+        Button sentEmail = view.findViewById(R.id.buttonEmailMyInvoice);
+        sentEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendInvoiceByMail();
+            }
+        });
 
         getInvoiceDetail(getContext(), callback);
         return  view;
@@ -242,5 +253,23 @@ public class InvoiceDetailsFragment extends Fragment {
                 textView_valueWithVat.setText("-");
             else textView_valueWithVat.setText(String.valueOf(invoiceDetails_obj.getValueWithVat()));
         }
+    }
+
+    public  void sendInvoiceByMail()
+    {
+        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+        Call<Void> call = invoiceAPI.sentInvoiceByEmail(account.getAccountId(), invoice_obj.getInvoiceId());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(getContext(), "Emailul a fost trimis", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getContext(), "Eroare de server", Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
     }
 }

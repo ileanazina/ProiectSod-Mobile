@@ -71,4 +71,7 @@ public interface APIInterfaces {
 
     @GET("UnitMeasurements/GetUnitMeasurementsByUMId/{umId}")
     Call<UnitMeasurementsModel> getUnitMeasurementsByUMId(@Path("umId") int umId);
+
+    @GET("Dropbox/DownloadInvoice/{accountId}/{invoiceId}")
+    Call<Void> sentInvoiceByEmail(@Path("accountId") int accountId, @Path("invoiceId") int invoiceId);
 }

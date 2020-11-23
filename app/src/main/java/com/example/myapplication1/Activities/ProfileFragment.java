@@ -129,7 +129,6 @@ public class ProfileFragment extends Fragment {
                 Pattern pattern = Pattern.compile(regex);
                 if(String.valueOf(user.getTelephoneNumber()).length() == 9 & pattern.matcher(user.getEmail()).matches())
                 {
-                    System.out.println(user.getEmail() + "    " + user.getTelephoneNumber());
                     APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
                     Call<Void> call = invoiceAPI.editUser(user);
                     call.enqueue(new Callback<Void>() {
@@ -150,7 +149,6 @@ public class ProfileFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Log.d("eroareeee", t.getMessage());
                             Toast.makeText(ProfileFragment.this.getContext(), "Eroare de retea", Toast.LENGTH_LONG).show();
                             call.cancel();
                         }
