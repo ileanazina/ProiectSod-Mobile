@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication1.LogIn;
 import com.example.myapplication1.Model.AccountModel;
 import java.util.regex.Pattern;
 import com.example.myapplication1.Model.UserEdit;
@@ -34,6 +35,7 @@ public class ProfileFragment extends Fragment {
     private AlertDialog dialog;
     private AccountModel account;
     private static final String regex = "^(.+)@(.+)$";
+    private SharedPreferences mPrefs;
 
     @Nullable
     @Override
@@ -45,7 +47,7 @@ public class ProfileFragment extends Fragment {
 
     public void CompleteTheProfile(View view)
     {
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
@@ -126,6 +128,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 UserEdit user = new UserEdit(account.getAccountId(), editEmail.getText().toString(), Long.parseLong(editPhone.getText().toString()));
+                System.out.println(user.getEmail()+ "   "+user.getTelephoneNumber());
                 Pattern pattern = Pattern.compile(regex);
                 if(String.valueOf(user.getTelephoneNumber()).length() == 9 & pattern.matcher(user.getEmail()).matches())
                 {
@@ -145,6 +148,13 @@ public class ProfileFragment extends Fragment {
                             account.setTelephoneNumber(user.getTelephoneNumber());
                             TextView textView_telephon = profileView.findViewById(R.id.telephonNumber);
                             textView_telephon.setText("0" + account.getTelephoneNumber());
+
+                            //save new info about this account in sharepreferences
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(account);
+                            prefsEditor.putString("AccountInfo", json);
+                            prefsEditor.commit();
                         }
 
                         @Override
