@@ -70,12 +70,15 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
             public void getDataFromInvoices(List<InvoiceModel> list) {
                 forAdaptorInvoices.clear();
                 invoiceAdaptor.notifyDataSetChanged();
+                if( list != null){
                 for(int i=0; i < list.size(); i++) {
                     if(list.get(i).getAddressId() == addressId) {
                         forAdaptorInvoices.add(list.get(i));
                         invoiceAdaptor.notifyDataSetChanged();
                     }
                 }
+                }
+
             }
         };
         getInvoiceList();
