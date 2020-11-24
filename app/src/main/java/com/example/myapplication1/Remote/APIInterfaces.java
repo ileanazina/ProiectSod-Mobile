@@ -24,8 +24,8 @@ import retrofit2.http.Path;
 
 public interface APIInterfaces {
 
-    @GET("Index/GetIndexesByAccountId/{accountId}")
-    Call<List<IndexModel>> getAllIndexis(@Path("accountId") int accountId);
+    @GET("Index/GetIndexesByAccountIdAndAddressId/{accountId}/{addressId}")
+    Call<List<IndexModel>> getAllIndexis(@Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @GET("/Invoices/GetUnpaidInvoicesByAccountId/{accountId}/{addressId}")
     Call<List<InvoiceModel>> getUnpaidInvoicesByAccountId(@Path("accountId") int accountId, @Path("addressId") int addressId);

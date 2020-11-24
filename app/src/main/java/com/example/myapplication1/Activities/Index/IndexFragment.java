@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,18 +97,24 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         this.callback = new IndexFragment.RevealDetailsCallbacks() {
             @Override
             public void getDataFromIndex(List<IndexModel> list) {
-                lastIndexValue= list.get(0).getIndexValue();
+
                 for (int i = 0; i < list.size(); i++) {
                     if (account.getAccountId() == list.get(i).getAccountId()&&list.get(i).getAddressId()==AddressIdFromSpinner)
                     {
                         allIndexes.add(list.get(i));
                         forAdaptorIndexes.add(list.get(i));
                         indexesAdaptor.notifyDataSetChanged();
+
                     }
                 }
+                lastIndexValue = list.get(0).getIndexValue();
                 Log.e(String.valueOf(lastIndexValue),"last index value");
+                //Log.e(String.valueOf(list.size()),"index size");
             }
         };
+
+
+
 
         getIndexList(getContext(), callback);
             addIndex.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +192,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
     public void getIndexList(Context context, RevealDetailsCallbacks callback) {
         indexesAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<IndexModel>> call = indexesAPI.getAllIndexis(account.getAccountId());
+        Call<List<IndexModel>> call = indexesAPI.getAllIndexis(account.getAccountId(), AddressIdFromSpinner);
         call.enqueue(new Callback<List<IndexModel>>() {
             @Override
             public void onResponse(Call<List<IndexModel>> call, Response<List<IndexModel>> response) {
