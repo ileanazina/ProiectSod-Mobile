@@ -27,11 +27,11 @@ public interface APIInterfaces {
     @GET("Index/GetIndexesByAccountId/{accountId}")
     Call<List<IndexModel>> getAllIndexis(@Path("accountId") int accountId);
 
-    @GET("Invoices/GetUnpaidInvoicesByAccountId/{accountId}")
-    Call<List<InvoiceModel>> getUnpaidInvoicesByAccountId(@Path("accountId") int accountId);
+    @GET("/Invoices/GetUnpaidInvoicesByAccountId/{accountId}/{addressId}")
+    Call<List<InvoiceModel>> getUnpaidInvoicesByAccountId(@Path("accountId") int accountId, @Path("addressId") int addressId);
 
-    @GET("Invoices/GetPaidInvoicesByAccountId/{accountId}")
-    Call<List<InvoiceModel>> getPaidInvoicesByAccountId(@Path("accountId") int accountId);
+    @GET("/Invoices/GetPaidInvoicesByAccountId/{accountId}/{addressId}")
+    Call<List<InvoiceModel>> getPaidInvoicesByAccountId(@Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @GET("Invoices/GetInvoicesByAccountId/{accountId}/{addressId}")
     Call<List<InvoiceModel>> getInvoicesByAccountId(@Path("accountId") int accountId,@Path("addressId") int addressId );
