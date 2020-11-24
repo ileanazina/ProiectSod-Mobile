@@ -5,13 +5,16 @@ import com.google.gson.annotations.SerializedName;
 public class SearchByDate {
     @SerializedName("accountId")
     public int accountId;
+    @SerializedName("addressId")
+    private int addressId;
     @SerializedName("date1")
     private String startDate;
     @SerializedName("date2")
     private String endDate;
 
-    public SearchByDate(int accountId, String startDate, String endDate) {
+    public SearchByDate(int accountId, int addressId, String startDate, String endDate) {
         this.accountId = accountId;
+        this.addressId = addressId;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -38,5 +41,13 @@ public class SearchByDate {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 }
