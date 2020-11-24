@@ -127,12 +127,15 @@ public class HomeFragment extends Fragment {
                                 + list.get(index).getValueWithVat() + ", " + invoiceIsPayed);
                     }
                     else textView.setText("");
+
+                    if(list!=null)
+                        buttonUpdate(payButton, list.get(0));
                 }
             }
 
             @Override
             public void getDataFromSold(Float sold) {
-                buttonAndSoldUpdated(textView_sold,payButton, sold);
+                textView_sold.setText(String.valueOf(sold));
             }
         };
 
@@ -142,14 +145,15 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public void buttonAndSoldUpdated(TextView textView, ImageButton button, Float sold)
+    public void buttonUpdate(ImageButton button, InvoiceModel invoice)
     {
-        textView.setText(String.valueOf(sold));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Payments.class);
-                startActivity(intent);
+                Intent intentPay = new Intent(getContext() , Payments.class);
+                intentPay.putExtra("extra", invoice);
+                intentPay.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intentPay);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.example.myapplication1.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -24,13 +25,14 @@ public class Payments extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final ProgressDialog dialog= ProgressDialog.show(this, null, "Va rog sa asteptati");
         setContentView(R.layout.activity_payments);
         Intent intent = getIntent();
         InvoiceModel invoiceModel = (InvoiceModel)intent.getSerializableExtra("extra");
-        payInvoice(invoiceModel.getInvoiceId(),invoiceModel.getValueWithVat());
+        payInvoice(invoiceModel.getInvoiceId(),invoiceModel.getValueWithVat(), dialog);
     }
 
-    public void payInvoice(int invoiceID, float toBePaid){
+    public void payInvoice(int invoiceID, float toBePaid, ProgressDialog dialog){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -65,6 +67,7 @@ public class Payments extends AppCompatActivity {
                 return false;
             }
         });
+        dialog.dismiss();
     }
 
     public static String nonceGen(int len){

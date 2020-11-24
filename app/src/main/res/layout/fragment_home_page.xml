@@ -126,9 +126,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:textStyle="bold"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
+            android:textStyle="italic"
             android:textSize="@dimen/home_textsize"
             android:textColor="@color/black"/>
 
@@ -139,9 +139,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/invoiceNr"
             android:paddingTop="10dp"
-            android:textStyle="italic"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
+            android:textStyle="italic"
             android:textSize="@dimen/home_textsize"
             android:textColor="@color/black"/>
 

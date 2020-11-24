@@ -32,6 +32,7 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
     TextView startDate, endDate;
     String save_startDate, save_endDate;
     AccountModel account;
+    int addressId;
 
     @Nullable
     @Override
@@ -42,6 +43,7 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
         Gson gson = new Gson();
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
+        addressId = mPrefs.getInt("Address", 0);
 
         startDate = view.findViewById(R.id.startDateSearch);
         startDate.setOnClickListener(this);
@@ -66,7 +68,7 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.searchButtonByData:
                 if(save_startDate != null & save_endDate != null) {
-                    SearchByDate searchByDate = new SearchByDate(account.getAccountId(), save_startDate,save_endDate);
+                    SearchByDate searchByDate = new SearchByDate(account.getAccountId(), addressId, save_startDate,save_endDate);
 
                     InvoicesFragment fragm = (InvoicesFragment) getFragmentManager().findFragmentById(R.id.fragment_container_view_tag);
                     fragm.getInvoiceListFromSearchFragment(searchByDate);
