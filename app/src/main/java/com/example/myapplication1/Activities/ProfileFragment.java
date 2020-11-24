@@ -125,49 +125,53 @@ public class ProfileFragment extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserEdit user = new UserEdit(account.getAccountId(), editEmail.getText().toString(), Long.parseLong(editPhone.getText().toString()));
-                System.out.println(user.getEmail()+ "   "+user.getTelephoneNumber());
-                Pattern pattern = Pattern.compile(regex);
-                if(String.valueOf(user.getTelephoneNumber()).length() == 9 & pattern.matcher(user.getEmail()).matches())
-                {
-                    APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-                    Call<Void> call = invoiceAPI.editUser(user);
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            Toast.makeText(ProfileFragment.this.getContext(), "Modificari salvate", Toast.LENGTH_LONG).show();
+                if(!editEmail.getText().toString().isEmpty()&& !editPhone.getText().toString().isEmpty()) {
+                    UserEdit user = new UserEdit(account.getAccountId(), editEmail.getText().toString(), Long.parseLong(editPhone.getText().toString()));
 
-                            //set email textview
-                            account.setEmail(user.getEmail());
-                            TextView textView_email = profileView.findViewById(R.id.email);
-                            textView_email.setText(account.getEmail());
+                    System.out.println(user.getEmail() + "   " + user.getTelephoneNumber());
+                    Pattern pattern = Pattern.compile(regex);
+                    if (String.valueOf(user.getTelephoneNumber()).length() == 9 & pattern.matcher(user.getEmail()).matches()
+                            && !String.valueOf(user.getTelephoneNumber()).isEmpty() && !user.getEmail().isEmpty()) {
+                        APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
+                        Call<Void> call = invoiceAPI.editUser(user);
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                Toast.makeText(ProfileFragment.this.getContext(), "Modificari salvate", Toast.LENGTH_LONG).show();
 
-                            //set telephone textview
-                            account.setTelephoneNumber(user.getTelephoneNumber());
-                            TextView textView_telephon = profileView.findViewById(R.id.telephonNumber);
-                            textView_telephon.setText("0" + account.getTelephoneNumber());
+                                //set email textview
+                                account.setEmail(user.getEmail());
+                                TextView textView_email = profileView.findViewById(R.id.email);
+                                textView_email.setText(account.getEmail());
 
-                            //save new info about this account in sharepreferences
-                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                            Gson gson = new Gson();
-                            String json = gson.toJson(account);
-                            prefsEditor.putString("AccountInfo", json);
-                            prefsEditor.commit();
-                        }
+                                //set telephone textview
+                                account.setTelephoneNumber(user.getTelephoneNumber());
+                                TextView textView_telephon = profileView.findViewById(R.id.telephonNumber);
+                                textView_telephon.setText("0" + account.getTelephoneNumber());
 
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            Toast.makeText(ProfileFragment.this.getContext(), "Eroare de retea", Toast.LENGTH_LONG).show();
-                            call.cancel();
-                        }
-                    });
+                                //save new info about this account in sharepreferences
+                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                Gson gson = new Gson();
+                                String json = gson.toJson(account);
+                                prefsEditor.putString("AccountInfo", json);
+                                prefsEditor.commit();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(ProfileFragment.this.getContext(), "Eroare de retea", Toast.LENGTH_LONG).show();
+                                call.cancel();
+                            }
+                        });
+                    } else if (!pattern.matcher(user.getEmail()).matches() | user.getEmail().isEmpty())
+                        Toast.makeText(ProfileFragment.this.getContext(), "Email incorect", Toast.LENGTH_LONG).show();
+                    if (String.valueOf(user.getTelephoneNumber()).isEmpty() | String.valueOf(user.getTelephoneNumber()).length() < 9)
+                        Toast.makeText(ProfileFragment.this.getContext(), "Numar de telefon incorect", Toast.LENGTH_LONG).show();
                 }
                 else
-                    if(!pattern.matcher(user.getEmail()).matches() | user.getEmail() == "")
-                        Toast.makeText(ProfileFragment.this.getContext(), "Email incorect", Toast.LENGTH_LONG).show();
-                    else
-                        Toast.makeText(ProfileFragment.this.getContext(), "Numar de telefon incorect", Toast.LENGTH_LONG).show();
-
+                {
+                    Toast.makeText(ProfileFragment.this.getContext(), "Campuri necompletate", Toast.LENGTH_LONG).show();
+                }
                 dialog.dismiss();
             }
         });
