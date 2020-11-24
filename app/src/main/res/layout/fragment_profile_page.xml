@@ -147,12 +147,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Editare"
             android:id="@+id/editProfile"
-            android:layout_margin="@dimen/home_margin"
-            android:layout_gravity="center"
-            android:layout_below="@id/telephonNumber"
-            android:text="Actualizare date"
-            android:textColor="@color/black"/>
+            android:layout_marginTop="20dp"
+            />
+
+
 
     </GridLayout>
 </ScrollView>
