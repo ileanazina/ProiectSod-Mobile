@@ -65,6 +65,8 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
     private int AddressIdFromSpinner;
     private AlertDialog dialogError;
 
+    private float lastIndexValue;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,6 +97,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         this.callback = new IndexFragment.RevealDetailsCallbacks() {
             @Override
             public void getDataFromIndex(List<IndexModel> list) {
+                lastIndexValue= list.get(0).getIndexValue();
                 for (int i = 0; i < list.size(); i++) {
                     if (account.getAccountId() == list.get(i).getAccountId()&&list.get(i).getAddressId()==AddressIdFromSpinner)
                     {
@@ -103,6 +106,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                         indexesAdaptor.notifyDataSetChanged();
                     }
                 }
+                Log.e(String.valueOf(lastIndexValue),"last index value");
             }
         };
 
@@ -112,10 +116,12 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                 @Override
                 public void onClick(View v) {
 
-                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null) {
+                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null
+                            ||Float.valueOf(addIndexValue.getText().toString())<lastIndexValue) {
                         Toast.makeText(getContext(),
-                                "Introduceti valoarea indexului", Toast.LENGTH_LONG).show();
-                    } else {
+                                "Introduceti corect valoarea indexului", Toast.LENGTH_LONG).show();
+                    }
+                    else {
                         String strIndex = String.valueOf(addIndexValue.getText());
                         float indexValue = Float.parseFloat(strIndex);
                         AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
