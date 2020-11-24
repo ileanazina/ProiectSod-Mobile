@@ -111,12 +111,13 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
                 @Override
                 public void onClick(View v) {
-                    String strIndex = String.valueOf(addIndexValue.getText());
-                    float indexValue = Float.parseFloat(strIndex);
-                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null) {
-                        addIndexValue.setError(getContext().getResources().getString(R.string.index_fragment_invalid_index));
-                    } else {
 
+                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null) {
+                        Toast.makeText(getContext(),
+                                "Introduceti valoarea indexului", Toast.LENGTH_LONG).show();
+                    } else {
+                        String strIndex = String.valueOf(addIndexValue.getText());
+                        float indexValue = Float.parseFloat(strIndex);
                         AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
                         Call<IndexModel> call = indexesAPI.insertIndex(index);
                         call.enqueue(new Callback<IndexModel>() {
