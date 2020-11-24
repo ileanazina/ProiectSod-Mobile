@@ -170,6 +170,10 @@ public class ProfileFragment extends Fragment {
                     if (String.valueOf(user.getTelephoneNumber()).isEmpty() | String.valueOf(user.getTelephoneNumber()).length() < 9)
                         Toast.makeText(ProfileFragment.this.getContext(), "Numar de telefon incorect", Toast.LENGTH_LONG).show();
                 }
+                else
+                {
+                    Toast.makeText(ProfileFragment.this.getContext(), "Campuri necompletate", Toast.LENGTH_LONG).show();
+                }
                 dialog.dismiss();
             }
         });
