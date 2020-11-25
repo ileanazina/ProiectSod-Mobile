@@ -23,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FormsFragment extends Fragment implements FormAdaptor.OnInvoiceListener {
+public class FormsFragment extends Fragment implements FormAdaptor.OnFormListener {
     private RecyclerView recyclerView;
     private List<DocumentDownloadModel> forAdaptorForms;
     private FormAdaptor invoiceAdaptor;
@@ -43,7 +43,7 @@ public class FormsFragment extends Fragment implements FormAdaptor.OnInvoiceList
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         forAdaptorForms = new ArrayList<>();
-        invoiceAdaptor = new FormAdaptor(getContext(), forAdaptorForms, FormsFragment.this);
+        invoiceAdaptor = new FormAdaptor(getContext(), forAdaptorForms,FormsFragment.this);
         recyclerView.setAdapter(invoiceAdaptor);
 
         this.callback = new RevealDetailsCallbacks() {
@@ -81,5 +81,10 @@ public class FormsFragment extends Fragment implements FormAdaptor.OnInvoiceList
                 call.cancel();
             }
         });
+    }
+
+    @Override
+    public void onFormListener(int position) {
+
     }
 }
