@@ -47,8 +47,8 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
             aux = "Dispoibil pentru descarcare";
         else aux = "Indisponibi";
 
-        holder.tvDocumentInfo.setText(item.getDocumentTypeName() + "\nNume: " + item.getDocumentName()
-                + "\nData la care a fost incarcat: " + uploadDate + "\n" + aux);
+        holder.tvDocumentType.setText(item.getDocumentTypeName());
+        holder.tvDocumentInfo.setText( "Nume: " + item.getDocumentName() + "\nData la care a fost incarcat: " + uploadDate + "\n" + aux);
     }
 
 
@@ -62,13 +62,14 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
 
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView tvDocumentInfo;
+        public TextView tvDocumentInfo, tvDocumentType;
         public ImageButton btndown, btnup;
         FormAdaptor.OnFormListener onFormListener;
 
         public ExempleViewHolder(@NonNull View itemView, FormAdaptor.OnFormListener onFormListener) {
             super(itemView);
             tvDocumentInfo = itemView.findViewById(R.id.documentInfo);
+            tvDocumentType = itemView.findViewById(R.id.documentType);
             btndown = itemView.findViewById(R.id.downloadButton);
             btnup = itemView.findViewById(R.id.uploadButton);
 
