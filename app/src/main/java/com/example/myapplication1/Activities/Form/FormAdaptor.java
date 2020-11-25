@@ -1,4 +1,4 @@
-package com.example.myapplication1.Activities;
+package com.example.myapplication1.Activities.Form;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +18,13 @@ import com.example.myapplication1.R;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class FormAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewHolder> {
+public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHolder> {
 
     private Context mContext;
    private List<IndexModel> indexList;
-    private IndexAdaptor.OnIndexListener monIndexListener;
+    private OnIndexListener monIndexListener;
 
-    public FormAdaptor(Context mContext, List<IndexModel> mList, IndexAdaptor.OnIndexListener onIndexListener) {
+    public FormAdaptor(Context mContext, List<IndexModel> mList, OnIndexListener onIndexListener) {
         this.mContext = mContext;
         this.indexList = mList;
         this.monIndexListener=onIndexListener;
@@ -32,16 +32,16 @@ public class FormAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewHo
 
     @NonNull
     @Override
-    public IndexAdaptor.ExempleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ExempleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.form_row_view,parent,false);
         return new FormAdaptor.ExempleViewHolder(v,monIndexListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FormAdaptor.ExempleViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -65,7 +65,7 @@ public class FormAdaptor extends RecyclerView.Adapter<IndexAdaptor.ExempleViewHo
 
         @Override
         public void onClick(View v) {
-            onIndexListener.onIndexListener(getAdapterPosition());
+            monIndexListener.onIndexListener(getAdapterPosition());
         }
     }
 
