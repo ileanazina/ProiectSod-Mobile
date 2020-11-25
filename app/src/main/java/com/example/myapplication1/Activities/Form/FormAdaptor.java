@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication1.Model.DocumentDownloadModel;
@@ -53,14 +54,14 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView tvDocumentType;
-        public Button btndown, btnup;
+        public ImageButton btndown, btnup;
         FormAdaptor.OnFormListener onFormListener;
 
         public ExempleViewHolder(@NonNull View itemView, FormAdaptor.OnFormListener onFormListener) {
             super(itemView);
             tvDocumentType = itemView.findViewById(R.id.documentType);
-            btndown = itemView.findViewById(R.id.download);
-            btnup = itemView.findViewById(R.id.upload);
+            btndown = itemView.findViewById(R.id.downloadButton);
+            btnup = itemView.findViewById(R.id.uploadButton);
 
             btndown.setOnClickListener(this);
             btnup.setOnClickListener(this);
@@ -78,10 +79,10 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
             DocumentDownloadModel item = documentList.get(position);
 
             switch (v.getId()) {
-                case R.id.download:
+                case R.id.downloadButton:
                     downloadDoc(item);
                     break;
-                case R.id.upload:
+                case R.id.uploadButton:
                     uploadDoc(item);
                     break;
             }
