@@ -28,7 +28,6 @@ public class InvoiceModel implements Serializable {
     private String issuerAddress;
     @SerializedName("isPaid")
     private boolean isPaid;
-
     @SerializedName("filter")
     private String filter;
 

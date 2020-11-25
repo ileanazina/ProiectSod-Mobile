@@ -122,7 +122,6 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
     public void getInvoiceList() {
         InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId);
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        //Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(),addressId);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
