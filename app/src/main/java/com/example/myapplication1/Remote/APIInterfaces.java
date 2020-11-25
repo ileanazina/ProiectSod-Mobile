@@ -10,8 +10,7 @@ import com.example.myapplication1.Model.DocumentDownloadModel;
 import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
-import com.example.myapplication1.Model.PaymentModel;
-import com.example.myapplication1.Model.SearchByDate;
+import com.example.myapplication1.Model.InvoiceFilter;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Model.UserEdit;
 import com.example.myapplication1.Model.UserLogIn;
@@ -38,7 +37,7 @@ public interface APIInterfaces {
     //Call<List<InvoiceModel>> getInvoicesByAccountId(@Path("accountId") int accountId,@Path("addressId") int addressId );
 
     @POST("/Invoices/GetInvoicesByAccountId")
-    Call<List<InvoiceModel>> getInvoicesByAccountId(@Body InvoiceModel invoiceModel);
+    Call<List<InvoiceModel>> getInvoicesByAccountId(@Body InvoiceFilter invoiceFilter);
 
     @GET("Invoices/GetSold/{accountId}/{addressId}")
     Call<Float> getSold(@Path("accountId") int accountId, @Path("addressId") int addressId);
@@ -50,7 +49,7 @@ public interface APIInterfaces {
     Call<Void> editUser(@Body UserEdit user);
 
     @POST("Invoices/GetInvoicesByAccountIdWithinDates")
-    Call<List<InvoiceModel>> getInvoicesByAccountIdWithinDates(@Body SearchByDate searchByDate);
+    Call<List<InvoiceModel>> getInvoicesByAccountIdWithinDates(@Body InvoiceFilter invoiceFilter);
 
     @POST("Index/AddIndexToAccountId")
     Call<IndexModel> insertIndex(@Body AddIIndex index);

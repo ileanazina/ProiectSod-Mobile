@@ -2,21 +2,36 @@ package com.example.myapplication1.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SearchByDate {
+public class InvoiceFilter {
     @SerializedName("accountId")
     public int accountId;
     @SerializedName("addressId")
     private int addressId;
+    @SerializedName("filter")
+    private String filter;
     @SerializedName("date1")
     private String startDate;
     @SerializedName("date2")
     private String endDate;
 
-    public SearchByDate(int accountId, int addressId, String startDate, String endDate) {
+    public InvoiceFilter(int accountId, int addressId, String startDate, String endDate) {
         this.accountId = accountId;
         this.addressId = addressId;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public InvoiceFilter( int accountId, int addressId) {
+
+        this.accountId = accountId;
+        this.addressId = addressId;
+    }
+
+    public InvoiceFilter( int accountId, int addressId, String filter) {
+
+        this.accountId = accountId;
+        this.addressId = addressId;
+        this.filter = filter;
     }
 
     public int getAccountId() {

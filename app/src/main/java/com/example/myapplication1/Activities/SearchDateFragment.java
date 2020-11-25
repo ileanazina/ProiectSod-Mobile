@@ -19,7 +19,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.myapplication1.Activities.Invoice.InvoicesFragment;
 import com.example.myapplication1.Model.AccountModel;
-import com.example.myapplication1.Model.SearchByDate;
+import com.example.myapplication1.Model.InvoiceFilter;
 import com.example.myapplication1.R;
 import com.google.gson.Gson;
 
@@ -68,10 +68,10 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.searchButtonByData:
                 if(save_startDate != null & save_endDate != null) {
-                    SearchByDate searchByDate = new SearchByDate(account.getAccountId(), addressId, save_startDate,save_endDate);
+                    InvoiceFilter invoiceFilter = new InvoiceFilter(account.getAccountId(), addressId, save_startDate,save_endDate);
 
                     InvoicesFragment fragm = (InvoicesFragment) getFragmentManager().findFragmentById(R.id.fragment_container_view_tag);
-                    fragm.getInvoiceListFromSearchFragment(searchByDate);
+                    fragm.getInvoiceListFromSearchFragment(invoiceFilter);
                 }
                 else Toast.makeText(getActivity(), getResources().getString(R.string.search_date_fragment_invalid_dates), Toast.LENGTH_LONG).show();
                 break;

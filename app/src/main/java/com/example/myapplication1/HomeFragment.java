@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.myapplication1.Activities.Payments;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddressModel;
+import com.example.myapplication1.Model.InvoiceFilter;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
@@ -198,9 +199,8 @@ public class HomeFragment extends Fragment {
 
     public void get3Invoices(Context context, RevealDetailsCallbacks callback)
     {
-        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressesID);
+        InvoiceFilter invModel = new InvoiceFilter(account.getAccountId(),addressesID);
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        //Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(), addressesID);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
 
         call.enqueue(new Callback<List<InvoiceModel>>() {
