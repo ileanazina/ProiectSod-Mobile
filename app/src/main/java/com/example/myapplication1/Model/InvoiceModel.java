@@ -28,24 +28,9 @@ public class InvoiceModel implements Serializable {
     private String issuerAddress;
     @SerializedName("isPaid")
     private boolean isPaid;
-    @SerializedName("filter")
-    private String filter;
 
     public InvoiceModel()
     {}
-
-    public InvoiceModel( int accountId, int addressId) {
-
-        this.accountId = accountId;
-        this.addressId = addressId;
-    }
-
-    public InvoiceModel( int accountId, int addressId, String filter) {
-
-        this.accountId = accountId;
-        this.addressId = addressId;
-        this.filter = filter;
-    }
 
     public InvoiceModel(int invoiceId, int accountId, int addressId, float vat, float valueWithVat, float valueWithoutVAT,
                         Date dateOfIssue, Date dueDate, int cuiIssuer, String issuerAddress, boolean isPaid) throws ParseException {

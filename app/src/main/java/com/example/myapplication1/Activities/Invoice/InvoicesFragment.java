@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.example.myapplication1.Activities.SearchDateFragment;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.InvoiceModel;
-import com.example.myapplication1.Model.SearchByDate;
+import com.example.myapplication1.Model.InvoiceFilter;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
@@ -80,24 +80,27 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
                 }
             }
         };
-        getInvoiceList();
+        getInvoiceList(new InvoiceFilter(account.getAccountId(),addressId));
 
         view.findViewById(R.id.allInvoices).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getInvoiceList();
+                InvoiceFilter invFilter = new InvoiceFilter(account.getAccountId(),addressId);
+                getInvoiceList(invFilter);
             }
         });
         view.findViewById(R.id.payedInvoices).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                putJustPayedInvoices();
+                InvoiceFilter invFilter = new InvoiceFilter(account.getAccountId(),addressId, "p");
+                getInvoiceList(invFilter);
             }
         });
         view.findViewById(R.id.unpayedInvoices).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                putUnpayedInvoices();
+                InvoiceFilter invFilter = new InvoiceFilter(account.getAccountId(),addressId, "up");
+                getInvoiceList(invFilter);
             }
         });
         view.findViewById(R.id.afterdate).setOnClickListener(new View.OnClickListener() {
@@ -119,50 +122,7 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
         return view;
     }
 
-    public void getInvoiceList() {
-        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId);
-        invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
-        call.enqueue(new Callback<List<InvoiceModel>>() {
-            @Override
-            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
-                List<InvoiceModel> invoices = response.body();
-                if(callback != null) {
-                    callback.getDataFromInvoices(invoices);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
-                call.cancel();
-            }
-        });
-    }
-
-    public void putJustPayedInvoices()
-    {
-        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId, "p");
-        invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
-        call.enqueue(new Callback<List<InvoiceModel>>() {
-            @Override
-            public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
-                List<InvoiceModel> invoices = response.body();
-                if(callback != null) {
-                    callback.getDataFromInvoices(invoices);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<InvoiceModel>> call, Throwable t) {
-                call.cancel();
-            }
-        });
-    }
-
-    public void putUnpayedInvoices()
-    {
-        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId, "up");
+    public void getInvoiceList(InvoiceFilter invModel) {
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
         call.enqueue(new Callback<List<InvoiceModel>>() {
@@ -184,9 +144,9 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
     @Override
     public void onInvoiceListener(int position) {}
 
-    public void getInvoiceListFromSearchFragment(SearchByDate searchByDate) {
+    public void getInvoiceListFromSearchFragment(InvoiceFilter invoiceFilter) {
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountIdWithinDates(searchByDate);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invoiceFilter);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
