@@ -1,24 +1,19 @@
 package com.example.myapplication1.Activities.Form;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication1.Activities.Index.IndexAdaptor;
 import com.example.myapplication1.Model.DocumentDownloadModel;
-import com.example.myapplication1.Model.IndexModel;
-import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.R;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHolder> {
@@ -50,6 +45,9 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
     @Override
     public int getItemCount() {
         return documentList.size();
+    }
+
+    public interface OnInvoiceListener {
     }
 
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

@@ -77,5 +77,5 @@ public interface APIInterfaces {
     Call<Void> sentInvoiceByEmail(@Path("accountId") int accountId, @Path("invoiceId") int invoiceId);
 
     @GET("Document")
-    Call<DocumentDownloadModel> downloadAllDocuments();
+    Call<List<DocumentDownloadModel>> downloadAllDocuments();
 }
