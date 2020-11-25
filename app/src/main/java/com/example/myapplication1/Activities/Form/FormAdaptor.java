@@ -8,13 +8,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication1.Model.DocumentDownloadModel;
 import com.example.myapplication1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHolder> {
@@ -39,7 +39,16 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
     @Override
     public void onBindViewHolder(@NonNull ExempleViewHolder holder, int position) {
         DocumentDownloadModel item = documentList.get(position);
-        holder.tvDocumentType.setText("Documentul" + item.getDocumentName());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String uploadDate = formatter.format(item.getUploadDate());
+
+        String aux= "";
+        if(item.isActive() == true)
+            aux = "Dispoibil pentru descarcare";
+        else aux = "Indisponibi";
+
+        holder.tvDocumentInfo.setText(item.getDocumentTypeName() + "\nNume: " + item.getDocumentName()
+                + "\nData la care a fost incarcat: " + uploadDate + "\n" + aux);
     }
 
 
@@ -53,13 +62,13 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
 
     public class ExempleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView tvDocumentType;
+        public TextView tvDocumentInfo;
         public ImageButton btndown, btnup;
         FormAdaptor.OnFormListener onFormListener;
 
         public ExempleViewHolder(@NonNull View itemView, FormAdaptor.OnFormListener onFormListener) {
             super(itemView);
-            tvDocumentType = itemView.findViewById(R.id.documentType);
+            tvDocumentInfo = itemView.findViewById(R.id.documentInfo);
             btndown = itemView.findViewById(R.id.downloadButton);
             btnup = itemView.findViewById(R.id.uploadButton);
 

@@ -30,6 +30,7 @@ public class InvoiceModel implements Serializable {
     private boolean isPaid;
     @SerializedName("filter")
     private String filter;
+
     public InvoiceModel()
     {}
 
