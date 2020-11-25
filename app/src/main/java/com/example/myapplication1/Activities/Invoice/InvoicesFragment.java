@@ -80,7 +80,7 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
                 }
             }
         };
-        getInvoiceList();
+        getInvoiceList(new InvoiceFilter(account.getAccountId(),addressId));
 
         view.findViewById(R.id.allInvoices).setOnClickListener(new View.OnClickListener() {
             @Override

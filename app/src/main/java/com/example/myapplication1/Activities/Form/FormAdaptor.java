@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +89,7 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
             position = getAdapterPosition();
             DocumentDownloadModel item = documentList.get(position);
 
+
             switch (v.getId()) {
                 case R.id.downloadButton:
                     downloadDoc(item);
@@ -98,6 +101,11 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
         }
 
         private void uploadDoc(DocumentDownloadModel item) {
+            String url = item.getDownloadLink();
+            Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mContext.startActivity(intent);
         }
 
         private void downloadDoc(DocumentDownloadModel item) {
