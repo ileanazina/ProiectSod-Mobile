@@ -2,13 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication1">
 
-
-
     <uses-permission
         android:name="android.permission.INTERNET"
         android:usesCleartextTraffic="true" />
-
-
 
     <application
         android:allowBackup="true"
@@ -18,22 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication1"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.FormsFragment"></activity>
+        <activity android:name=".Activities.FormAdaptor" />
         <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activities.Payments" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".Activities.DatePicker"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />
     </application>
-
-
 
 </manifest>
