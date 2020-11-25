@@ -69,7 +69,6 @@ public class SearchDateFragment extends Fragment implements View.OnClickListener
             case R.id.searchButtonByData:
                 if(save_startDate != null & save_endDate != null) {
                     InvoiceFilter invoiceFilter = new InvoiceFilter(account.getAccountId(), addressId, save_startDate,save_endDate);
-
                     InvoicesFragment fragm = (InvoicesFragment) getFragmentManager().findFragmentById(R.id.fragment_container_view_tag);
                     fragm.getInvoiceListFromSearchFragment(invoiceFilter);
                 }
