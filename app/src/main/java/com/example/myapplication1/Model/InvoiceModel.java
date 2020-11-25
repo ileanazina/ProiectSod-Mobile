@@ -28,10 +28,29 @@ public class InvoiceModel implements Serializable {
     private String issuerAddress;
     @SerializedName("isPaid")
     private boolean isPaid;
+
     @SerializedName("filter")
     private String filter;
+
+
+    @SerializedName("date1")
+    private Date date1;
+
+    @SerializedName("date2")
+    private Date date2;
+
+
+
     public InvoiceModel()
     {}
+
+    public InvoiceModel( int accountId, int addressId, Date date1, Date date2) {
+
+        this.accountId = accountId;
+        this.addressId = addressId;
+        this.date1 = date1;
+        this.date2 = date2;
+    }
 
     public InvoiceModel( int accountId, int addressId) {
 

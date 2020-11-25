@@ -186,8 +186,9 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
     public void onInvoiceListener(int position) {}
 
     public void getInvoiceListFromSearchFragment(SearchByDate searchByDate) {
+       // InvoiceModel invModel = new InvoiceModel(searchByDate);
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountIdWithinDates(searchByDate);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId((InvoiceModel) searchByDate);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
