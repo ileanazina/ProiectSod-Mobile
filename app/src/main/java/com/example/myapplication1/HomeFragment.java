@@ -198,8 +198,11 @@ public class HomeFragment extends Fragment {
 
     public void get3Invoices(Context context, RevealDetailsCallbacks callback)
     {
+        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressesID);
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(), addressesID);
+        //Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(), addressesID);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
+
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {

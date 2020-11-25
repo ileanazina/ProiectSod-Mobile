@@ -120,8 +120,10 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
     }
 
     public void getInvoiceList() {
+        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId);
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(),addressId);
+        //Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(account.getAccountId(),addressId);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
@@ -140,8 +142,9 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
 
     public void putJustPayedInvoices()
     {
+        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId, "p");
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getPaidInvoicesByAccountId(account.getAccountId(), addressId);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
@@ -160,8 +163,9 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
 
     public void putUnpayedInvoices()
     {
+        InvoiceModel invModel = new InvoiceModel(account.getAccountId(),addressId, "up");
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getUnpaidInvoicesByAccountId(account.getAccountId(), addressId);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
