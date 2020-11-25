@@ -6,6 +6,7 @@ import com.example.myapplication1.Model.AddressModel;
 import com.example.myapplication1.Model.CityModel;
 import com.example.myapplication1.Model.CountryModel;
 import com.example.myapplication1.Model.DistrictModel;
+import com.example.myapplication1.Model.DocumentDownloadModel;
 import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
@@ -74,4 +75,7 @@ public interface APIInterfaces {
 
     @GET("Dropbox/DownloadInvoice/{accountId}/{invoiceId}")
     Call<Void> sentInvoiceByEmail(@Path("accountId") int accountId, @Path("invoiceId") int invoiceId);
+
+    @GET("Document")
+    Call<DocumentDownloadModel> downloadAllDocuments();
 }
