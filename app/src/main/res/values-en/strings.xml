@@ -56,7 +56,7 @@
     <string name="index_adaptor_value">"Index value: "</string>
     <string name="index_adaptor_date">"Index date: "</string>
     <string name="index_adaptor_consumption">"Medium consumption: "</string>
-    <string name="index_fragment_invalid_index">Invalid Index!</string>
+    <string name="index_fragment_invalid_index">" The index is entered between 20 and 25!"</string>
     <string name="index_fragment_invalid">" Not valid!"</string>
     <string name="index_fragment_success">Success!</string>
     <string name="login_connect_toast">Connecting...</string>

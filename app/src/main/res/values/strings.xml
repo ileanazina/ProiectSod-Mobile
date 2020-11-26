@@ -13,7 +13,7 @@
     <string name="index_adaptor_consumption">Consum mediu: </string>
 
     <!--IndexFragment-->
-    <string name="index_fragment_invalid_index">Index invalid</string>
+    <string name="index_fragment_invalid_index">Indexul se introduce între 20 și 25</string>
     <string name="index_fragment_invalid">Invalid</string>
     <string name="index_fragment_success">Succes</string>
     <string name="index_fragment_correct_value">Introduceți corect valoarea indexului</string>

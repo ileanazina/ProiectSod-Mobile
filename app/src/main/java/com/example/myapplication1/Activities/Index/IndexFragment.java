@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.myapplication1.MainActivity;
 import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.AddIIndex;
 import com.example.myapplication1.Model.IndexModel;
@@ -52,17 +51,14 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
     private APIInterfaces indexesAPI;
     private CompositeDisposable compositeDisposable= new CompositeDisposable();
     private IndexFragment.RevealDetailsCallbacks callback;
-    private AlertDialog.Builder builder;
 
     private Button addIndex;
     private EditText addIndexValue;
-    private ImageView img;
 
     private List<IndexModel> allIndexes;
     private List<IndexModel> forAdaptorIndexes;
     AccountModel account;
     private int AddressIdFromSpinner;
-    private AlertDialog dialogError;
 
     private float lastIndexValue;
 
@@ -92,7 +88,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         int ad= aPrefs.getInt("Address",0);
         AddressIdFromSpinner = ad;
 
-        //int today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         //Log.e(String.valueOf(today), "ziua de azi");
 
         this.callback = new IndexFragment.RevealDetailsCallbacks() {
@@ -113,19 +109,19 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                 //Log.e(String.valueOf(list.size()),"index size");
             }
         };
-
         getIndexList(getContext(), callback);
-            addIndex.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
+        addIndex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null
-                            ||Float.valueOf(addIndexValue.getText().toString())<lastIndexValue) {
-                        Toast.makeText(getContext(),
-                                "Introduceti corect valoarea indexului", Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null
+                        || Float.valueOf(addIndexValue.getText().toString()) < lastIndexValue) {
+                    Toast.makeText(getContext(),
+                            getResources().getString(R.string.index_fragment_correct_value), Toast.LENGTH_LONG).show();
+                } else {
+
+                    if(today >=20 &&today<= 25) {
                         String strIndex = String.valueOf(addIndexValue.getText());
                         float indexValue = Float.parseFloat(strIndex);
                         AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
@@ -135,36 +131,35 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                             public void onResponse(Call<IndexModel> call, Response<IndexModel> response) {
                                 IndexModel model = response.body();
                                 if (model == null) {
-                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_invalid), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_invalid),
+                                            Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_success), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_success),
+                                            Toast.LENGTH_LONG).show();
                                 }
                             }
 
-                                    @Override
-                                    public void onFailure(Call<IndexModel> call, Throwable t) {
-                                        call.cancel();
-                                    }
-                                });
+                            @Override
+                            public void onFailure(Call<IndexModel> call, Throwable t) {
+                                call.cancel();
                             }
-                            else
-                            {
-                                Toast.makeText(getContext(),
-                                   "Indexul se introduce intre 20 si 25", Toast.LENGTH_LONG).show();
-                            }
-
-
+                        });
                     }
-                    Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container_view_tag);
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.detach(currentFragment);
-                    fragmentTransaction.attach(currentFragment);
-                    fragmentTransaction.commit();
+                    else
+                    {
+                        Toast.makeText(getContext(),
+                                getResources().getString(R.string.index_fragment_invalid_index), Toast.LENGTH_LONG).show();
+                    }
                 }
-            });
+                Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container_view_tag);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.detach(currentFragment);
+                fragmentTransaction.attach(currentFragment);
+                fragmentTransaction.commit();
+            }
+        });
         return view;
     }
-
 
     public void getIndexList(Context context, RevealDetailsCallbacks callback) {
         indexesAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
