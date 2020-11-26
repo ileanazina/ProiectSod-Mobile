@@ -59,6 +59,8 @@ public class HomeFragment extends Fragment {
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
 
+        System.out.println(account.getAccountId());
+
         //Set the sold for the last unpaid invoice and set the button
         TextView textView_sold = view.findViewById(R.id.valLastUnpaidInvoices);
         ImageButton payButton = view.findViewById(R.id.mainMenuPayButton);
@@ -72,6 +74,12 @@ public class HomeFragment extends Fragment {
                     FullAddressName.add(model.getFullAddressName());
                     vaddressId.add(position,model.getAddressId()) ;
                     position++;
+                }
+
+                if(!vaddressId.isEmpty())
+                {
+                    addressesID = mPrefs.getInt("Address",vaddressId.get(0));
+                    get3Invoices(getContext(), callback);
                 }
 
                 getSold(getContext(), callback, vaddressId.get(0));
@@ -140,9 +148,7 @@ public class HomeFragment extends Fragment {
             }
         };
 
-        addressesID = mPrefs.getInt("Address",0);
         getAddressByAccount(getContext(), callback);
-        get3Invoices(getContext(), callback);
         return view;
     }
 
@@ -200,14 +206,16 @@ public class HomeFragment extends Fragment {
     public void get3Invoices(Context context, RevealDetailsCallbacks callback)
     {
         InvoiceFilter invModel = new InvoiceFilter(account.getAccountId(),addressesID);
+        System.out.println(addressesID);
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
 
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
+                List<InvoiceModel> list = response.body();
                 if (callback != null) {
-                    callback.getDataFromInvoices(response.body());
+                    callback.getDataFromInvoices(list);
                 }
             }
 
