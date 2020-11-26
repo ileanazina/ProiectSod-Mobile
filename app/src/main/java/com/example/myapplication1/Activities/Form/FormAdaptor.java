@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.myapplication1.Model.DocumentDownloadModel;
 import com.example.myapplication1.R;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -107,10 +108,21 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
 
         private void downloadDoc(DocumentDownloadModel item) {
             String url = item.getDownloadLink();
-            Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            String docName = item.getDocumentName();
+            Uri uri = Uri.parse(url);
+            if(docName.contains(".pdf")){
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "application/pdf");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent);
+            }
+            else{
+
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mContext.startActivity(intent);
+            }
         }
     }
 
