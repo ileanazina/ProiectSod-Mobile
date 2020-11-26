@@ -102,14 +102,15 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
         }
 
         private void uploadDoc(DocumentDownloadModel item) {
+
+        }
+
+        private void downloadDoc(DocumentDownloadModel item) {
             String url = item.getDownloadLink();
             Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mContext.startActivity(intent);
-        }
-
-        private void downloadDoc(DocumentDownloadModel item) {
         }
     }
 
