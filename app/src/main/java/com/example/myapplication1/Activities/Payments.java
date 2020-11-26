@@ -25,7 +25,7 @@ public class Payments extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ProgressDialog dialog= ProgressDialog.show(this, null, "Va rog sa asteptati");
+        final ProgressDialog dialog= ProgressDialog.show(this, null, getResources().getString(R.string.payment_please_wait));
         setContentView(R.layout.activity_payments);
         Intent intent = getIntent();
         InvoiceModel invoiceModel = (InvoiceModel)intent.getSerializableExtra("extra");
@@ -50,7 +50,7 @@ public class Payments extends AppCompatActivity {
         s.add(new Pair<>("amount", "1"));
         s.add(new Pair<>("curr", "RON"));
         s.add(new Pair<>("invoice_id", String.valueOf(invoiceID)));
-        s.add(new Pair<>("order_desc", "Ordin-de-plata"));
+        s.add(new Pair<>("order_desc", getResources().getString(R.string.payment_pay_order)));
         s.add(new Pair<>("merch_id", mid));
         s.add(new Pair<>("timestamp", dateString));
         s.add(new Pair<>("nonce", nonceGen(32)));

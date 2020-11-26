@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +56,6 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
     private Button addIndex;
     private EditText addIndexValue;
-    private ImageView img;
 
     private List<IndexModel> allIndexes;
     private List<IndexModel> forAdaptorIndexes;
@@ -83,7 +81,6 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
         addIndex = view.findViewById(R.id.addIndex);
         addIndexValue = view.findViewById(R.id.addIndexValue);
-        img = view.findViewById(R.id.imageView);
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         Gson gson = new Gson();
@@ -108,7 +105,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                     }
                 }
                 lastIndexValue = list.get(0).getIndexValue();
-                Log.e(String.valueOf(lastIndexValue),"last index value");
+                //Log.e(String.valueOf(lastIndexValue),"last index value");
                 //Log.e(String.valueOf(list.size()),"index size");
             }
         };
@@ -125,7 +122,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                     if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null
                             ||Float.valueOf(addIndexValue.getText().toString())<lastIndexValue) {
                         Toast.makeText(getContext(),
-                                "Introduceti corect valoarea indexului", Toast.LENGTH_LONG).show();
+                                getResources().getString(R.string.index_fragment_correct_value), Toast.LENGTH_LONG).show();
                     }
                     else {
                         String strIndex = String.valueOf(addIndexValue.getText());

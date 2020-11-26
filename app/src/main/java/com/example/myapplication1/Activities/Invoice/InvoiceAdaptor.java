@@ -29,7 +29,6 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
     private List<InvoiceModel> mList;
     private OnInvoiceListener monInvoiceListener;
     private AlertDialog.Builder builder;
-    private AlertDialog dialogError;
 
     public InvoiceAdaptor(Context mContext, List<InvoiceModel> mList,OnInvoiceListener onInvoiceListener) {
         this.mContext = mContext;
@@ -54,9 +53,9 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             holder.tvTotalPay.setText(mContext.getResources().getString(R.string.invoice_adaptor_to_paid) +" "+ item.getValueWithVat());
             holder.tvDueDate.setText(mContext.getResources().getString(R.string.invoice_adaptor_due_date)+" " + dataDue);
             if(item.isPaid())
-                holder.tvIsPayd.setText("Status factura: Platita");
+                holder.tvIsPayd.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_not_payed));
             else
-                holder.tvIsPayd.setText("Status factura: Neplatita");
+                holder.tvIsPayd.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_payed));
     }
 
     @Override
@@ -100,10 +99,9 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
                 case R.id.Paybtn:
                     if(!item.isPaid()) {
                         paingInvoice(item);
-                    break;
+                        break;
                     }
-                    else
-                    {
+                    else {
                         showalertDialog();
                         break;
                     }
@@ -117,12 +115,11 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             textView.setTextColor(Color.BLACK);
 
             builder = new AlertDialog.Builder(viewInfo.getRootView().getContext());
-            builder.setMessage("Factura este deja platita");
-            builder.setNeutralButton("OK",
+            builder.setMessage(mContext.getResources().getString(R.string.invoice_adaptor_already_payed));
+            builder.setNeutralButton(mContext.getResources().getString(R.string.invoice_adaptor_ok),
                     new DialogInterface.OnClickListener() {
 
-                        public void onClick(DialogInterface arg0,
-                                            int arg1) {
+                        public void onClick(DialogInterface arg0, int arg1) {
 
                         }
                     });

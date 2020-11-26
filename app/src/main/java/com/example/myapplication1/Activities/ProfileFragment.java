@@ -137,7 +137,8 @@ public class ProfileFragment extends Fragment {
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                Toast.makeText(ProfileFragment.this.getContext(), "Modificari salvate", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ProfileFragment.this.getContext(), getResources().getString(R.string.profile_saved_modify),
+                                        Toast.LENGTH_LONG).show();
 
                                 //set email textview
                                 account.setEmail(user.getEmail());
@@ -159,18 +160,22 @@ public class ProfileFragment extends Fragment {
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-                                Toast.makeText(ProfileFragment.this.getContext(), "Eroare de retea", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ProfileFragment.this.getContext(), getResources().getString(R.string.profile_error1),
+                                        Toast.LENGTH_LONG).show();
                                 call.cancel();
                             }
                         });
                     } else if (!pattern.matcher(user.getEmail()).matches() | user.getEmail().isEmpty())
-                        Toast.makeText(ProfileFragment.this.getContext(), "Email incorect", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileFragment.this.getContext(), getResources().getString(R.string.profile_error2),
+                                Toast.LENGTH_LONG).show();
                     if (String.valueOf(user.getTelephoneNumber()).isEmpty() | String.valueOf(user.getTelephoneNumber()).length() < 9)
-                        Toast.makeText(ProfileFragment.this.getContext(), "Numar de telefon incorect", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileFragment.this.getContext(), getResources().getString(R.string.profile_error3),
+                                Toast.LENGTH_LONG).show();
                 }
                 else
                 {
-                    Toast.makeText(ProfileFragment.this.getContext(), "Campuri necompletate", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProfileFragment.this.getContext(), getResources().getString(R.string.profile_error4),
+                            Toast.LENGTH_LONG).show();
                 }
                 dialog.dismiss();
             }

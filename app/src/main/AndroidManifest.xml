@@ -7,8 +7,8 @@
         android:usesCleartextTraffic="true" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -18,8 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.FormsFragment"></activity>
-        <activity android:name=".Activities.FormAdaptor" />
         <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

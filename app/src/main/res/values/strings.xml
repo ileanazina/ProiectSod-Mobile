@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Aplicația mea</string>
 
+    <!--FormAdaptor-->
+    <string name="form_adaptor_download_disponibility">Disponibil pentru descărcare</string>
+    <string name="form_adaptor_download_indisponibility">Indisponibil</string>
+    <string name="form_adaptor_name_file">Nume: </string>
+    <string name="form_adaptor_date">"Data la care a fost încărcat: "</string>
+
     <!--IndexAdaptor-->
     <string name="index_adaptor_value">Valoare index: </string>
     <string name="index_adaptor_date">Data index: </string>
@@ -10,20 +16,36 @@
     <string name="index_fragment_invalid_index">Index invalid</string>
     <string name="index_fragment_invalid">Invalid</string>
     <string name="index_fragment_success">Succes</string>
+    <string name="index_fragment_correct_value">Introduceți corect valoarea indexului</string>
 
     <!--InvoiceAdaptor-->
     <string name="invoice_adaptor_invoice_number">Numar facură: </string>
     <string name="invoice_adaptor_to_paid">Total de plată: </string>
     <string name="invoice_adaptor_due_date">Dată scadentă: </string>
+    <string name="invoice_adaptor_invoice_payed">Status factură: Plătită</string>
+    <string name="invoice_adaptor_invoice_not_payed">Status factură: Neplătită </string>
+    <string name="invoice_adaptor_already_payed">Factura este deja plătită </string>
+    <string name="invoice_adaptor_ok" translatable="false">Ok </string>
 
     <!--InvoiceDetailsFragment-->
     <string name="invoice_detail_please_wait">Vă rog să așteptați</string>
+    <string name="invoice_detail_email_send">Emailul a fost trimis</string>
+    <string name="invoice_detail_server_error">Eroare de server</string>
+
+    <!--Payments-->
+    <string name="payment_please_wait">Vă rog să așteptați</string>
+    <string name="payment_pay_order">Ordin-de-plată</string>
 
     <!--ProfileFragment-->
     <string name="profile_individual_person">Persoană fizică</string>
     <string name="profile_cnp" translatable="false">CNP</string>
     <string name="profile_cui" translatable="false">CUI</string>
     <string name="profile_company_name">Numele companiei</string>
+    <string name="profile_saved_modify">Modificări salvate</string>
+    <string name="profile_error1">Eroare de retea</string>
+    <string name="profile_error2">Email incorect</string>
+    <string name="profile_error3">Număr de telefon incorect</string>
+    <string name="profile_error4">Câmpuri necompletate</string>
 
     <!--SearchDateFragment-->
     <string name="search_date_fragment_invalid_dates">Date invalide...</string>
@@ -31,8 +53,11 @@
     <string name="search_date_fragment_until">Până la: </string>
 
     <!--HomeFragment-->
-    <string name="home_fragment_invoice_date">Dată scadentă: </string>
-    <string name="home_fragment_invoice_to_pay">, valoare:</string>
+    <string name="home_fragment_isPaid_true">Plătită</string>
+    <string name="home_fragment_isPaid_false">Neplătită</string>
+    <string name="home_fragment_invoice_number">Număr factură: </string>
+    <string name="home_fragment_invoice_to_pay">valoare: </string>
+    <string name="home_fragment_invoice_date">dată scadentă: </string>
 
     <!--LogIn-->
     <string name="login_save_toast">Salvat!</string>
@@ -119,5 +144,12 @@
     <string name="index_alert_dialog_detail">Indexul se poate introduce doar între 20 și 25 ale lunii</string>
     <string name="index_alert_dialog_home_button">Acasă</string>
     <string name="index_alert_dialog_watch_button">Vizualizează</string>
+
+    <!--bottom_nav_menu-->
+    <string name="nav_menu_index" translatable="false">Index</string>
+    <string name="nav_menu_form">Formulare</string>
+    <string name="nav_menu_home">Acasă</string>
+    <string name="nav_menu_invoice">Facturi</string>
+    <string name="nav_menu_profile">Profil</string>
 
 </resources>

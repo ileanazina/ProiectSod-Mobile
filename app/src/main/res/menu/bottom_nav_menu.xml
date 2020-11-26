@@ -5,23 +5,23 @@
     <item
         android:id="@+id/indexNavbar"
         android:icon="@drawable/ic_goodind"
-        android:title="Index" />
+        android:title="@string/nav_menu_index" />
 
     <item
         android:id="@+id/formsNavbav"
         android:icon="@drawable/ic_form"
-        android:title="Formulare" />
+        android:title="@string/nav_menu_form" />
     <item
         android:id="@+id/homeNavbar"
         android:icon="@drawable/ic_homebtn"
-        android:title="Home" />
+        android:title="@string/nav_menu_home" />
     <item
         android:id="@+id/invoicesNavbar"
         android:icon="@drawable/ic_invoicesbtn"
-        android:title="Facturi" />
+        android:title="@string/nav_menu_invoice" />
 
     <item
         android:id="@+id/profilNavbar"
         android:icon="@drawable/ic_profile"
-        android:title="Profil" />
+        android:title="@string/nav_menu_profile" />
 </menu>

@@ -59,8 +59,6 @@ public class HomeFragment extends Fragment {
         String json = mPrefs.getString("AccountInfo",null);
         account = gson.fromJson(json, AccountModel.class);
 
-        System.out.println(account.getAccountId());
-
         //Set the sold for the last unpaid invoice and set the button
         TextView textView_sold = view.findViewById(R.id.valLastUnpaidInvoices);
         ImageButton payButton = view.findViewById(R.id.mainMenuPayButton);
@@ -86,7 +84,8 @@ public class HomeFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item,
+                                (String[]) FullAddressName.toArray(new String[FullAddressName.size()]));
                         Spinner addressSpinner = (Spinner) view.findViewById(R.id.spAddress);
                         addressSpinner.setAdapter(dataAdapter);
 
@@ -129,11 +128,13 @@ public class HomeFragment extends Fragment {
                         String dataDue = formatter.format(list.get(index).getDueDate());
                         String invoiceIsPayed;
                         if (list.get(index).isPaid())
-                            invoiceIsPayed = "Platita";
+                            invoiceIsPayed = getResources().getString(R.string.home_fragment_isPaid_true);
                         else
-                            invoiceIsPayed = "Neplatita";
-                        textView.setText("Numar factura: " + list.get(index).getInvoiceId() + ", data scadenta: " + dataDue + ", valoare: "
-                                + list.get(index).getValueWithVat() + ", " + invoiceIsPayed);
+                            invoiceIsPayed = getResources().getString(R.string.home_fragment_isPaid_false);
+                        textView.setText(getResources().getString(R.string.home_fragment_invoice_number) + list.get(index).getInvoiceId()
+                                + ", " + getResources().getString(R.string.home_fragment_invoice_date) + dataDue + ", "
+                                + getResources().getString(R.string.home_fragment_invoice_to_pay) + list.get(index).getValueWithVat()
+                                + ", " + invoiceIsPayed);
                     }
                     else textView.setText("");
 
@@ -206,7 +207,6 @@ public class HomeFragment extends Fragment {
     public void get3Invoices(Context context, RevealDetailsCallbacks callback)
     {
         InvoiceFilter invModel = new InvoiceFilter(account.getAccountId(),addressesID);
-        System.out.println(addressesID);
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
         Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
 

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.myapplication1.Model.DocumentDownloadModel;
 import com.example.myapplication1.R;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -47,11 +46,12 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
 
         String aux= "";
         if(item.isActive() == true)
-            aux = "Dispoibil pentru descarcare";
-        else aux = "Indisponibi";
+            aux = mContext.getResources().getString(R.string.form_adaptor_download_disponibility);
+        else aux = mContext.getResources().getString(R.string.form_adaptor_download_indisponibility);
 
         holder.tvDocumentType.setText(item.getDocumentTypeName());
-        holder.tvDocumentInfo.setText( "Nume: " + item.getDocumentName() + "\nData la care a fost incarcat: " + uploadDate + "\n" + aux);
+        holder.tvDocumentInfo.setText(mContext.getResources().getString(R.string.form_adaptor_name_file) + item.getDocumentName()
+                + "\n" + mContext.getResources().getString(R.string.form_adaptor_date) + uploadDate + "\n" + aux);
     }
 
 

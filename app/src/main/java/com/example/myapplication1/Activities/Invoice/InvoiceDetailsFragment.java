@@ -260,12 +260,12 @@ public class InvoiceDetailsFragment extends Fragment {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getContext(), "Emailul a fost trimis", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.invoice_detail_email_send), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getContext(), "Eroare de server", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.invoice_detail_server_error), Toast.LENGTH_LONG).show();
                 call.cancel();
             }
         });
