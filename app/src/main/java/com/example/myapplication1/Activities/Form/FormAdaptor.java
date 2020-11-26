@@ -115,6 +115,8 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(uri, "application/pdf");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //Intent chooserIntent = Intent.createChooser(intent, "Open Report");
+                //mContext.startActivity(chooserIntent);
                 mContext.startActivity(intent);
             }
             else{
