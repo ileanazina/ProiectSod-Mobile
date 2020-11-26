@@ -36,6 +36,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
+import java.util.zip.Inflater;
 
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Call;
@@ -58,6 +60,8 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
     private Button addIndex;
     private EditText addIndexValue;
     private ImageView img;
+
+
 
     private List<IndexModel> allIndexes;
     private List<IndexModel> forAdaptorIndexes;
@@ -94,6 +98,12 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
         int ad= aPrefs.getInt("Address",0);
         AddressIdFromSpinner = ad;
 
+
+
+        int today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        Log.e(String.valueOf(today), "ziua de azi");
+
+
         this.callback = new IndexFragment.RevealDetailsCallbacks() {
             @Override
             public void getDataFromIndex(List<IndexModel> list) {
@@ -112,44 +122,49 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                 //Log.e(String.valueOf(list.size()),"index size");
             }
         };
-
-
-
-
         getIndexList(getContext(), callback);
+
             addIndex.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
 
-                    if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null
-                            ||Float.valueOf(addIndexValue.getText().toString())<lastIndexValue) {
-                        Toast.makeText(getContext(),
-                                "Introduceti corect valoarea indexului", Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        String strIndex = String.valueOf(addIndexValue.getText());
-                        float indexValue = Float.parseFloat(strIndex);
-                        AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
-                        Call<IndexModel> call = indexesAPI.insertIndex(index);
-                        call.enqueue(new Callback<IndexModel>() {
-                            @Override
-                            public void onResponse(Call<IndexModel> call, Response<IndexModel> response) {
-                                IndexModel model = response.body();
-                                if (model == null) {
-                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_invalid), Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_success), Toast.LENGTH_LONG).show();
-                                }
+                        if (addIndexValue.getText().toString().isEmpty() || addIndexValue.getText() == null
+                                || Float.valueOf(addIndexValue.getText().toString()) < lastIndexValue) {
+                                Toast.makeText(getContext(),
+                                    "Introduceti corect valoarea indexului", Toast.LENGTH_LONG).show();
+                        } else {
+
+                            if(today >=20 &&today<= 25) {
+                                String strIndex = String.valueOf(addIndexValue.getText());
+                                float indexValue = Float.parseFloat(strIndex);
+                                AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
+                                Call<IndexModel> call = indexesAPI.insertIndex(index);
+                                call.enqueue(new Callback<IndexModel>() {
+                                    @Override
+                                    public void onResponse(Call<IndexModel> call, Response<IndexModel> response) {
+                                        IndexModel model = response.body();
+                                        if (model == null) {
+                                            Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_invalid), Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(getContext(), getContext().getResources().getString(R.string.index_fragment_success), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<IndexModel> call, Throwable t) {
+                                        call.cancel();
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                Toast.makeText(getContext(),
+                                   "Indexul se introduce intre 20 si 25", Toast.LENGTH_LONG).show();
                             }
 
-                            @Override
-                            public void onFailure(Call<IndexModel> call, Throwable t) {
-                                call.cancel();
-                            }
-                        });
-                    }
 
+                    }
                     Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container_view_tag);
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.detach(currentFragment);
@@ -157,35 +172,6 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                     fragmentTransaction.commit();
                 }
             });
-
-        if (Calendar.DAY_OF_MONTH >= 10 && Calendar.DAY_OF_MONTH <= 25) {
-
-            builder = new AlertDialog.Builder(getContext());
-
-            inflater = LayoutInflater.from(getContext());
-            View view_alert = inflater.inflate(R.layout.index_alert_dialog, null);
-
-            Button noButton = view_alert.findViewById(R.id.button_indcancel);
-            Button yesButton = view_alert.findViewById(R.id.button_indreload);
-
-            builder.setView(view_alert);
-            dialogError = builder.create();
-            dialogError.show();
-
-            yesButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialogError.dismiss();
-                }
-            });
-            noButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
         return view;
     }
 
