@@ -148,12 +148,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Editare"
+            android:text="@string/profile_edit_button"
             android:id="@+id/editProfile"
-            android:layout_marginTop="20dp"
-            />
-
-
+            android:layout_marginTop="20dp" />
 
     </GridLayout>
 </ScrollView>
