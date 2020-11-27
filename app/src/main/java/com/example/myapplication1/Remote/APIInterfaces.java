@@ -40,6 +40,9 @@ public interface APIInterfaces {
     @POST("Index/AddIndexToAccountId")
     Call<IndexModel> insertIndex(@Body AddIIndex index);
 
+    @POST("Dropbox/Upload")
+    Call<DocumentDownloadModel> uploadDoc(@Body DocumentDownloadModel file);
+
     @GET("InvoiceDetail/GetInvoiceDetails/{invoiceId}")
     Call<InvoiceDetailsModel> getInvoiceDetailsByInvoice(@Path("invoiceId") int invoiceId);
 

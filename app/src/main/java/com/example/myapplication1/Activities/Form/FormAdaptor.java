@@ -2,22 +2,34 @@ package com.example.myapplication1.Activities.Form;
 
 import androidx.annotation.NonNull;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication1.Activities.Invoice.InvoiceDetailsFragment;
+import com.example.myapplication1.MainActivity;
+import com.example.myapplication1.Model.AddIIndex;
 import com.example.myapplication1.Model.DocumentDownloadModel;
+import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHolder> {
 
@@ -104,6 +116,12 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
 
         private void uploadDoc(DocumentDownloadModel item) {
 
+            Bundle newBundle = new Bundle();
+            newBundle.putSerializable("extra", item);
+            Fragment objects = new FormUploadFragment();
+            objects.setArguments(newBundle);
+
+            ((MainActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, objects).addToBackStack(null).commit();
         }
 
         private void downloadDoc(DocumentDownloadModel item) {
