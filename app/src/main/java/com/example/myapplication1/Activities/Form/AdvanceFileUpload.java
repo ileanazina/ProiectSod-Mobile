@@ -51,16 +51,8 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
     private static final int CAMERA_REQUEST = 103;
     private static final int GALLERY_REQUEST = 104;
     Button select_all_file;
-    Button gallery_file;
-    Button camera_file;
-
-    ImageView camera_preview;
-    ImageView gallery_preview;
 
     TextView all_file_name;
-    TextView gallery_file_name;
-    TextView camera_file_name;
-
     Button submit;
     ProgressBar progressBar;
     int method = 0;
@@ -73,43 +65,30 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
 
 
         select_all_file = findViewById(R.id.select_from_all_files);
-        gallery_file = findViewById(R.id.select_from_gallery);
-        camera_file = findViewById(R.id.select_from_camera);
 
-
-        camera_preview = findViewById(R.id.camera_preview);
-        gallery_preview = findViewById(R.id.gallery_preview);
 
         all_file_name = findViewById(R.id.all_file_name);
-        gallery_file_name = findViewById(R.id.gallery_file_name);
-        camera_file_name = findViewById(R.id.camera_file_name);
+
 
         submit = findViewById(R.id.upload);
         progressBar = findViewById(R.id.progressbar);
 
 
         select_all_file.setOnClickListener(AdvanceFileUpload.this);
-        gallery_file.setOnClickListener(AdvanceFileUpload.this);
-        camera_file.setOnClickListener(AdvanceFileUpload.this);
+
         submit.setOnClickListener(AdvanceFileUpload.this);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (gallery_file_path == null) {
-                    Toast.makeText(AdvanceFileUpload.this, "Gallery File Empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
                 if (all_file_path == null) {
                     Toast.makeText(AdvanceFileUpload.this, "ALl File File Empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (camer_file_path == null) {
-                    Toast.makeText(AdvanceFileUpload.this, "CAmera File Empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
                 UploadTask uploadTask = new UploadTask();
-                uploadTask.execute(new String[]{gallery_file_path, camer_file_path, all_file_path});
+                uploadTask.execute(new String[]{ all_file_path});
             }
         });
 
@@ -130,30 +109,10 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 filePicker(0);
             }
 
-        } else if (v.getId() == R.id.select_from_camera) {
-            method = 1;
-            if (Build.VERSION.SDK_INT >= 23) {
-                if (checkPermission(Manifest.permission.CAMERA)) {
-                    filePicker(1);
-                } else {
-                    requestPermission(Manifest.permission.CAMERA);
-                }
-            } else {
-                filePicker(1);
+        }  else {
+                filePicker(0);
             }
 
-        } else if (v.getId() == R.id.select_from_gallery) {
-            method = 2;
-            if (Build.VERSION.SDK_INT >= 23) {
-                if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    filePicker(2);
-                } else {
-                    requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                }
-            } else {
-                filePicker(2);
-            }
-        }
 
     }
 
@@ -165,17 +124,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
             startActivityForResult(Intent.createChooser(intent, "Choose File to Upload"), ALL_FILE_REQUEST);
         }
 
-        if (i == 1) {
-            Intent intent = new Intent();
-            intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, CAMERA_REQUEST);
-        }
-        if (i == 2) {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_PICK);
-            startActivityForResult(intent, GALLERY_REQUEST);
-        }
+
 
     }
 
@@ -222,11 +171,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 Uri uri = data.getData();
                 String selectedPath = FilePath.getFilePath(AdvanceFileUpload.this, uri);
                 Log.d("File Path ", " " + selectedPath);
-                if (selectedPath != null) {
-                    gallery_file_name.setText("" + new File(selectedPath).getName());
-                }
-                Bitmap bitmap = BitmapFactory.decodeFile(selectedPath);
-                gallery_preview.setImageBitmap(bitmap);
+
                 gallery_file_path = selectedPath;
             }
             if (requestCode == CAMERA_REQUEST) {
@@ -255,10 +200,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                     e.printStackTrace();
                 }
                 Log.d("File Path ", " " + destination.getPath());
-                if (destination != null) {
-                    camera_file_name.setText("" + destination.getName());
-                }
-                camera_preview.setImageBitmap(thumb);
+
                 camer_file_path = destination.getPath();
 
             }
