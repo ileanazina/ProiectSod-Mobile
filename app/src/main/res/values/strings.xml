@@ -134,6 +134,7 @@
     <string name="profile_name_intro">Nume:</string>
     <string name="profile_email_intro" translatable="false">Email:</string>
     <string name="profile_phone_intro">Telefon:</string>
+    <string name="profile_edit_button">Editare</string>
 
     <!--fragment_data.xml-->
     <string name="fragment_date_start">[Începând cu data ...]</string>

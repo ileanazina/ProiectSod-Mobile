@@ -242,7 +242,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Unitate de masura"/>
+            android:text="@string/invoice_detail_unit_measurement_intro"/>
         <TextView
             android:id="@+id/unitMeasurementType"
             android:layout_width="wrap_content"
@@ -262,7 +262,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Pretul per unitate"/>
+            android:text="@string/invoice_detail_price_unit_intro"/>
         <TextView
             android:id="@+id/pricePerUnit"
             android:layout_width="wrap_content"
@@ -282,7 +282,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Cantitate consumata"/>
+            android:text="@string/invoice_detail_quantity_consumed_intro"/>
         <TextView
             android:id="@+id/consumedQuantity"
             android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="TVA"/>
+            android:text="@string/invoice_detail_tva_intro"/>
         <TextView
             android:id="@+id/simplyVAT"
             android:layout_width="wrap_content"
@@ -322,7 +322,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Pret fara TVA"/>
+            android:text="@string/invoice_detail_price_without_tva_intro"/>
         <TextView
             android:id="@+id/valueWithoutVAT"
             android:layout_width="wrap_content"
@@ -342,7 +342,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Pret cu TVA"/>
+            android:text="@string/invoice_detail_price_with_tva_intro"/>
         <TextView
             android:id="@+id/valueWithVat"
             android:layout_width="wrap_content"
@@ -365,7 +365,7 @@
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="@dimen/invoicedetails_textsize"
-        android:text="Detalii furnizor" />
+        android:text="@string/invoice_detail_fourth_border" />
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -387,7 +387,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="CUI"/>
+            android:text="@string/invoice_detail_cui_intro"/>
         <TextView
             android:id="@+id/IssueCUI"
             android:layout_width="wrap_content"
@@ -407,7 +407,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Adresa"/>
+            android:text="@string/invoice_detail_issue_address_intro"/>
         <TextView
             android:id="@+id/IssueAddress"
             android:layout_width="wrap_content"
