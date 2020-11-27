@@ -218,8 +218,13 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 dataInputStream.readFully(bytes);
                 dataInputStream.close();
 
+                String fileString = "";
+                for (int i=0; i < bytes.length; i++) {
+                    fileString = fileString + bytes[i];
+                }
+
                 sendDocument(new UserUploadModel(account.getAccountId(),documentDownload.getDocumentType()
-                        ,documentDownload.getDocumentName(), bytes));
+                        ,documentDownload.getDocumentName(), fileString));
 
             } catch (Exception e) {
                 e.printStackTrace();

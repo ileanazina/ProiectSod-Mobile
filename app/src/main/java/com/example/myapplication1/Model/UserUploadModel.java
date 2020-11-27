@@ -10,9 +10,9 @@ public class UserUploadModel {
     @SerializedName("DocumentName")
     private String DocumentName;
     @SerializedName("File")
-    private byte[] File;
+    private String File;
 
-    public UserUploadModel(int accountId, int documentId, String documentName, byte[] file) {
+    public UserUploadModel(int accountId, int documentId, String documentName, String file) {
         AccountId = accountId;
         DocumentId = documentId;
         DocumentName = documentName;
@@ -43,11 +43,11 @@ public class UserUploadModel {
         DocumentName = documentName;
     }
 
-    public byte[] getFile() {
+    public String getFile() {
         return File;
     }
 
-    public void setFile(byte[] file) {
+    public void setFile(String file) {
         File = file;
     }
 }
