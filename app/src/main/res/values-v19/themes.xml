@@ -1,23 +1,20 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
     <style name="Theme.MyApplication1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/White</item>
         <item name="colorPrimaryVariant">@color/White</item>
         <item name="colorOnPrimary">@color/White</item>
-         Secondary brand color.
+        Secondary brand color.
         <item name="colorSecondary">@color/AliceBlue</item>
         <item name="colorSecondaryVariant">@color/Beige</item>
         <item name="colorOnSecondary">@color/Black</item>
         <!-- Status bar color. -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:fitsSystemWindows">true</item>
         <!-- Customize your theme here. -->
 
     </style>
-
-
 </resources>
