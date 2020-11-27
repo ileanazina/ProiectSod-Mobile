@@ -5,7 +5,7 @@
     <string name="form_adaptor_download_disponibility">Disponibil pentru descărcare</string>
     <string name="form_adaptor_download_indisponibility">Indisponibil</string>
     <string name="form_adaptor_name_file">Nume: </string>
-    <string name="form_adaptor_date">"Data la care a fost încărcat: "</string>
+    <string name="form_adaptor_date">Data la care a fost încărcat: </string>
 
     <!--IndexAdaptor-->
     <string name="index_adaptor_value">Valoare index: </string>
@@ -73,13 +73,6 @@
     <string name="log_in_remember_me">Reamintește-mă!</string>
     <string name="log_in_enter_button">Autentificare</string>
 
-    <!--bottom_nav_menu-->
-    <string name="nax_index">Index</string>
-    <string name="nax_forms">Formulare</string>
-    <string name="nax_home">Acasă</string>
-    <string name="nax_invoices">Facturi</string>
-    <string name="nax_profile">Profil</string>
-
     <!--custom_alert_dialog.xml-->
     <string name="alert_dialog_info">Autentificare eșuată. Ați introdus greșit datele de logare.</string>
     <string name="alert_dialog_quit_button">Renunță</string>
@@ -90,14 +83,20 @@
     <string name="network_dialog_quit_button">Renunță</string>
     <string name="network_dialog_try_again_button">Reîncarcă</string>
 
+    <!--edit_profile_popup-->
+    <string name="edit_profile_title">Editare date</string>
+    <string name="edit_profile_phone_number">Număr de telefon</string>
+    <string name="edit_profile_email_address">Adresă de email</string>
+    <string name="edit_profile_update">Actualizare</string>
+
     <!--fragment_home_page.xml-->
-    <string name="fragment_home_company_details_title" translatable="false">TotalSoft SA.</string>
-    <string name="fragment_home_company_details_address">Soseaua Bucuresti Nord nr 8-10, etaj 8</string>
-    <string name="fragment_home_company_detail_email" translatable="false">totalsoft@ts.ro</string>
-    <string name="fragment_home_address_spinner_announcement">Apăsați mai jos pentru a selecta adresa de referință:</string>
+    <string name="fragment_home_address_spinner_announcement">Locație: </string>
     <string name="fragment_home_total_sold" translatable="false">Sold</string>
     <string name="fragment_home_pay_button">Platește</string>
     <string name="fragment_home_last_invoices">Ultimele facturi ale acestui cont:</string>
+    <string name="fragment_home_company_details_title" translatable="false">TotalSoft SA.</string>
+    <string name="fragment_home_company_details_address">Soseaua Bucuresti Nord nr 8-10, etaj 8</string>
+    <string name="fragment_home_company_detail_email" translatable="false">totalsoft@ts.ro</string>
 
     <!--fragment_index_page-->
     <string name="index_hint">Introduceți valoarea indexului</string>

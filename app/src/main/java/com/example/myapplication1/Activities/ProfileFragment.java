@@ -114,7 +114,7 @@ public class ProfileFragment extends Fragment {
 
     private void createPopupEditDialog(View profileView) {
         builder = new AlertDialog.Builder(getContext());
-        View view = getLayoutInflater().inflate(R.layout.edit_profile_popoup, null);
+        View view = getLayoutInflater().inflate(R.layout.edit_profile_popup, null);
 
         EditText editPhone = view.findViewById(R.id.editPhone);
         editPhone.setText("0" + account.getTelephoneNumber());

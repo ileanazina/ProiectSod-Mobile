@@ -198,7 +198,7 @@
             android:layout_margin="@dimen/margin_home_button"
             android:textColor="@color/black"
             android:textSize="@dimen/invoicedetails_textsize"
-            android:text="Adresa de facturare"/>
+            android:text="@string/invoice_detail_billing_address_intro"/>
         <TextView
             android:id="@+id/addressId"
             android:layout_width="wrap_content"
@@ -220,7 +220,7 @@
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="@dimen/invoicedetails_textsize"
-        android:text="Detalii pret" />
+        android:text="@string/invoice_detail_third_border" />
 
     <GridLayout
         android:layout_width="wrap_content"

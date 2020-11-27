@@ -41,7 +41,7 @@
             android:layout_marginLeft="@dimen/home_margin"
             android:layout_marginRight="@dimen/home_margin"
             android:layout_marginTop="@dimen/home_margin"
-            android:text="Locatie:"
+            android:text="@string/fragment_home_address_spinner_announcement"
             android:textSize="@dimen/home_invoices_text"
             android:textColor="@color/black"/>
         <Spinner
@@ -58,8 +58,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/spAddress"
-            />
+            android:layout_below="@id/spAddress" />
     </LinearLayout>
 
 
@@ -75,7 +74,7 @@
             android:id="@+id/sold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sold"
+            android:text="@string/fragment_home_total_sold"
             android:textColor="@color/black"
             android:textSize="@dimen/profil_textsize"
             android:layout_marginLeft="@dimen/margin_top" />

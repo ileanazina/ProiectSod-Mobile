@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
     <RelativeLayout
         android:background="@color/White"
         android:padding="24dp"
@@ -19,7 +18,7 @@
 
     <TextView
         android:id="@+id/editProfile"
-        android:text="Editare date"
+        android:text="@string/edit_profile_title"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +29,7 @@
         android:id="@+id/editPhone"
         android:inputType="text"
         android:layout_below="@+id/editProfile"
-        android:hint="Numar de telefon"
+        android:hint="@string/edit_profile_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -38,7 +37,7 @@
         android:id="@+id/editMail"
         android:inputType="text"
         android:layout_below="@+id/editPhone"
-        android:hint="Adresa de email"
+        android:hint="@string/edit_profile_email_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -48,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Actualizare"
+            android:text="@string/edit_profile_update"
             android:background="@color/Grey" />
     </RelativeLayout>
 </LinearLayout>

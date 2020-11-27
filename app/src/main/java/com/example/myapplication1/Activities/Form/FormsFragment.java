@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication1.Model.DocumentDownloadModel;
+import com.example.myapplication1.Model.DownloadFilter;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
@@ -66,7 +67,7 @@ public class FormsFragment extends Fragment implements FormAdaptor.OnFormListene
 
     public void getDocumentsForDownload() {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<DocumentDownloadModel>> call = invoiceAPI.downloadAllDocuments();
+        Call<List<DocumentDownloadModel>> call = invoiceAPI.downloadAllDocuments(new DownloadFilter());
         call.enqueue(new Callback<List<DocumentDownloadModel>>() {
             @Override
             public void onResponse(Call<List<DocumentDownloadModel>> call, Response<List<DocumentDownloadModel>> response) {
