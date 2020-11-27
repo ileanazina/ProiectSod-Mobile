@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Form.AdvanceFileUpload"></activity>
+        <activity android:name=".Activities.Form.AdvanceFileUpload"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
         <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

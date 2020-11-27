@@ -12,6 +12,7 @@ import com.example.myapplication1.Model.InvoiceFilter;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Model.UserEdit;
 import com.example.myapplication1.Model.UserLogIn;
+import com.example.myapplication1.Model.UserUploadModel;
 
 import java.util.List;
 import retrofit2.Call;
@@ -40,9 +41,6 @@ public interface APIInterfaces {
     @POST("Index/AddIndexToAccountId")
     Call<IndexModel> insertIndex(@Body AddIIndex index);
 
-    @POST("Dropbox/Upload")
-    Call<DocumentDownloadModel> uploadDoc(@Body DocumentDownloadModel file);
-
     @GET("InvoiceDetail/GetInvoiceDetails/{invoiceId}")
     Call<InvoiceDetailsModel> getInvoiceDetailsByInvoice(@Path("invoiceId") int invoiceId);
 
@@ -57,4 +55,7 @@ public interface APIInterfaces {
 
     @POST("Document")
     Call<List<DocumentDownloadModel>> downloadAllDocuments(@Body DownloadFilter downloadFilter);
+
+    @POST("Dropbox/UserUpload")
+    Call<Void> uploadDoc(@Body UserUploadModel file);
 }

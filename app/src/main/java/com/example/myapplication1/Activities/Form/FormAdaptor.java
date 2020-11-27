@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codetroopers.betterpickers.calendardatepicker.AccessibleDateAnimator;
 import com.example.myapplication1.Activities.Invoice.InvoiceDetailsFragment;
 import com.example.myapplication1.MainActivity;
 import com.example.myapplication1.Model.AddIIndex;
@@ -116,12 +117,9 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
 
         private void uploadDoc(DocumentDownloadModel item) {
 
-            Bundle newBundle = new Bundle();
-            newBundle.putSerializable("extra", item);
-            Fragment objects = new FormUploadFragment();
-            objects.setArguments(newBundle);
-
-            ((MainActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, objects).addToBackStack(null).commit();
+            Intent intent = new Intent(mContext, AdvanceFileUpload.class);
+            intent.putExtra("DocumentDownloadModel", item);
+            mContext.startActivity(intent);
         }
 
         private void downloadDoc(DocumentDownloadModel item) {
@@ -129,7 +127,6 @@ public class FormAdaptor extends RecyclerView.Adapter<FormAdaptor.ExempleViewHol
             String docName = item.getDocumentName();
             Uri uri = Uri.parse(url);
             if(docName.contains(".pdf")){
-
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(uri, "application/pdf");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
