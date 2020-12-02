@@ -23,17 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -92,7 +83,8 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
-                Toast.makeText(AdvanceFileUpload.this, "Documentul a fost trimis", Toast.LENGTH_LONG).show();
+                Log.d(response.message(), String.valueOf(response.code()));
+                finish();
             }
 
             @Override
@@ -213,18 +205,9 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 String json = mPrefs.getString("AccountInfo",null);
                 AccountModel account = gson.fromJson(json, AccountModel.class);
 
-                byte[] bytes = new byte[(int)file.length()];
-                DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(new FileInputStream(file.getAbsolutePath())));
-                dataInputStream.readFully(bytes);
-                dataInputStream.close();
-
-                String fileString = "";
-                for (int i=0; i < bytes.length; i++) {
-                    fileString = fileString + bytes[i];
-                }
 
                 sendDocument(new UserUploadModel(account.getAccountId(),documentDownload.getDocumentType()
-                        ,documentDownload.getDocumentName(), fileString));
+                        ,documentDownload.getDocumentName(), file));
 
             } catch (Exception e) {
                 e.printStackTrace();

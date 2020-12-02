@@ -1,5 +1,6 @@
 package com.example.myapplication1.Model;
 
+import java.io.File;
 import com.google.gson.annotations.SerializedName;
 
 public class UserUploadModel {
@@ -10,9 +11,9 @@ public class UserUploadModel {
     @SerializedName("DocumentName")
     private String DocumentName;
     @SerializedName("File")
-    private String File;
+    private File File;
 
-    public UserUploadModel(int accountId, int documentId, String documentName, String file) {
+    public UserUploadModel(int accountId, int documentId, String documentName, File file) {
         AccountId = accountId;
         DocumentId = documentId;
         DocumentName = documentName;
@@ -43,11 +44,11 @@ public class UserUploadModel {
         DocumentName = documentName;
     }
 
-    public String getFile() {
+    public File getFile() {
         return File;
     }
 
-    public void setFile(String file) {
+    public void setFile(File file) {
         File = file;
     }
 }
