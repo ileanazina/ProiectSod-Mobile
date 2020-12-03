@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,7 +71,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
 
                 if (all_file_path == null) {
-                    Toast.makeText(AdvanceFileUpload.this, "File Empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdvanceFileUpload.this, getResources().getString(R.string.file_upload_no_file), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -122,7 +123,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
             Intent intent = new Intent();
             intent.setType("*/*");
             intent.setAction(Intent.ACTION_PICK);
-            startActivityForResult(Intent.createChooser(intent, "Choose File to Upload"), ALL_FILE_REQUEST);
+            startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.file_upload_choose)), ALL_FILE_REQUEST);
         }
     }
 
@@ -137,7 +138,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
 
     private void requestPermission(String permission) {
         if (ActivityCompat.shouldShowRequestPermissionRationale(AdvanceFileUpload.this, permission)) {
-            Toast.makeText(AdvanceFileUpload.this, "Please Allow Permission", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvanceFileUpload.this, getResources().getString(R.string.file_upload_allow_permission), Toast.LENGTH_SHORT).show();
         } else {
             ActivityCompat.requestPermissions(AdvanceFileUpload.this, new String[]{permission}, PERMISSION_REQUEST_CODE);
         }
@@ -149,10 +150,10 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(AdvanceFileUpload.this, "Permission Successfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdvanceFileUpload.this, getResources().getString(R.string.file_upload_permission_success), Toast.LENGTH_SHORT).show();
                     filePicker(method);
                 } else {
-                    Toast.makeText(AdvanceFileUpload.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdvanceFileUpload.this, getResources().getString(R.string.file_upload_permission_not), Toast.LENGTH_SHORT).show();
                 }
         }
     }
@@ -168,7 +169,6 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
 
                 Uri uri = data.getData();
                 String paths = FilePath.getFilePath(AdvanceFileUpload.this, uri);
-                Log.d("File Path : ", "" + paths);
                 if (paths != null) {
                     all_file_name.setText("" + new File(paths).getName());
                 }
@@ -189,10 +189,10 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if(s!=null){
-                Toast.makeText(AdvanceFileUpload.this, "File Uploaded", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdvanceFileUpload.this, getResources().getString(R.string.file_upload_file_uploaded), Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(AdvanceFileUpload.this, "File Upload Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdvanceFileUpload.this, getResources().getString(R.string.file_upload_file_upload_fail), Toast.LENGTH_SHORT).show();
             }
             progressBar.setVisibility(View.GONE);
         }
@@ -207,9 +207,7 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
                 buf.read(bytes, 0, bytes.length);
                 buf.close();
-
-                for(int i=0; i<bytes.length;i++)
-                System.out.println(bytes[i]);
+                String test = Base64.encodeToString(bytes, Base64.DEFAULT);
 
                 DocumentDownloadModel documentDownload = (DocumentDownloadModel) getIntent().getSerializableExtra("DocumentDownloadModel");
                 SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdvanceFileUpload.this);
@@ -217,9 +215,9 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 String json = mPrefs.getString("AccountInfo",null);
                 AccountModel account = gson.fromJson(json, AccountModel.class);
 
-
-               // sendDocument(new UserUploadModel(account.getAccountId(),documentDownload.getDocumentType()
-                //        ,documentDownload.getDocumentName(), buf));
+                sendDocument(new UserUploadModel(account.getAccountId(),documentDownload.getDocumentId()
+                        ,all_file_name.getText().toString(), test));
+                return account.getLastName();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

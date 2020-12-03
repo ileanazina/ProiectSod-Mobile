@@ -1,54 +1,59 @@
 package com.example.myapplication1.Model;
 
-import java.io.File;
 import com.google.gson.annotations.SerializedName;
 
 public class UserUploadModel {
-    @SerializedName("AccountId")
-    private int AccountId;
-    @SerializedName("DocumentId")
-    private int DocumentId;
-    @SerializedName("DocumentName")
-    private String DocumentName;
-    @SerializedName("File")
-    private File File;
+    @SerializedName("accountId")
+    private int accountId;
+    @SerializedName("documentId")
+    private int documentId;
+    @SerializedName("documentName")
+    private String documentName;
+    @SerializedName("file")
+    private String file;
 
-    public UserUploadModel(int accountId, int documentId, String documentName, File file) {
-        AccountId = accountId;
-        DocumentId = documentId;
-        DocumentName = documentName;
-        File = file;
+    public UserUploadModel(int accountId, int documentId, String documentName, String file) {
+        this.accountId = accountId;
+        this.documentId = documentId;
+        this.documentName = documentName;
+        this.file = file;
+    }
+
+    public UserUploadModel(int accountId, int documentId, String documentName) {
+        this.accountId = accountId;
+        this.documentId = documentId;
+        this.documentName = documentName;
     }
 
     public int getAccountId() {
-        return AccountId;
+        return accountId;
     }
 
     public void setAccountId(int accountId) {
-        AccountId = accountId;
+        accountId = accountId;
     }
 
     public int getDocumentId() {
-        return DocumentId;
+        return documentId;
     }
 
     public void setDocumentId(int documentId) {
-        DocumentId = documentId;
+        documentId = documentId;
     }
 
     public String getDocumentName() {
-        return DocumentName;
+        return documentName;
     }
 
     public void setDocumentName(String documentName) {
-        DocumentName = documentName;
+        documentName = documentName;
     }
 
-    public File getFile() {
-        return File;
+    public String getFile() {
+        return file;
     }
 
-    public void setFile(File file) {
-        File = file;
+    public void setFile(String file) {
+        this.file = file;
     }
 }

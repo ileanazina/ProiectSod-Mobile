@@ -97,4 +97,14 @@
     <string name="edit_profile_update">Update</string>
     <string name="edit_profile_title"> Edit </string>
     <string name="profile_edit_button">Edit</string>
+    <string name="file_upload_choose">Choose File to Upload</string>
+    <string name="file_upload_no_file">Empty file</string>
+    <string name="file_upload_allow_permission">Please Allow Permission</string>
+    <string name="file_upload_permission_success">Permission Successfull</string>
+    <string name="file_upload_permission_not">Permission Denied</string>
+    <string name="file_upload_file_uploaded">File Uploaded</string>
+    <string name="file_upload_file_upload_fail">File Upload Failed</string>
+    <string name="activity_file_upload_choose">Select from All Files</string>
+    <string name="activity_file_upload_no_file">No file Selected</string>
+    <string name="activity_file_upload_upload_button">Advance Upload</string>
 </resources>

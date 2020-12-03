@@ -96,4 +96,14 @@
     <string name="edit_profile_email_address">Adresă de email</string>
     <string name="edit_profile_update">Actualizare</string>
     <string name="profile_edit_button">Editare</string>
+    <string name="file_upload_no_file">Fișier inexistent</string>
+    <string name="file_upload_choose">Alege un fișier</string>
+    <string name="file_upload_allow_permission">Avem nevoie de permisiunea dumneavoastră</string>
+    <string name="file_upload_permission_success">Permisiune acodată cu succes</string>
+    <string name="file_upload_permission_not">Permisiune respinsă</string>
+    <string name="file_upload_file_uploaded">Fișier încărcat</string>
+    <string name="file_upload_file_upload_fail">Fișierul nu a putut fi încărcat</string>
+    <string name="activity_file_upload_choose">Alege un fișier</string>
+    <string name="activity_file_upload_no_file">Nici un fișier selectat</string>
+    <string name="activity_file_upload_upload_button">Încarcă</string>
 </resources>

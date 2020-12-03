@@ -56,6 +56,6 @@ public interface APIInterfaces {
     @POST("Document")
     Call<List<DocumentDownloadModel>> downloadAllDocuments(@Body DownloadFilter downloadFilter);
 
-    @POST("Dropbox/UserUpload")
+    @POST("Dropbox/MobileUserUpload")
     Call<Void> uploadDoc(@Body UserUploadModel file);
 }

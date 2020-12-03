@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Aplicația mea</string>
 
+    <!--AdvanceFileUpload-->
+    <string name="file_upload_no_file">Fișier inexistent</string>
+    <string name="file_upload_choose">Alege un fișier</string>
+    <string name="file_upload_allow_permission">Avem nevoie de permisiunea dumneavoastră</string>
+    <string name="file_upload_permission_success">Permisiune acodată cu succes</string>
+    <string name="file_upload_permission_not">Permisiune respinsă</string>
+    <string name="file_upload_file_uploaded">Fișier încărcat</string>
+    <string name="file_upload_file_upload_fail">Fișierul nu a putut fi încărcat</string>
+
     <!--FormAdaptor-->
     <string name="form_adaptor_download_disponibility">Disponibil pentru descărcare</string>
     <string name="form_adaptor_download_indisponibility">Indisponibil</string>
@@ -62,6 +71,11 @@
     <!--LogIn-->
     <string name="login_save_toast">Salvat!</string>
     <string name="login_connect_toast">Conectare...</string>
+
+    <!--activity_advance_file_upload-->
+    <string name="activity_file_upload_choose">Alege un fișier</string>
+    <string name="activity_file_upload_no_file">Nici un fișier selectat</string>
+    <string name="activity_file_upload_upload_button">Încarcă</string>
 
     <!--activity_datepicker.xml-->
     <string name="datetime_picker_save_button">Salvează</string>

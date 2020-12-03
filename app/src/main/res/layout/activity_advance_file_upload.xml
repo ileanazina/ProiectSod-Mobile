@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:padding="5dp"
     android:layout_height="match_parent"
@@ -15,7 +14,7 @@
             android:textColor="#fff"
             android:background="@color/BlueViolet"
             android:layout_weight="1"
-            android:text="Select from All Files"
+            android:text="@string/activity_file_upload_choose"
             android:id="@+id/select_from_all_files"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -23,7 +22,7 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:id="@+id/all_file_name"
-            android:text="No file Selected"
+            android:text="@string/activity_file_upload_no_file"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -32,7 +31,7 @@
         android:textColor="#fff"
         android:background="@color/BlueViolet"
         android:layout_marginTop="10dp"
-        android:text="Advance Upload"
+        android:text="@string/activity_file_upload_upload_button"
         android:id="@+id/upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

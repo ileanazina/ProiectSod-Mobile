@@ -6,7 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class DocumentDownloadModel implements Serializable {
-
+    @SerializedName("documentId")
+    private int documentId;
     @SerializedName("documentName")
     private String documentName;
     @SerializedName("documentType")
@@ -28,13 +29,22 @@ public class DocumentDownloadModel implements Serializable {
         this.documentLoad = uploadFile;
     }
 
-    public DocumentDownloadModel(String documentName, int documentType, Date uploadDate, boolean isActive, String downloadLink, String documentTypeName) {
+    public DocumentDownloadModel(int documentId, String documentName, int documentType, Date uploadDate, boolean isActive, String downloadLink, String documentTypeName) {
+        this.documentId = documentId;
         this.documentName = documentName;
         this.documentType = documentType;
         this.uploadDate = uploadDate;
         this.isActive = isActive;
         this.downloadLink = downloadLink;
         this.documentTypeName = documentTypeName;
+    }
+
+    public int getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(int documentId) {
+        this.documentId = documentId;
     }
 
     public String getDocumentName() {
