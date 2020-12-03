@@ -23,7 +23,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,7 +93,6 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AdvanceFileUpload.this, "A aparut o eroare la server", Toast.LENGTH_LONG).show();
                 call.cancel();
             }
         });
@@ -198,7 +201,16 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
         protected String doInBackground(String... strings) {
 
             File file = new File(strings[0]);
+            int size = (int) file.length();
+            byte[] bytes = new byte[size];
             try {
+                BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
+                buf.read(bytes, 0, bytes.length);
+                buf.close();
+
+                for(int i=0; i<bytes.length;i++)
+                System.out.println(bytes[i]);
+
                 DocumentDownloadModel documentDownload = (DocumentDownloadModel) getIntent().getSerializableExtra("DocumentDownloadModel");
                 SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(AdvanceFileUpload.this);
                 Gson gson = new Gson();
@@ -206,10 +218,12 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
                 AccountModel account = gson.fromJson(json, AccountModel.class);
 
 
-                sendDocument(new UserUploadModel(account.getAccountId(),documentDownload.getDocumentType()
-                        ,documentDownload.getDocumentName(), file));
+               // sendDocument(new UserUploadModel(account.getAccountId(),documentDownload.getDocumentType()
+                //        ,documentDownload.getDocumentName(), buf));
 
-            } catch (Exception e) {
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return null;

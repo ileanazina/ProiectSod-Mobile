@@ -2,7 +2,6 @@ package com.example.myapplication1.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,22 +19,13 @@ public class DocumentDownloadModel implements Serializable {
     private String downloadLink;
     @SerializedName("documentTypeName")
     private String documentTypeName;
-
     @SerializedName("documentoLoad")
-    private File documentoLoad;
+    private byte[] documentLoad;
 
-    public DocumentDownloadModel( int documentType,String documentName, File uploadFile) {
+    public DocumentDownloadModel( int documentType,String documentName, byte[] uploadFile) {
         this.documentType = documentType;
         this.documentName = documentName;
-        this.documentoLoad= uploadFile;
-    }
-
-    public File getDocumentoLoad() {
-        return documentoLoad;
-    }
-
-    public void setDocumentoLoad(File documentoLoad) {
-        this.documentoLoad = documentoLoad;
+        this.documentLoad = uploadFile;
     }
 
     public DocumentDownloadModel(String documentName, int documentType, Date uploadDate, boolean isActive, String downloadLink, String documentTypeName) {
@@ -93,5 +83,13 @@ public class DocumentDownloadModel implements Serializable {
 
     public void setDocumentTypeName(String documentTypeName) {
         this.documentTypeName = documentTypeName;
+    }
+
+    public byte[] getDocumentLoad() {
+        return documentLoad;
+    }
+
+    public void setDocumentLoad(byte[] documentLoad) {
+        this.documentLoad = documentLoad;
     }
 }
