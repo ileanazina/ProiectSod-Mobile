@@ -9,6 +9,7 @@ import com.example.myapplication1.Model.IndexModel;
 import com.example.myapplication1.Model.InvoiceDetailsModel;
 import com.example.myapplication1.Model.InvoiceModel;
 import com.example.myapplication1.Model.InvoiceFilter;
+import com.example.myapplication1.Model.TokenModel;
 import com.example.myapplication1.Model.UnitMeasurementsModel;
 import com.example.myapplication1.Model.UserEdit;
 import com.example.myapplication1.Model.UserLogIn;
@@ -34,7 +35,7 @@ public interface APIInterfaces {
     Call<Float> getSold(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @POST("Users/Login")
-    Call<AccountModel> loginUser(@Header("Authorization") String token, @Body UserLogIn user);
+    Call<AccountModel> loginUser(@Body UserLogIn user);
 
     @POST("Users/EditUser")
     Call<Void> editUser(@Header("Authorization") String token, @Body UserEdit user);
@@ -59,4 +60,7 @@ public interface APIInterfaces {
 
     @POST("Dropbox/MobileUserUpload")
     Call<Void> uploadDoc(@Header("Authorization") String token, @Body UserUploadModel file);
+
+    @POST("RefreshToken")
+    Call<AccountModel> refreshToken(@Body TokenModel token);
 }

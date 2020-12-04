@@ -162,7 +162,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserLogIn user = new UserLogIn(userName.getText().toString(), userPassword.getText().toString());
-                Call<AccountModel> call = logInAPI.loginUser("Bearer " + account.getToken(), user);
+                Call<AccountModel> call = logInAPI.loginUser(user);
                 call.enqueue(new Callback<AccountModel>() {
                     @Override
                     public void onResponse(Call<AccountModel> call, Response<AccountModel> response) {
