@@ -18,16 +18,20 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface APIInterfaces {
 
+
     @GET("Index/GetIndexesByAccountIdAndAddressId/{accountId}/{addressId}")
     Call<List<IndexModel>> getAllIndexis(@Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @POST("/Invoices/GetInvoicesByAccountId")
-    Call<List<InvoiceModel>> getInvoicesByAccountId(@Body InvoiceFilter invoiceFilter);
+    Call<List<InvoiceModel>> getInvoicesByAccountId( @Body InvoiceFilter invoiceFilter);
+
+
 
     @GET("Invoices/GetSold/{accountId}/{addressId}")
     Call<Float> getSold(@Path("accountId") int accountId, @Path("addressId") int addressId);

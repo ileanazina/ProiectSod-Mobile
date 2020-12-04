@@ -143,5 +143,5 @@
     <color name="Black">#000000</color>
     <color name="Grey">#FCFCFC</color>
     <color name="Transparent">#0000ffff</color>
-
+<color name="Home">#242238</color>
 </resources>

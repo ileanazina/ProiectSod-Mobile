@@ -127,7 +127,6 @@
             android:paddingTop="10dp"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
-            android:textStyle="italic"
             android:textSize="@dimen/home_textsize"
             android:textColor="@color/black"/>
 
@@ -140,7 +139,6 @@
             android:paddingTop="10dp"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
-            android:textStyle="italic"
             android:textSize="@dimen/home_textsize"
             android:textColor="@color/black"/>
 
@@ -151,7 +149,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/totalToPay"
             android:paddingTop="10dp"
-            android:textStyle="italic"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:textSize="@dimen/home_textsize"
