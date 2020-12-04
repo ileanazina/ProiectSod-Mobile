@@ -124,7 +124,7 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
 
     public void getInvoiceList(InvoiceFilter invModel) {
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invModel);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId("Bearer " + account.getToken(), invModel);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {
@@ -146,7 +146,7 @@ public class InvoicesFragment extends Fragment implements InvoiceAdaptor.OnInvoi
 
     public void getInvoiceListFromSearchFragment(InvoiceFilter invoiceFilter) {
         invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId(invoiceFilter);
+        Call<List<InvoiceModel>> call = invoiceAPI.getInvoicesByAccountId("Bearer " + account.getToken(), invoiceFilter);
         call.enqueue(new Callback<List<InvoiceModel>>() {
             @Override
             public void onResponse(Call<List<InvoiceModel>> call, Response<List<InvoiceModel>> response) {

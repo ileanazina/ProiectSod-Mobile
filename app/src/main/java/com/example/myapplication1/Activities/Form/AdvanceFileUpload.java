@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -45,8 +44,10 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
 
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int ALL_FILE_REQUEST = 102;
-    Button select_all_file;
 
+    AccountModel account;
+
+    Button select_all_file;
     TextView all_file_name;
     Button submit;
     ProgressBar progressBar;
@@ -57,6 +58,11 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advance_file_upload);
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("AccountInfo",null);
+        account = gson.fromJson(json, AccountModel.class);
 
         select_all_file = findViewById(R.id.select_from_all_files);
         all_file_name = findViewById(R.id.all_file_name);
@@ -84,11 +90,11 @@ public class  AdvanceFileUpload extends AppCompatActivity implements View.OnClic
     public  void sendDocument(UserUploadModel userUploadModel)
     {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<Void> call = invoiceAPI.uploadDoc(userUploadModel);
+        Call<Void> call = invoiceAPI.uploadDoc("Bearer " + account.getToken() ,userUploadModel);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
-                Log.d(response.message(), String.valueOf(response.code()));
+                //Log.d(response.message(), String.valueOf(response.code()));
                 finish();
             }
 

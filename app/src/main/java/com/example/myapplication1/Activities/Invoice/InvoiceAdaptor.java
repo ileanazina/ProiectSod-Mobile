@@ -53,9 +53,9 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
             holder.tvTotalPay.setText(mContext.getResources().getString(R.string.invoice_adaptor_to_paid) +" "+ item.getValueWithVat());
             holder.tvDueDate.setText(mContext.getResources().getString(R.string.invoice_adaptor_due_date)+" " + dataDue);
             if(item.isPaid())
-                holder.tvIsPayd.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_not_payed));
-            else
                 holder.tvIsPayd.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_payed));
+            else
+                holder.tvIsPayd.setText(mContext.getResources().getString(R.string.invoice_adaptor_invoice_not_payed));
     }
 
     @Override

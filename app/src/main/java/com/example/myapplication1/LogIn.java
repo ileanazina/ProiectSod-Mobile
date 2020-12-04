@@ -41,6 +41,7 @@ public class LogIn extends AppCompatActivity {
     EditText userName, userPassword;
     TextView saveData, restoreData;
     RevealDetailsCallbacks callback;
+    AccountModel account;
 
     private AlertDialog.Builder builder;
     private AlertDialog dialogError, dialogNetwork;
@@ -110,13 +111,14 @@ public class LogIn extends AppCompatActivity {
 
         this.callback = new RevealDetailsCallbacks() {
             @Override
-            public void getDataFromResult(AccountModel account) {
+            public void getDataFromResult(AccountModel accountModel) {
                 SharedPreferences  mPrefs = PreferenceManager.getDefaultSharedPreferences(LogIn.this);
                 SharedPreferences.Editor prefsEditor = mPrefs.edit();
                 Gson gson = new Gson();
-                String json = gson.toJson(account);
+                String json = gson.toJson(accountModel);
                 prefsEditor.putString("AccountInfo", json);
                 prefsEditor.commit();
+                account = accountModel;
             }
         };
 
@@ -160,7 +162,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UserLogIn user = new UserLogIn(userName.getText().toString(), userPassword.getText().toString());
-                Call<AccountModel> call = logInAPI.loginUser(user);
+                Call<AccountModel> call = logInAPI.loginUser("Bearer " + account.getToken(), user);
                 call.enqueue(new Callback<AccountModel>() {
                     @Override
                     public void onResponse(Call<AccountModel> call, Response<AccountModel> response) {

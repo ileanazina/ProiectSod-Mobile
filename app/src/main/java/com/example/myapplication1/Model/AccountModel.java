@@ -23,6 +23,10 @@ public class AccountModel {
     private long cui;
     @SerializedName("companyName")
     private String companyName;
+    @SerializedName("token")
+    private String token;
+    @SerializedName("refreshToken")
+    private String refreshToken;
 
     public AccountModel(int accountId, int userId, boolean isIndividual, String firstName, String lastName,
                         String email, long telephoneNumber, long cnp, long cui, String companyName) {
@@ -116,5 +120,21 @@ public class AccountModel {
 
     public String getCompanyName() {
         return companyName;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

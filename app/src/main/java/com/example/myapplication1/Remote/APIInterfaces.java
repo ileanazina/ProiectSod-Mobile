@@ -18,44 +18,45 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface APIInterfaces {
 
     @GET("Index/GetIndexesByAccountIdAndAddressId/{accountId}/{addressId}")
-    Call<List<IndexModel>> getAllIndexis(@Path("accountId") int accountId, @Path("addressId") int addressId);
+    Call<List<IndexModel>> getAllIndexis(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @POST("/Invoices/GetInvoicesByAccountId")
-    Call<List<InvoiceModel>> getInvoicesByAccountId(@Body InvoiceFilter invoiceFilter);
+    Call<List<InvoiceModel>> getInvoicesByAccountId(@Header("Authorization") String token, @Body InvoiceFilter invoiceFilter);
 
     @GET("Invoices/GetSold/{accountId}/{addressId}")
-    Call<Float> getSold(@Path("accountId") int accountId, @Path("addressId") int addressId);
+    Call<Float> getSold(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("addressId") int addressId);
 
     @POST("Users/Login")
-    Call<AccountModel> loginUser(@Body UserLogIn user);
+    Call<AccountModel> loginUser(@Header("Authorization") String token, @Body UserLogIn user);
 
     @POST("Users/EditUser")
-    Call<Void> editUser(@Body UserEdit user);
+    Call<Void> editUser(@Header("Authorization") String token, @Body UserEdit user);
 
     @POST("Index/AddIndexToAccountId")
-    Call<IndexModel> insertIndex(@Body AddIIndex index);
+    Call<IndexModel> insertIndex(@Header("Authorization") String token, @Body AddIIndex index);
 
     @GET("InvoiceDetail/GetInvoiceDetails/{invoiceId}")
-    Call<InvoiceDetailsModel> getInvoiceDetailsByInvoice(@Path("invoiceId") int invoiceId);
+    Call<InvoiceDetailsModel> getInvoiceDetailsByInvoice(@Header("Authorization") String token, @Path("invoiceId") int invoiceId);
 
     @GET("Address/GetAddressesByAccountId/{accountId}")
-    Call<List<AddressModel>> getAddressesByAccountId(@Path("accountId") int accountId);
+    Call<List<AddressModel>> getAddressesByAccountId(@Header("Authorization") String token, @Path("accountId") int accountId);
 
     @GET("UnitMeasurements/GetUnitMeasurementsByUMId/{umId}")
-    Call<UnitMeasurementsModel> getUnitMeasurementsByUMId(@Path("umId") int umId);
+    Call<UnitMeasurementsModel> getUnitMeasurementsByUMId(@Header("Authorization") String token, @Path("umId") int umId);
 
     @GET("Dropbox/DownloadInvoice/{accountId}/{invoiceId}")
-    Call<Void> sentInvoiceByEmail(@Path("accountId") int accountId, @Path("invoiceId") int invoiceId);
+    Call<Void> sentInvoiceByEmail(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("invoiceId") int invoiceId);
 
     @POST("Document")
-    Call<List<DocumentDownloadModel>> downloadAllDocuments(@Body DownloadFilter downloadFilter);
+    Call<List<DocumentDownloadModel>> downloadAllDocuments(@Header("Authorization") String token, @Body DownloadFilter downloadFilter);
 
     @POST("Dropbox/MobileUserUpload")
-    Call<Void> uploadDoc(@Body UserUploadModel file);
+    Call<Void> uploadDoc(@Header("Authorization") String token, @Body UserUploadModel file);
 }

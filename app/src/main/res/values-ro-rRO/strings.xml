@@ -90,7 +90,7 @@
     <string name="nav_menu_form">Formulare</string>
     <string name="nav_menu_home">Acasă</string>
     <string name="nav_menu_invoice">Facturi</string>
-    <string name="nav_menu_profile">profil</string>
+    <string name="nav_menu_profile">Profil</string>
     <string name="edit_profile_title">Editare date</string>
     <string name="edit_profile_phone_number">Număr de telefon</string>
     <string name="edit_profile_email_address">Adresă de email</string>

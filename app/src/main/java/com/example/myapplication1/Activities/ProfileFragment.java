@@ -133,7 +133,7 @@ public class ProfileFragment extends Fragment {
                     if (String.valueOf(user.getTelephoneNumber()).length() == 9 & pattern.matcher(user.getEmail()).matches()
                             && !String.valueOf(user.getTelephoneNumber()).isEmpty() && !user.getEmail().isEmpty()) {
                         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-                        Call<Void> call = invoiceAPI.editUser(user);
+                        Call<Void> call = invoiceAPI.editUser("Bearer " + account.getToken(), user);
                         call.enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {

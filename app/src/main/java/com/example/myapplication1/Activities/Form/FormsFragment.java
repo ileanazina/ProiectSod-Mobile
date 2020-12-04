@@ -6,16 +6,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication1.Model.AccountModel;
 import com.example.myapplication1.Model.DocumentDownloadModel;
 import com.example.myapplication1.Model.DownloadFilter;
 import com.example.myapplication1.R;
 import com.example.myapplication1.Remote.APIInterfaces;
 import com.example.myapplication1.Remote.RetrofitClientLogIn;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,7 @@ public class FormsFragment extends Fragment implements FormAdaptor.OnFormListene
     private List<DocumentDownloadModel> forAdaptorForms;
     private FormAdaptor invoiceAdaptor;
     private RevealDetailsCallbacks callback;
+    private AccountModel account;
 
     public interface RevealDetailsCallbacks {
         void getDocuments(List<DocumentDownloadModel> list);
@@ -38,6 +43,11 @@ public class FormsFragment extends Fragment implements FormAdaptor.OnFormListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_form_page, container, false);
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Gson gson = new Gson();
+        String json = mPrefs.getString("AccountInfo",null);
+        account = gson.fromJson(json, AccountModel.class);
 
         recyclerView = view.findViewById(R.id.formRecycleView);
         recyclerView.setHasFixedSize(true);
@@ -67,7 +77,7 @@ public class FormsFragment extends Fragment implements FormAdaptor.OnFormListene
 
     public void getDocumentsForDownload() {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<DocumentDownloadModel>> call = invoiceAPI.downloadAllDocuments(new DownloadFilter());
+        Call<List<DocumentDownloadModel>> call = invoiceAPI.downloadAllDocuments("Bearer " + account.getToken(), new DownloadFilter());
         call.enqueue(new Callback<List<DocumentDownloadModel>>() {
             @Override
             public void onResponse(Call<List<DocumentDownloadModel>> call, Response<List<DocumentDownloadModel>> response) {

@@ -125,7 +125,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
                         String strIndex = String.valueOf(addIndexValue.getText());
                         float indexValue = Float.parseFloat(strIndex);
                         AddIIndex index = new AddIIndex(indexValue, account.getAccountId(), AddressIdFromSpinner);
-                        Call<IndexModel> call = indexesAPI.insertIndex(index);
+                        Call<IndexModel> call = indexesAPI.insertIndex("Bearer " + account.getToken(), index);
                         call.enqueue(new Callback<IndexModel>() {
                             @Override
                             public void onResponse(Call<IndexModel> call, Response<IndexModel> response) {
@@ -163,7 +163,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
     public void getIndexList(Context context, RevealDetailsCallbacks callback) {
         indexesAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<IndexModel>> call = indexesAPI.getAllIndexis(account.getAccountId(), AddressIdFromSpinner);
+        Call<List<IndexModel>> call = indexesAPI.getAllIndexis("Bearer " + account.getToken(), account.getAccountId(), AddressIdFromSpinner);
         call.enqueue(new Callback<List<IndexModel>>() {
             @Override
             public void onResponse(Call<List<IndexModel>> call, Response<List<IndexModel>> response) {
