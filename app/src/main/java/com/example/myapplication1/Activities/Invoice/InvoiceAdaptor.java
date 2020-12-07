@@ -102,8 +102,13 @@ public class InvoiceAdaptor extends RecyclerView.Adapter<InvoiceAdaptor.ExempleV
                         break;
                     }
                     else {
-                        showalertDialog();
-                        break;
+                        if(!item.isPaid())
+                        {
+                            showalertDialog();
+                            break;
+                        }
+                        else
+                            break;
                     }
             }
         }

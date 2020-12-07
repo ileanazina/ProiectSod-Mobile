@@ -35,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class InvoiceDetailsFragment extends Fragment {
+public class  InvoiceDetailsFragment extends Fragment {
 
     public interface RevealDetailsCallbacks {
         void getDataFromInvoiceDetails(InvoiceDetailsModel invoiceDetails);
