@@ -127,7 +127,7 @@ public class  InvoiceDetailsFragment extends Fragment {
 
     public void getAddressByAccount(Context context, RevealDetailsCallbacks callback) {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<AddressModel>> call = invoiceAPI.getAddressesByAccountId("Bearer " + account.getToken(), account.getAccountId());
+        Call<List<AddressModel>> call = invoiceAPI.getAddressesByAccountId("Bearer " + account.getToken());
         call.enqueue(new Callback<List<AddressModel>>() {
             @Override
             public void onResponse(Call<List<AddressModel>> call, Response<List<AddressModel>> response) {
@@ -257,7 +257,7 @@ public class  InvoiceDetailsFragment extends Fragment {
     public  void sendInvoiceByMail()
     {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<Void> call = invoiceAPI.sentInvoiceByEmail("Bearer " + account.getToken(), account.getAccountId(), invoice_obj.getInvoiceId());
+        Call<Void> call = invoiceAPI.sentInvoiceByEmail("Bearer " + account.getToken(), invoice_obj.getInvoiceId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

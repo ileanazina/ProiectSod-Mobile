@@ -163,7 +163,7 @@ public class IndexFragment extends Fragment implements IndexAdaptor.OnIndexListe
 
     public void getIndexList(Context context, RevealDetailsCallbacks callback) {
         indexesAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<IndexModel>> call = indexesAPI.getAllIndexis("Bearer " + account.getToken(), account.getAccountId(), AddressIdFromSpinner);
+        Call<List<IndexModel>> call = indexesAPI.getAllIndexis("Bearer " + account.getToken(), AddressIdFromSpinner);
         call.enqueue(new Callback<List<IndexModel>>() {
             @Override
             public void onResponse(Call<List<IndexModel>> call, Response<List<IndexModel>> response) {

@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
 
     public void getSold(Context context, RevealDetailsCallbacks callback, int addressId){
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<Float> call = invoiceAPI.getSold("Bearer " + account.getToken(), account.getAccountId(), addressId );
+        Call<Float> call = invoiceAPI.getSold("Bearer " + account.getToken(), addressId );
         call.enqueue(new Callback<Float>() {
             @Override
             public void onResponse(Call<Float> call, Response<Float> response) {
@@ -188,7 +188,7 @@ public class HomeFragment extends Fragment {
 
     public void getAddressByAccount(Context context, RevealDetailsCallbacks callback) {
         APIInterfaces invoiceAPI = RetrofitClientLogIn.getInstance().create(APIInterfaces.class);
-        Call<List<AddressModel>> call = invoiceAPI.getAddressesByAccountId("Bearer " + account.getToken(), account.getAccountId());
+        Call<List<AddressModel>> call = invoiceAPI.getAddressesByAccountId("Bearer " + account.getToken());
         call.enqueue(new Callback<List<AddressModel>>() {
             @Override
             public void onResponse(Call<List<AddressModel>> call, Response<List<AddressModel>> response) {

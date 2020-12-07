@@ -25,14 +25,14 @@ import retrofit2.http.Path;
 
 public interface APIInterfaces {
 
-    @GET("Index/GetIndexesByAccountIdAndAddressId/{accountId}/{addressId}")
-    Call<List<IndexModel>> getAllIndexis(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("addressId") int addressId);
+    @GET("Index/GetIndexesByAccountIdAndAddressId/{addressId}")
+    Call<List<IndexModel>> getAllIndexis(@Header("Authorization") String token, @Path("addressId") int addressId);
 
     @POST("/Invoices/GetInvoicesByAccountId")
     Call<List<InvoiceModel>> getInvoicesByAccountId(@Header("Authorization") String token, @Body InvoiceFilter invoiceFilter);
 
-    @GET("Invoices/GetSold/{accountId}/{addressId}")
-    Call<Float> getSold(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("addressId") int addressId);
+    @GET("Invoices/GetSold/{addressId}")
+    Call<Float> getSold(@Header("Authorization") String token, @Path("addressId") int addressId);
 
     @POST("Users/Login")
     Call<AccountModel> loginUser(@Body UserLogIn user);
@@ -46,14 +46,14 @@ public interface APIInterfaces {
     @GET("InvoiceDetail/GetInvoiceDetails/{invoiceId}")
     Call<InvoiceDetailsModel> getInvoiceDetailsByInvoice(@Header("Authorization") String token, @Path("invoiceId") int invoiceId);
 
-    @GET("Address/GetAddressesByAccountId/{accountId}")
-    Call<List<AddressModel>> getAddressesByAccountId(@Header("Authorization") String token, @Path("accountId") int accountId);
+    @GET("Address/GetAddressesByAccountId")
+    Call<List<AddressModel>> getAddressesByAccountId(@Header("Authorization") String token);
 
     @GET("UnitMeasurements/GetUnitMeasurementsByUMId/{umId}")
     Call<UnitMeasurementsModel> getUnitMeasurementsByUMId(@Header("Authorization") String token, @Path("umId") int umId);
 
-    @GET("Dropbox/DownloadInvoice/{accountId}/{invoiceId}")
-    Call<Void> sentInvoiceByEmail(@Header("Authorization") String token, @Path("accountId") int accountId, @Path("invoiceId") int invoiceId);
+    @GET("Dropbox/DownloadInvoice/{invoiceId}")
+    Call<Void> sentInvoiceByEmail(@Header("Authorization") String token, @Path("invoiceId") int invoiceId);
 
     @POST("Document")
     Call<List<DocumentDownloadModel>> downloadAllDocuments(@Header("Authorization") String token, @Body DownloadFilter downloadFilter);
